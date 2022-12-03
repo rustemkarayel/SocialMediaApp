@@ -14,8 +14,8 @@ namespace EntityLayer
         public int MessageId { get; set; }
         [StringLength(100)]
         public string Content { get; set; }
-        public DateOnly SendDate { get; set; }
-        public TimeOnly SendTime { get; set; }
+        public DateTime SendDate { get; set; }
+        public DateTime SendTime { get; set; }
 
         //User ile ilişkilendirilecek.
         [ForeignKey ("Sender")]
