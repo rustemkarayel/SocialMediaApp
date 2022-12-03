@@ -21,5 +21,9 @@ namespace EntityLayer
         [ForeignKey ("Sender")]
         public int SenderId { get; set; }
         public User Sender { get; set; }
+
+        [ForeignKey("Receiver")]
+        public int ReceiverId { get; set; }
+        public User Receiver { get; set; }
     }
 }
