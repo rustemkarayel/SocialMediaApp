@@ -13,7 +13,7 @@ namespace EntityLayer
         [Key]
         public int CommentId { get; set; }
 
-        [StringLength(5)]
+        [StringLength(100)]
         public string Content { get; set; }
         public DateTime CommentTime { get; set; }
 
