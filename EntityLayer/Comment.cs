@@ -22,7 +22,6 @@ namespace EntityLayer
         public Post Post { get; set; }
 
         //User ile ilişkilendirilecek.
-        [ForeignKey("User")]
         public int CommentorId { get; set; }
         public User Commentor { get; set; }
 
