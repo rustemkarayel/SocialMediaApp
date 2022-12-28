@@ -15,6 +15,7 @@ namespace EntityLayer
 
         [StringLength(100)]
         public string Content { get; set; }
+
         public DateTime CommentTime { get; set; }
 
         //Post ile ilişkilendirilecek.
@@ -22,8 +23,7 @@ namespace EntityLayer
         public Post Post { get; set; }
 
         //User ile ilişkilendirilecek.
-        [ForeignKey("User")]
-        public int CommentorId { get; set; }
+        public int UserId { get; set; }
         public User Commentor { get; set; }
 
         //Kendiyle ilişkilenecek.
