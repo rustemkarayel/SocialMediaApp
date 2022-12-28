@@ -15,11 +15,12 @@ namespace EntityLayer
         public DateTime RequestTime { get; set; }
         public bool RequestState { get; set; }
 
-        //User ile ilişkilendirilecek.      
+        //User ile ilişkilendirilecek.
+        [ForeignKey("Follower")]
         public int  FollowerId{ get; set; }
         public User Follower { get; set; }
-        
-        //User ile ilişkilendirilecek.
+
+        [ForeignKey("Following")]
         public int FollowingId { get; set; }
         public User Following { get; set; }
     }
