@@ -13,12 +13,33 @@ namespace EntityLayer
         [Key]
         public int PostId { get; set; }        
         public DateTime GenerateDate { get; set; }
-        public int Content { get; set; }
+        [StringLength(300)]
+        public string Content { get; set; }
         [StringLength(300)]
         public string Description { get; set; }
+        
+        //Location ile ilişkilendirilecek.
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+
+        //Type ile ilişkilendirilecek.
+        public int TypeId { get; set; }
+        public Type Type { get; set; }
+
         //User ile ilişkilendirilecek.
-        [ForeignKey("Creator")]
-        public int CreatorId { get; set; }
-        public User Creator { get; set; }
+        public int UserId { get; set; }
+        public User Creator  { get; set; }
+
+        //Comment ile ilişkilendirilecek.
+        public ICollection<Comment> Comments { get; set; }
+
+        //Tag ile ilişkilendirilecek.
+        public ICollection<Tag> Tags { get; set; }
+
+        //PostLike ile ilişkilendirilecek.
+        public ICollection<PostLike> PostLikes { get; set; }
+
+        //Saved ile ilişkilendirilecek.
+        public ICollection<Saved> Saveds { get; set; }
     }
 }
