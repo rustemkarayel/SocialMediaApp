@@ -12,7 +12,7 @@ namespace EntityLayer
         [Key]
         public int TypeId { get; set; }
 
-        [StringLength(50)]
+        [StringLength(25)]
         public string TypeName { get; set; }
 
         //Post ile ilişkilendirilecek.
