@@ -13,7 +13,7 @@ namespace EntityLayer
         [Key]
         public int PostLikeId { get; set; }        
         public DateTime LikeTime { get; set; }
-<<<<<<< HEAD
+
 
         //User ile ilişkilendirilecek.        
         public int PostLikerId { get; set; }
@@ -22,13 +22,12 @@ namespace EntityLayer
         //Post ile ilişkilendirilecek.
         public int PostId { get; set; }
         public Post Post { get; set; }
-=======
-       
+
         //User ile ilişkilendirilecek.        
         public ICollection<User> PostLikers;
        
         //Post ile ilişkilendirilecek.
         public ICollection<Post> Posts {get; set;}
->>>>>>> 7c22d1494c4d32f53d7ca8e373adcb54a336d9fa
+
     }
 }

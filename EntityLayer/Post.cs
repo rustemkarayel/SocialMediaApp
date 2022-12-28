@@ -17,7 +17,7 @@ namespace EntityLayer
         public string Content { get; set; }
         [StringLength(300)]
         public string Description { get; set; }
-<<<<<<< HEAD
+
         
         //Location ile ilişkilendirilecek.
         public int LocationId { get; set; }
@@ -42,7 +42,7 @@ namespace EntityLayer
 
         //Saved ile ilişkilendirilecek.
         public ICollection<Saved> Saveds { get; set; }
-=======
+
         //User ile ilişkilendirilecek.       
         public int CreatorId { get; set; }
         public User Creator { get; set; }
@@ -65,6 +65,6 @@ namespace EntityLayer
         public int SavedId {get; set;}
         public Saved Saved {get; set;}
         
->>>>>>> 7c22d1494c4d32f53d7ca8e373adcb54a336d9fa
+
     }
 }
