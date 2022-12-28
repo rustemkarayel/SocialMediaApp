@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Type
+    public class Genre
     {
         [Key]
-        public int TypeId { get; set; }
+        public int GenreId { get; set; }
 
         [StringLength(25)]
-        public string TypeName { get; set; }
+        public string GenreName { get; set; }
 
         //Post ile ilişkilendirilecek.
         public ICollection<Post> Posts { get; set; }
