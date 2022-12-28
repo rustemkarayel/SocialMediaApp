@@ -13,11 +13,22 @@ namespace EntityLayer
         [Key]
         public int CommentLikeId { get; set; }        
         public DateTime CommentLikeTime { get; set; }
+
+
+        //User ile ilişkilendirilecek.
+        public int UserId { get; set; }
+        public User CommentLiker { get; set; }
+
+        //Comment ile ilişkilendirilecek.
+        public int CommentId { get; set; }
+        public Comment Comment { get; set; }
+
         //User ile ilişkilendirilecek.        
         public int CommentLikerId { get; set; }
         public User CommentLiker { get; set; }
         //Comment ile ilişkilendirilecek.
         public int CommentId {get; set;}
         public Comment Comment {get; set;}
+
     }
 }

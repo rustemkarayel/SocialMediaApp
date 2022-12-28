@@ -17,6 +17,32 @@ namespace EntityLayer
         public string Content { get; set; }
         [StringLength(300)]
         public string Description { get; set; }
+
+        
+        //Location ile ilişkilendirilecek.
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+
+        //Type ile ilişkilendirilecek.
+        public int TypeId { get; set; }
+        public Type Type { get; set; }
+
+        //User ile ilişkilendirilecek.
+        public int UserId { get; set; }
+        public User Creator  { get; set; }
+
+        //Comment ile ilişkilendirilecek.
+        public ICollection<Comment> Comments { get; set; }
+
+        //Tag ile ilişkilendirilecek.
+        public ICollection<Tag> Tags { get; set; }
+
+        //PostLike ile ilişkilendirilecek.
+        public ICollection<PostLike> PostLikes { get; set; }
+
+        //Saved ile ilişkilendirilecek.
+        public ICollection<Saved> Saveds { get; set; }
+
         //User ile ilişkilendirilecek.       
         public int CreatorId { get; set; }
         public User Creator { get; set; }
@@ -39,5 +65,6 @@ namespace EntityLayer
         public int SavedId {get; set;}
         public Saved Saved {get; set;}
         
+
     }
 }
