@@ -15,7 +15,7 @@ namespace EntityLayer
         public DateTime LikeTime { get; set; }
 
         //User ile ilişkilendirilecek.        
-        public int PostLikerId { get; set; }
+        public int UserId { get; set; }
         public User PostLiker { get; set; }
 
         //Post ile ilişkilendirilecek.
