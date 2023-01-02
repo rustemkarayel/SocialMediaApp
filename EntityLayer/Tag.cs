@@ -14,12 +14,10 @@ namespace EntityLayer
         public int TagId { get; set; }
 
         //Post ile ilikilendirilecek.
-        [ForeignKey("Post")]
         public int PostId { get; set; }
         public Post Post { get; set; }
 
         //User ile ilişkilendirilecek.
-        [ForeignKey("User")]
         public int UserId { get; set; }
         public User TaggedUser { get; set; }
     }

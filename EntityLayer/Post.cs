@@ -23,9 +23,9 @@ namespace EntityLayer
         public int LocationId { get; set; }
         public Location Location { get; set; }
 
-        //Type ile ilişkilendirilecek.
-        public int TypeId { get; set; }
-        public Type Type { get; set; }
+        //Genre ile ilişkilendirilecek.
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; }
 
         //User ile ilişkilendirilecek.
         public int UserId { get; set; }

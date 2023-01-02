@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Collections
+    public class Collection
     {
         [Key]
         public int CollectionId { get; set; }
