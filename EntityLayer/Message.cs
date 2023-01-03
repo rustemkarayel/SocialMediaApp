@@ -20,10 +20,10 @@ namespace EntityLayer
         //User ile ilişkilendirilecek.
         [ForeignKey ("Sender")]
         public int SenderId { get; set; }
-        public virtual User Sender { get; set; }
+        public User Sender { get; set; }
 
         [ForeignKey("Receiver")]
         public int ReceiverId { get; set; }
-        public virtual User Receiver { get; set; }
+        public User Receiver { get; set; }
     }
 }
