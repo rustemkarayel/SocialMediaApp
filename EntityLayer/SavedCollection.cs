@@ -15,11 +15,11 @@ namespace EntityLayer
 
         //Saved ile ilişkilendirilecek.
         public int SavedId { get; set; }
-        public Saved Saved { get; set; }
+        public virtual Saved Saved { get; set; }
 
         //Collection ile ilişkilendirilecek.
         public int CollectionId { get; set; }
-        public Collections Collection { get; set; }
+        public virtual Collection Collection { get; set; }
 
 
 
