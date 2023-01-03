@@ -20,15 +20,15 @@ namespace EntityLayer
 
         //Post ile ilişkilendirilecek.
         public int PostId { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
         //User ile ilişkilendirilecek.
         public int UserId { get; set; }
-        public User Commentor { get; set; }
+        public virtual User Commentor { get; set; }
 
         //Kendiyle ilişkilenecek.KENDİNE ÇOK TABLO ÖĞREN TYAP !!!!!!!!
         [ForeignKey("ParentComment")]
         public int ParentCommentId { get; set; }
-        public Comment ParentComment { get; set; }
+        public virtual Comment ParentComment { get; set; }
     }
 }
