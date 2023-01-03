@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfSavedRepository:GenericRepository<Saved>,ISavedDal
+    public class EfCommentLikeRepository:GenericRepository<CommentLike>,ICommentLikeDal
     {
     }
 }

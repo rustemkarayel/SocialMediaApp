@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfMessageRepository:GenericRepository<Message>,IMessageDal
+    public class EfPostLikeRepository:GenericRepository<PostLike>,IPostLikeDal
     {
     }
 }
