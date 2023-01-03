@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfSavedCollectionRepository:GenericRepository<SavedCollection>,ISavedCollectionDal
+    public class EfRequestRepository:GenericRepository<Request>,IRequestDal
     {
     }
 }

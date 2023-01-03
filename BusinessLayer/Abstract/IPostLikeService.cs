@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    internal interface ISavedService
+    public interface IPostLikeService
     {
     }
 }

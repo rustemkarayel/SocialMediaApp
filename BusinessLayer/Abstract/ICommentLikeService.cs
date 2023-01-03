@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.Concrete
+namespace BusinessLayer.Abstract
 {
-    internal class SavedManager
+    public interface ICommentLikeService
     {
     }
 }
