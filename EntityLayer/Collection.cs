@@ -18,6 +18,6 @@ namespace EntityLayer
         public DateTime CreationTime { get; set; }
 
         //SavedCollections ile ilişkilenecek.
-        public ICollection<SavedCollection> SavedCollections { get; set; }
+        public virtual ICollection<SavedCollection> SavedCollections { get; set; }
     }
 }

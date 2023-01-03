@@ -16,6 +16,6 @@ namespace EntityLayer
         public string LocationName { get; set; }
 
         //Post ile ilişkilendirilecek.
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }
