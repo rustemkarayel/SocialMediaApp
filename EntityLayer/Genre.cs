@@ -16,6 +16,6 @@ namespace EntityLayer
         public string GenreName { get; set; }
 
         //Post ile ilişkilendirilecek.
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }
