@@ -15,10 +15,10 @@ namespace EntityLayer
 
         //Post ile ilikilendirilecek.
         public int PostId { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
         //User ile ilişkilendirilecek.
         public int UserId { get; set; }
-        public User TaggedUser { get; set; }
+        public virtual User TaggedUser { get; set; }
     }
 }
