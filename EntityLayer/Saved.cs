@@ -14,14 +14,14 @@ namespace EntityLayer
 
         //User ile ilişkilendirilecek.
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         //Post ile ilişkilendirilecek.
         public int PostId { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
         //SavedCollection ile ilişkilendirilecek.
-        public ICollection<SavedCollection> SavedCollections { get; set; }
+        public virtual ICollection<SavedCollection> SavedCollections { get; set; }
 
 
     }
