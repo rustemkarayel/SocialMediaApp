@@ -19,7 +19,7 @@ namespace EntityLayer
 
         //Collection ile ilişkilendirilecek.
         public int CollectionId { get; set; }
-        public Collections Collection { get; set; }
+        public Collection Collections { get; set; }
 
 
 
