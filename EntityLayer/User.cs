@@ -33,33 +33,33 @@ namespace EntityLayer
 
         //Request ile ilişkilendirilecek.
         [InverseProperty("Follower")]
-        public virtual ICollection<Request> FollowerRequests { get; set; }
+        public ICollection<Request> FollowerRequests { get; set; }
         [InverseProperty("Following")]
-        public virtual ICollection<Request> FollowingRequests { get; set; }
+        public ICollection<Request> FollowingRequests { get; set; }
 
         //Message ile ilişkilendirilecek.
         [InverseProperty("Sender")]
-        public virtual ICollection<Message> SenderMessages { get; set; }
+        public ICollection<Message> SenderMessages { get; set; }
         [InverseProperty("Receiver")]
-        public virtual ICollection<Message> ReceiverMessages { get; set; }
+        public ICollection<Message> ReceiverMessages { get; set; }
 
         //CommentLike ile ilişkilendirilecek.
-        public virtual ICollection<CommentLike> CommentLikes { get; set; }
+        public ICollection<CommentLike> CommentLikes { get; set; }
 
         //Comment ile ilişkilendirilecek.
-        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
         //Post ile ilişkilendirilecek.
-        public virtual ICollection<Post> Posts { get; set; }
+        public ICollection<Post> Posts { get; set; }
 
         //Tag ile ilişkilendirilecek.
-        public virtual ICollection<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
 
         //PostLike ile ilişkilendirilecek.
-        public virtual ICollection<PostLike> PostLikes { get; set; }
+        public ICollection<PostLike> PostLikes { get; set; }
 
         //Saved ile ilişkilendirilecek.
-        public virtual ICollection<Saved> Saveds { get; set; }
+        public ICollection<Saved> Saveds { get; set; }
 
     }
 }
