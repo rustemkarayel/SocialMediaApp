@@ -9,10 +9,10 @@ namespace BusinessLayer.Abstract
 {
     public interface IAdminService
     {
-        void AdminInsert(Admin admin);
-        void AdminDelete(Admin admin);
-        void AdminUpdate(Admin admin);
-        List<Admin> AdminList();
-        Admin AdminGetById(int id);
+        void adminInsert(Admin admin);
+        void adminDelete(Admin admin);
+        void adminUpdate(Admin admin);
+        List<Admin> adminList();
+        Admin adminGetById(int id);
     }
 }
