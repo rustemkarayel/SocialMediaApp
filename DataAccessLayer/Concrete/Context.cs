@@ -27,5 +27,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<CommentLike> CommentLikes { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Collection> Collections { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
