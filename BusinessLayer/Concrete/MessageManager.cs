@@ -16,27 +16,27 @@ namespace BusinessLayer.Concrete
         {
             this.messageDal = messageDal;
         }
-        public void messageDelete(Message message)
+        public void MessageDelete(Message message)
         {
             messageDal.delete(message);
         }
 
-        public Message messageGetById(int id)
+        public Message MessageGetById(int id)
         {
             return messageDal.get(x => x.MessageId == id);
         }
 
-        public void messageInsert(Message message)
+        public void MessageInsert(Message message)
         {
             messageDal.insert(message);
         }
 
-        public List<Message> messageList()
+        public List<Message> MessageList()
         {
             return messageDal.list();
         }
 
-        public void messageUpdate(Message message)
+        public void MessageUpdate(Message message)
         {
             messageDal.update(message);
         }

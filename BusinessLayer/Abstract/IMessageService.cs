@@ -9,11 +9,11 @@ namespace BusinessLayer.Abstract
 {
     public interface IMessageService
     {
-        void messageInsert(Message message);
-        void messageDelete(Message message);
-        void messageUpdate(Message message);
-        List<Message> messageList();
-        Message messageGetById(int id);
+        void MessageInsert(Message message);
+        void MessageDelete(Message message);
+        void MessageUpdate(Message message);
+        List<Message> MessageList();
+        Message MessageGetById(int id);
         
     }
 }

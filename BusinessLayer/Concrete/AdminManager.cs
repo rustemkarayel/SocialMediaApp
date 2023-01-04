@@ -17,27 +17,27 @@ namespace BusinessLayer.Concrete
             this.adminDal= adminDal;
         }
 
-        public void adminDelete(Admin admin)
+        public void AdminDelete(Admin admin)
         {
             adminDal.delete(admin);          
         }
 
-        public Admin adminGetById(int id)
+        public Admin AdminGetById(int id)
         {
             return adminDal.get(x=>x.AdminId==id);
         }
 
-        public void adminInsert(Admin admin)
+        public void AdminInsert(Admin admin)
         {
             adminDal.insert(admin);
         }
 
-        public List<Admin> adminList()
+        public List<Admin> AdminList()
         {
             return adminDal.list();
         }
 
-        public void adminUpdate(Admin admin)
+        public void AdminUpdate(Admin admin)
         {
             adminDal.update(admin);
         }

@@ -9,11 +9,11 @@ namespace BusinessLayer.Abstract
 {
     public interface ISavedCollectionService
     {
-        void savedCollectionInsert(SavedCollection savedCollection);
-        void savedCollectionDelete(SavedCollection savedCollection);
-        void savedCollectionUpdate(SavedCollection savedCollection);
-        List<SavedCollection> savedCollectionList();
-        SavedCollection savedCollectionGetById(int id);
+        void SavedCollectionInsert(SavedCollection savedCollection);
+        void SavedCollectionDelete(SavedCollection savedCollection);
+        void SavedCollectionUpdate(SavedCollection savedCollection);
+        List<SavedCollection> SavedCollectionList();
+        SavedCollection SavedCollectionGetById(int id);
 
     }
 }

@@ -17,27 +17,27 @@ namespace BusinessLayer.Concrete
             this.savedDal = savedDal;
         }
 
-        public void savedDelete(Saved saved)
+        public void SavedDelete(Saved saved)
         {
             savedDal.delete(saved);
         }
 
-        public Saved savedGetById(int id)
+        public Saved SavedGetById(int id)
         {
             return savedDal.get(x=>x.SavedId==id);
         }
 
-        public void savedInsert(Saved saved)
+        public void SavedInsert(Saved saved)
         {
             savedDal.insert(saved);
         }
 
-        public List<Saved> savedList()
+        public List<Saved> SavedList()
         {
             return savedDal.list();
         }
 
-        public void savedUpdate(Saved saved)
+        public void SavedUpdate(Saved saved)
         {
             savedDal.update(saved); 
         }

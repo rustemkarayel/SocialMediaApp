@@ -9,10 +9,10 @@ namespace BusinessLayer.Abstract
 {
     public interface ISavedService
     {
-        void savedInsert(Saved saved);
-        void savedDelete(Saved saved);
-        void savedUpdate(Saved saved);  
-        List<Saved> savedList();
-        Saved savedGetById(int id); 
+        void SavedInsert(Saved saved);
+        void SavedDelete(Saved saved);
+        void SavedUpdate(Saved saved);  
+        List<Saved> SavedList();
+        Saved SavedGetById(int id); 
     }
 }

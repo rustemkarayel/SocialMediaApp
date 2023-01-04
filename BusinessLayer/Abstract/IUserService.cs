@@ -9,11 +9,11 @@ namespace BusinessLayer.Abstract
 {
     public interface IUserService
     {
-        void userInsert(User user);        
-        void userDelete(User user);
-        void userUpdate(User user);
-        List<User> userList();
-        User userGetById(int id);
-        User userGetByName(string name);           
+        void UserInsert(User user);        
+        void UserDelete(User user);
+        void UserUpdate(User user);
+        List<User> UserList();
+        User UserGetById(int id);
+        User UserGetByName(string name);           
     }
 }
