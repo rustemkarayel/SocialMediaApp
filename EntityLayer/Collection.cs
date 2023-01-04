@@ -16,6 +16,7 @@ namespace EntityLayer
         public string CollectionName { get; set; }
 
         public DateTime CreationTime { get; set; }
+        public bool IsActive { get; set; }
 
         //SavedCollections ile ilişkilenecek.
         public virtual ICollection<SavedCollection> SavedCollections { get; set; }

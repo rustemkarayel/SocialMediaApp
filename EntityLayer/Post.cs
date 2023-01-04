@@ -17,31 +17,31 @@ namespace EntityLayer
         public string Content { get; set; }
         [StringLength(300)]
         public string Description { get; set; }
+        public bool IsActive { get; set; }
 
-        
         //Location ile ilişkilendirilecek.
         public int LocationId { get; set; }
-        public Location Location { get; set; }
+        public virtual Location Location { get; set; }
 
         //Genre ile ilişkilendirilecek.
         public int GenreId { get; set; }
-        public Genre Genre { get; set; }
+        public virtual Genre Genre { get; set; }
 
         //User ile ilişkilendirilecek.
         public int UserId { get; set; }
-        public User Creator  { get; set; }
+        public virtual User Creator  { get; set; }
 
         //Comment ile ilişkilendirilecek.
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         //Tag ile ilişkilendirilecek.
-        public ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
 
         //PostLike ile ilişkilendirilecek.
-        public ICollection<PostLike> PostLikes { get; set; }
+        public virtual ICollection<PostLike> PostLikes { get; set; }
 
         //Saved ile ilişkilendirilecek.
-        public ICollection<Saved> Saveds { get; set; }
+        public virtual ICollection<Saved> Saveds { get; set; }
 
     }
 }

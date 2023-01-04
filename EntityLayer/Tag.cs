@@ -12,6 +12,7 @@ namespace EntityLayer
     {
         [Key]
         public int TagId { get; set; }
+        public bool IsActive { get; set; }
 
         //Post ile ilikilendirilecek.
         public int PostId { get; set; }
