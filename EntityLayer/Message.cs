@@ -16,14 +16,15 @@ namespace EntityLayer
         public string Content { get; set; }
         public DateTime SendDate { get; set; }
         public DateTime SendTime { get; set; }
+        public bool IsActive { get; set; }
 
         //User ile ilişkilendirilecek.
         [ForeignKey ("Sender")]
-        public int SenderId { get; set; }
-        public User Sender { get; set; }
+        public int? SenderId { get; set; }
+        public virtual User Sender { get; set; }
 
         [ForeignKey("Receiver")]
-        public int ReceiverId { get; set; }
-        public User Receiver { get; set; }
+        public int? ReceiverId { get; set; }
+        public virtual User Receiver { get; set; }
     }
 }

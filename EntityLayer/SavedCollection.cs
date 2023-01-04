@@ -12,14 +12,15 @@ namespace EntityLayer
     {
         [Key]
         public int SavedCollectionId { get; set; }
+        public bool IsActive { get; set; }
 
         //Saved ile ilişkilendirilecek.
         public int SavedId { get; set; }
-        public Saved Saved { get; set; }
+        public virtual Saved Saved { get; set; }
 
         //Collection ile ilişkilendirilecek.
         public int CollectionId { get; set; }
-        public Collection Collections { get; set; }
+        public virtual Collection Collection { get; set; }
 
 
 

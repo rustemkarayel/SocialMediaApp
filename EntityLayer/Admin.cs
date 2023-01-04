@@ -26,5 +26,6 @@ namespace EntityLayer
 
         [StringLength(15)]
         public string AdminType { get; set; }
+        public bool IsActive { get; set; }
     }
 }

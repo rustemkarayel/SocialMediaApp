@@ -17,6 +17,7 @@ namespace EntityLayer
         public string Content { get; set; }
 
         public DateTime CommentTime { get; set; }
+        public bool IsActive { get; set; }
 
         //Post ile ilişkilendirilecek.
         public int PostId { get; set; }
@@ -26,12 +27,12 @@ namespace EntityLayer
         public int UserId { get; set; }
         public virtual User Commentor { get; set; }
 
-        //Kendiyle ilişkilenecek.KENDİNE ÇOK TABLO ÖĞREN TYAP !!!!!!!!
+        //Kendiyle ilişkilenecek.
         [ForeignKey("ParentComment")]
         public int? ParentCommentId { get; set; }
         public virtual Comment ParentComment { get; set; }
 
         [InverseProperty("ParentComment")]
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> ChildComments { get; set; }
     }
 }

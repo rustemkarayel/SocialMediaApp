@@ -13,14 +13,15 @@ namespace EntityLayer
         [Key]
         public int PostLikeId { get; set; }        
         public DateTime LikeTime { get; set; }
+        public bool IsActive { get; set; }
 
         //User ile ilişkilendirilecek.        
         public int UserId { get; set; }
-        public User PostLiker { get; set; }
+        public virtual User PostLiker { get; set; }
 
         //Post ile ilişkilendirilecek.
         public int PostId { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
     }
 }

@@ -14,6 +14,7 @@ namespace EntityLayer
 
         [StringLength(50)]
         public string LocationName { get; set; }
+        public bool IsActive { get; set; }
 
         //Post ile ilişkilendirilecek.
         public virtual ICollection<Post> Posts { get; set; }

@@ -13,14 +13,15 @@ namespace EntityLayer
         [Key]
         public int CommentLikeId { get; set; }        
         public DateTime CommentLikeTime { get; set; }
+        public bool IsActive { get; set; }
 
         //User ile ilişkilendirilecek.
         public int UserId { get; set; }
-        public User CommentLiker { get; set; }
+        public virtual User CommentLiker { get; set; }
 
         //Comment ile ilişkilendirilecek.
         public int CommentId {get; set;}
-        public Comment Comment {get; set;}
+        public virtual Comment Comment {get; set;}
 
     }
 }
