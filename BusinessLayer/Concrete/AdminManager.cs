@@ -19,8 +19,7 @@ namespace BusinessLayer.Concrete
 
         public void AdminDelete(Admin admin)
         {
-            adminDal.delete(admin);
-            
+            adminDal.delete(admin);          
         }
 
         public Admin AdminGetById(int id)
