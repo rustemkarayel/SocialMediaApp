@@ -30,6 +30,7 @@ namespace EntityLayer
         [StringLength(50)]
         public string Country { get; set; }
         public bool Gender { get; set; }
+        public bool IsActive { get; set; }
 
         //Request ile ilişkilendirilecek.
         [InverseProperty("Follower")]
