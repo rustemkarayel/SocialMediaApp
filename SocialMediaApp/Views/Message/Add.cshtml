@@ -1,0 +1,48 @@
+﻿@using EntityLayer;
+@model MessageUserModel;
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Message Add</h2><br />
+    @using (Html.BeginForm("Add", "Message", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Sender")
+        <select name="UserId" class="form-control">
+            @foreach (var item in Model.UserModel)
+            {
+                <option value=" @item.UserId">@item.NickName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Receiver")
+        <select name="UserId" class="form-control">
+            @foreach (var item in Model.UserModel)
+            {
+                <option value=" @item.UserId">@item.NickName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Content")
+        @Html.TextBoxFor(message=>message.MessageModel.Content,new { @class = "form-control"})
+        @Html.ValidationMessageFor(message=>message.MessageModel.Content,"",new{@class="text-danger"})
+        <br />
+        @Html.Label("Send Date")
+        @Html.TextBoxFor(message=>message.MessageModel.SendDate,new { @class = "form-control"})
+        @Html.ValidationMessageFor(message=>message.MessageModel.SendDate,"",new{@class="text-danger"})
+        <br />
+        @Html.Label("Send Time")
+        @Html.TextBoxFor(message=>message.MessageModel.SendTime,new { @class = "form-control"})
+        @Html.ValidationMessageFor(message=>message.MessageModel.SendTime,"",new{@class="text-danger"})
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Message Add" />
+    }
+</div>
