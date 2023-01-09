@@ -1,0 +1,71 @@
+﻿@using EntityLayer;
+@model List<Tag>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>TAGS</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tag ID</th>
+            <th>User Nickname</th>
+            <th>IsActive</th>
+            <th> </th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.TagId</td>
+                <td>@item.TaggedUser.NickName</td>
+                <td>@item.IsActive</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.TagId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                </td>
+                <td><a href="/Tag/Update/@item.TagId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Tag/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+</div>
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="DeleteLabel">WARNING!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Delete*@
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var UserId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Tag/Delete/" + UserId;
+        });
+    });
+</script>
