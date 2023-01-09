@@ -1,0 +1,59 @@
+﻿@using EntityLayer;
+@model SavedUserPostModel;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Saved Update</h2>
+    @using (Html.BeginForm("Update", "Saved", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(saved=>saved.SavedModel.SavedId,new { @class = "form-control",@name="SavedId",@value="@Model.SavedModel.SavedId",@type="hidden"})
+        @Html.Label("User")
+        <select class="form-control" name="UserId">
+            @foreach (var item in @Model.UserModel)
+            {
+                if (item.UserId ==Model.SavedModel.UserId)
+                {
+                    <option value="@item.UserId" selected">@item.NickName</option>
+                }
+                else
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Post")
+        <select class="form-control" name="PostId">
+                        @foreach (var item in @Model.PostModel)
+            {
+                if (item.PostId ==Model.SavedModel.PostId)
+                {
+                    <option value="@item.PostId" selected">@item.Content</option>
+                }
+                else
+                {
+                    <option value="@item.PostId">@item.Content</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.SavedModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Saved Update" />
+    }
+</div>

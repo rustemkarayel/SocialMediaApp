@@ -50,6 +50,17 @@ namespace SocialMediaApp.Controllers
                 return View(supm);
             }
         }
+        [HttpGet] 
+        public IActionResult Update(int id)
+        {
+            //bi bak!!!!
+            Saved saved=sm.SavedGetById(id);
+            SavedUserPostModel supm = new SavedUserPostModel();
+            supm.SavedModel = new Saved();
+            supm.UserModel = um.UserList();
+            supm.PostModel = pm.PostList();
+            return View(supm);
+        }
      
 
     }
