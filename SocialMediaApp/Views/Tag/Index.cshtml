@@ -25,6 +25,14 @@
                 <td>@item.TagId</td>
                 <td>@item.TaggedUser.NickName</td>
                 <td>@item.IsActive</td>
+                @if (item.IsActive)
+                {
+                    <td>Aktif</td>
+                }
+                else
+                {
+                    <td>Pasif</td>
+                }
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.TagId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
