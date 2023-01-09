@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=DESKTOP-M927P0K\\SQLEXPRESS ; database=DBSocialMediaApp ;Trusted_Connection=True; Encrypt=False;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=405-03 ; User Id= sa; Password=1234; database=DBSocialMediaApp ; Encrypt=False;");
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Genre> Genres { get; set; }

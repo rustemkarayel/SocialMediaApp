@@ -1,0 +1,41 @@
+﻿@using EntityLayer;
+@model TagUserPostModel;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Tag Add</h2>
+    <br />
+    @using (Html.BeginForm("Add", "Tag", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Post ID")
+        <select name="PostId" class="form-control">
+            @foreach (var item in Model.postModel)
+            {
+                @*<option value=" @item.PostId">@item.Content</option>*@
+            }
+        </select>
+        <br />       
+        
+        @Html.Label("User ID")
+        <select name="UserId" class="form-control">
+            @foreach (var item in Model.userModel)
+            {
+                <option value=" @item.UserId">@item.NickName</option>
+            }
+        </select>
+        <br />
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Tag Add" />
+    }
+</div>
+
