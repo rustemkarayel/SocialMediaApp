@@ -1,5 +1,6 @@
-﻿using BusinessLayer.Concrete;
+﻿                                                                                                                                                               using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
+using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SocialMediaApp.Controllers
@@ -12,5 +13,15 @@ namespace SocialMediaApp.Controllers
             var requests = rm.RequestList();
             return View(requests);
         }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View("Index");
+        }
+        public IActionResult Add(Request request)
+        {
+            return View();
+        }
+
     }
 }
