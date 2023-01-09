@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,29 @@ namespace SocialMediaApp.Controllers
             supm.UserModel = um.UserList();
             supm.PostModel = pm.PostList();
             return View(supm);
+        }
+        [HttpPost]
+        public IActionResult Add(Saved saved)
+        {
+            SavedValidator savedValidator = new SavedValidator();
+            var result=savedValidator.Validate(saved);
+            if(result.IsValid) 
+            {
+                sm.SavedInsert(saved);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                SavedUserPostModel supm=new SavedUserPostModel();   
+                supm.SavedModel = new Saved();
+                supm.UserModel= um.UserList();
+                supm.PostModel = pm.PostList();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(supm);
+            }
         }
      
 
