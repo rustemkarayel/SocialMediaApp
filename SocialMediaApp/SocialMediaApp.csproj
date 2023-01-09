@@ -7,6 +7,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\admin-dashboard\.git\config" />
+    <None Include="wwwroot\admin-dashboard\.git\description" />
+    <None Include="wwwroot\admin-dashboard\.git\HEAD" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\push-to-checkout.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\hooks\update.sample" />
+    <None Include="wwwroot\admin-dashboard\.git\index" />
+    <None Include="wwwroot\admin-dashboard\.git\info\exclude" />
+    <None Include="wwwroot\admin-dashboard\.git\logs\HEAD" />
+    <None Include="wwwroot\admin-dashboard\.git\logs\refs\heads\master" />
+    <None Include="wwwroot\admin-dashboard\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\admin-dashboard\.git\objects\pack\pack-e9cafc739e7e3d2fddd45121e7a5289f19e7f99e.idx" />
+    <None Include="wwwroot\admin-dashboard\.git\objects\pack\pack-e9cafc739e7e3d2fddd45121e7a5289f19e7f99e.pack" />
+    <None Include="wwwroot\admin-dashboard\.git\packed-refs" />
+    <None Include="wwwroot\admin-dashboard\.git\refs\heads\master" />
+    <None Include="wwwroot\admin-dashboard\.git\refs\remotes\origin\HEAD" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
@@ -15,6 +44,11 @@
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\admin-dashboard\.git\objects\info\" />
+    <Folder Include="wwwroot\admin-dashboard\.git\refs\tags\" />
   </ItemGroup>
 
 </Project>
