@@ -1,0 +1,63 @@
+﻿@using EntityLayer;
+@model TagUserPostModel;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Tag Update</h2><br />
+    @using (Html.BeginForm("Update", "Tag", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(tag=>tag.tagModel.TagId,new { @class = "form-control",@name="TagId",@value="@Model.TagId",@type="hidden"})
+
+        @Html.Label("User")
+        <select name="UserId" class="form-control">
+            @foreach (var item in Model.userModel)
+            {
+                if(item.UserId == Model.tagModel.UserId)
+                {
+                    <option value=" @item.UserId" selected>@item.NickName</option>
+                }
+                else
+                {
+                    <option value=" @item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        
+        @Html.Label("Post")
+        <select name="PostId" class="form-control">
+            @foreach (var item in Model.postModel)
+            {
+                if(item.PostId == Model.tagModel.PostId)
+                {
+                    <option value=" @item.PostId" selected>@item.Content</option>
+                }
+                else
+                {
+                    <option value=" @item.PostId">@item.Content</option>
+                }
+            }
+        </select>
+        <br />       
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.tagModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+
+        <input class="form-control btn btn-primary" type="submit" value="Tag Update" />
+    }
+</div>
