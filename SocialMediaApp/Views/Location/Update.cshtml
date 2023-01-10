@@ -1,0 +1,51 @@
+﻿@using EntityLayer;
+@model LocationLocationListModel;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>LOCATION UPDATE</h2>
+    <br />
+
+    @using (Html.BeginForm("Update", "Location", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(locationLocationListModel => locationLocationListModel.locationModel.LocationId,new { @class = "form-control",@name="LocationId",@value="@Model.LocationId",@type="hidden"})
+
+        @Html.Label("Location Name")
+        <select name="LocationName" class="form-control">
+            @foreach (var item in Model.locationsModel)
+            {
+                if (item.LocationId == Model.locationModel.LocationId)
+                {
+                    <option value=" @item.LocationName" selected>@item.LocationName</option>
+                }
+                else
+                {
+                    <option value=" @item.LocationName">@item.LocationName</option>
+                }
+            }
+        </select>
+        <br />
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.locationModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+
+        <input class="form-control btn btn-primary" type="submit" value="Location Update" />
+    }
+</div>
+
