@@ -17,6 +17,11 @@ namespace BusinessLayer.Concrete
             this.tagDal = tagDal;
         }
 
+        public Tag GetTagById(int id)
+        {
+            return tagDal.get(tag => tag.TagId == id);
+        }
+
         public void TagDelete(Tag tag)
         {
             tagDal.delete(tag);
@@ -35,11 +40,6 @@ namespace BusinessLayer.Concrete
         public void TagUpdate(Tag tag)
         {
             tagDal.update(tag);
-        }
-
-        Tag ITagService.GetTagById(int id)
-        {
-            return tagDal.get(tag=>tag.TagId== id);
         }
     }
 }
