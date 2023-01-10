@@ -10,5 +10,9 @@ namespace BusinessLayer.Validations
 {
     public class TagValidator:AbstractValidator<Tag>
     {
+        public TagValidator()
+        {
+            RuleFor(tag=>tag.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz !");
+        }
     }
 }
