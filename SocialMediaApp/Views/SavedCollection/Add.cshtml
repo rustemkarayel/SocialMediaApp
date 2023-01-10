@@ -1,0 +1,43 @@
+﻿@using EntityLayer;
+@model SavedCollectionSavedCollectionModel;
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Saved Collection Add</h2><br />
+    @using (Html.BeginForm("Add", "SavedCollection", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("User")
+        <select name="UserId" class="form-control">
+            @foreach (var item in Model.SavedModel)
+            {
+                <option value="@item.User.UserId">@item.User.NickName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Post")
+        <select name="PostId" class="form-control">
+            @foreach (var item in Model.SavedModel)
+            {
+                <option value="@item.Post.PostId">@item.Post.Content</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Collection Name")
+        <select name="CollectionId" class="form-control">
+            @foreach (var item in Model.CollectionModel)
+            {
+                <option value="@item.CollectionId">@item.CollectionName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Saved Collection Add" />
+    }
