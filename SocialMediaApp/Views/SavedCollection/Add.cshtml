@@ -10,7 +10,7 @@
     @using (Html.BeginForm("Add", "SavedCollection", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("User")
-        <select name="UserId" class="form-control">
+        <select class="form-control" name="UserId">
             @foreach (var item in Model.SavedModel)
             {
                 <option value="@item.User.UserId">@item.User.NickName</option>
@@ -18,7 +18,7 @@
         </select>
         <br />
         @Html.Label("Post")
-        <select name="PostId" class="form-control">
+        <select class="form-control" name="PostId">
             @foreach (var item in Model.SavedModel)
             {
                 <option value="@item.Post.PostId">@item.Post.Content</option>
@@ -26,7 +26,7 @@
         </select>
         <br />
         @Html.Label("Collection Name")
-        <select name="CollectionId" class="form-control">
+        <select class="form-control" name="CollectionId">
             @foreach (var item in Model.CollectionModel)
             {
                 <option value="@item.CollectionId">@item.CollectionName</option>

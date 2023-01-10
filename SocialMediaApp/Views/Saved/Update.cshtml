@@ -14,7 +14,7 @@
         <select class="form-control" name="UserId">
             @foreach (var item in @Model.UserModel)
             {
-                if (item.UserId ==Model.SavedModel.UserId)
+                if (item.UserId == Model.SavedModel.UserId)
                 {
                     <option value="@item.UserId" selected">@item.NickName</option>
                 }
@@ -27,9 +27,9 @@
         <br />
         @Html.Label("Post")
         <select class="form-control" name="PostId">
-                        @foreach (var item in @Model.PostModel)
+            @foreach (var item in @Model.PostModel)
             {
-                if (item.PostId ==Model.SavedModel.PostId)
+                if (item.PostId == Model.SavedModel.PostId)
                 {
                     <option value="@item.PostId" selected">@item.Content</option>
                 }
