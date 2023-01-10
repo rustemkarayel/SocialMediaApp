@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,19 @@ namespace SocialMediaApp.Controllers
         TagManager tagManager = new TagManager(new EfTagRepository());
         UserManager userManager = new UserManager(new EfUserRepository());
         PostManager postManager = new PostManager(new EfPostRepository());
+        
         public IActionResult Index()
         {
             var tags = tagManager.TagList();
             return View(tags);
+        }
+        
+        public IActionResult Delete(int id)
+        {
+            Tag tag = tagManager.GetTagById(id);
+            tag.IsActive = false;
+            tagManager.TagUpdate(tag);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -32,7 +42,22 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Add(Tag tag)
         {
-            return RedirectToAction("Index");
+            TagValidator tagValidator = new TagValidator();
+            var result = tagValidator.Validate(tag);
+
+            if (result.IsValid)
+            {
+                tagManager.TagInsert(tag);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return RedirectToAction("Add");
+            }
         }
     }
 }
