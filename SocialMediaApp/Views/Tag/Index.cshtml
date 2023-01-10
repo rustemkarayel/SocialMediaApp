@@ -71,10 +71,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var UserId = button.attr('data-bs-whatever');
+            var TagId = button.attr('data-bs-whatever');
 
             var a = document.querySelector("#delete-btn");
-            a.href = "/Tag/Delete/" + UserId;
+            a.href = "/Tag/Delete/" + TagId;
         });
     });
 </script>
