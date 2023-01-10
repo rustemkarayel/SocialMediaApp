@@ -1,31 +1,29 @@
 ﻿@using EntityLayer;
-@model List<Tag>
+@model List<Location>;
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>TAGS</h2>
+<h2>LOCATIONS</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Tag ID</th>
-            <th>User</th>
-            <th>Post</th>
+            <th>Location ID</th>
+            <th>Location Name</th>
             <th>IsActive</th>
             <th> </th>
             <th> </th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@item.TagId</td>
-                <td>@item.TaggedUser.NickName</td>
-                <td>@item.Post.Content</td>
+                <td>@item.LocationId</td>
+                <td>@item.LocationName</td>
                 @if (item.IsActive)
                 {
                     <td>Aktif</td>
@@ -35,15 +33,15 @@
                     <td>Pasif</td>
                 }
                 <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.TagId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.LocationId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
-                <td><a href="/Tag/Update/@item.TagId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                <td><a href="/Location/Update/@item.LocationId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
             </tr>
         }
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/Tag/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+    <a href="/Location/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 
 <!-- Modal -->
@@ -71,10 +69,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var TagId = button.attr('data-bs-whatever');
+            var LocationId = button.attr('data-bs-whatever');
 
             var a = document.querySelector("#delete-btn");
-            a.href = "/Tag/Delete/" + TagId;
+            a.href = "/Location/Delete/" + LocationId;
         });
     });
 </script>

@@ -1,0 +1,27 @@
+﻿@using EntityLayer;
+@model Location;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>LOCATION ADD</h2>
+    <br />
+    @using (Html.BeginForm("Add", "Location", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Location Name")
+        @Html.TextBoxFor(location=>location.LocationName,new { @class = "form-control"})
+        @Html.ValidationMessageFor(location=>location.LocationName,"",new{@class="text-danger"})
+        <br />
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Location Add" />
+    }
+</div>
