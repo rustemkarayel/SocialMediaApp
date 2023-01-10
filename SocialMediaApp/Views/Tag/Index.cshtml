@@ -8,14 +8,12 @@
 
 <h2>TAGS</h2>
 
-<div class="col-11 grid-margin stretch-card">
-
-    <div class="table-responsive card m-5 overflow-auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
-        <table class="table table-hover">
+<table class="table">
     <thead>
         <tr>
             <th>Tag ID</th>
-            <th>User Nickname</th>
+            <th>User</th>
+            <th>Post</th>
             <th>IsActive</th>
             <th> </th>
             <th> </th>
@@ -27,7 +25,7 @@
             <tr>
                 <td>@item.TagId</td>
                 <td>@item.TaggedUser.NickName</td>
-                <td>@item.IsActive</td>
+                <td>@item.Post.Content</td>
                 @if (item.IsActive)
                 {
                     <td>Aktif</td>
@@ -44,8 +42,6 @@
         }
     </tbody>
 </table>
-</div>
-</div>
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Tag/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
