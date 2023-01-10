@@ -11,7 +11,7 @@
     <br />
     @using (Html.BeginForm("Add", "Tag", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.Label("Post ID")
+        @Html.Label("Post")
         <select name="PostId" class="form-control">
             @foreach (var item in Model.postModel)
             {
