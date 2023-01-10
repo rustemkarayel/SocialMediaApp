@@ -21,7 +21,6 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
@@ -202,23 +201,30 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                            <span class="menu-title">Basic UI Elements</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user" data-bs-parent="#accordionSidebar>
+                            <span class="menu-title">USER</span>
                             <i class="menu-arrow"></i>
-                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                            <ion-icon name="person-outline"></ion-icon>
                         </a>
-                        <div class="collapse" id="ui-basic">
+                        <div class="collapse" id="user">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/User/Index">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/User/Add">Add</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
-                            <span class="menu-title">Icons</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
+                            <span class="menu-title">POST</span>
+                            <i class="menu-arrow"></i>
                             <i class="mdi mdi-contacts menu-icon"></i>
                         </a>
+                        <div class="collapse" id="post">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Post/Index">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Post/Add">Add</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/forms/basic_elements.html">
