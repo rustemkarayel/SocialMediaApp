@@ -31,7 +31,7 @@
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.SavedId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
-                <td><a href="/User/Update/@item.SavedId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                <td><a href="/Saved/Update/@item.SavedId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
             </tr>
         }
     </tbody>
@@ -68,7 +68,7 @@
             var SavedId = button.attr('data-bs-whatever');
 
             var a = document.querySelector("#delete-btn");
-            a.href = "/User/Delete/" + SavedId;
+            a.href = "/Saved/Delete/" + SavedId;
         });
     });
 </script>
