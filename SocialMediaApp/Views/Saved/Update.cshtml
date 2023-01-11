@@ -9,14 +9,14 @@
     <h2>Saved Update</h2>
     @using (Html.BeginForm("Update", "Saved", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(saved=>saved.SavedModel.SavedId,new { @class = "form-control",@name="SavedId",@value="@Model.SavedModel.SavedId",@type="hidden"})
+        @Html.TextBox("SavedId",Model.SavedModel.SavedId,new { @class = "form-control" ,@type="hidden"})
         @Html.Label("User")
         <select class="form-control" name="UserId">
             @foreach (var item in @Model.UserModel)
             {
                 if (item.UserId == Model.SavedModel.UserId)
                 {
-                    <option value="@item.UserId" selected">@item.NickName</option>
+                    <option value=@item.UserId selected>@item.NickName</option>
                 }
                 else
                 {
@@ -31,7 +31,7 @@
             {
                 if (item.PostId == Model.SavedModel.PostId)
                 {
-                    <option value="@item.PostId" selected">@item.Content</option>
+                    <option value="@item.PostId" selected>@item.Content</option>
                 }
                 else
                 {

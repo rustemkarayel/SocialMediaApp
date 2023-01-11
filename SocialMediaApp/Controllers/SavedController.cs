@@ -81,11 +81,11 @@ namespace SocialMediaApp.Controllers
                 return RedirectToAction("Index");
             }
             else
-            {
+            {               
                 SavedUserPostModel supm=new SavedUserPostModel();
                 supm.SavedModel = saved;
                 supm.UserModel= um.UserList();
-                supm.PostModel= pm.PostList();
+                supm.PostModel= pm.PostList();              
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
