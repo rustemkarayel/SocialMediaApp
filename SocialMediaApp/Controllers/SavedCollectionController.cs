@@ -62,5 +62,40 @@ namespace SocialMediaApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            SavedCollection savedCollection = scm.SavedCollectionGetById(id);
+            SavedCollectionSavedCollectionModel scscm = new SavedCollectionSavedCollectionModel();
+            scscm.SavedCollectionModel = savedCollection;
+            scscm.SavedModel = sm.SavedList();
+            scscm.CollectionModel = cm.CollectionList();
+            return View(scscm);
+        }
+        [HttpPost]
+        public IActionResult Update(SavedCollection savedCollection)
+        {
+            SavedCollectionValidator savedCollectionValidator = new SavedCollectionValidator();
+            var result = savedCollectionValidator.Validate(savedCollection);
+            if (result.IsValid)
+            {
+                scm.SavedCollectionUpdate(savedCollection);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                SavedCollectionSavedCollectionModel scscm = new SavedCollectionSavedCollectionModel();
+                scscm.SavedCollectionModel = savedCollection;
+                scscm.SavedModel = sm.SavedList();
+                scscm.CollectionModel = cm.CollectionList();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(scscm);
+            }
+        }
+
+
     }
 }
