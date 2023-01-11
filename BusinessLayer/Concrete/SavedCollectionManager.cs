@@ -24,7 +24,7 @@ namespace BusinessLayer.Concrete
 
         public SavedCollection SavedCollectionGetById(int id)
         {
-            return savedCollectionDal.get(x => x.CollectionId == id);
+            return savedCollectionDal.get(x => x.SavedCollectionId == id);
         }
 
         public void SavedCollectionInsert(SavedCollection savedCollection)
