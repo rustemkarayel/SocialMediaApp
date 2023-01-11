@@ -23,7 +23,7 @@ namespace BusinessLayer.Validations
             //Rule for NickName
             RuleFor(user => user.NickName).NotEmpty().WithMessage("NickName boş bırakılamaz!");
             RuleFor(user => user.NickName).MaximumLength(50).WithMessage("Maximum 50 karakter girilmelidir!");
-            RuleFor(user => user.NickName).MinimumLength(3).WithMessage("Minimum 3 karakter girilmelidir!");
+            RuleFor(user => user.NickName).MinimumLength(2).WithMessage("Minimum 2 karakter girilmelidir!");
             //Rule for Password
             RuleFor(user => user.Password).NotEmpty().WithMessage("Password boş bırakılamaz!");
             RuleFor(user => user.Password).MaximumLength(50).WithMessage("Maximum 50 karakter girilmelidir!");
