@@ -39,8 +39,7 @@ namespace SocialMediaApp.Controllers
             {
                 MessageUserModel mum=new MessageUserModel();
                 mum.MessageModel = new Message();
-                mum.UserModel = um.UserList();
-                
+                mum.UserModel = um.UserList();              
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -49,5 +48,45 @@ namespace SocialMediaApp.Controllers
             }
         }
 
+        public IActionResult Delete(int id)
+        {
+            Message message=mm.MessageGetById(id);
+            message.IsActive= false;
+            mm.MessageUpdate(message);  
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            Message message= mm.MessageGetById(id);
+            MessageUserModel mum=new MessageUserModel();
+            mum.MessageModel = message;
+            mum.UserModel= um.UserList();
+            return View(mum);
+           
+        }
+        [HttpPost]
+        public IActionResult Update(Message message)
+        {
+            MessageValidator messageValidator = new MessageValidator();
+            var result = messageValidator.Validate(message);
+            if (result.IsValid)
+            {
+                mm.MessageUpdate(message);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                MessageUserModel mum = new MessageUserModel();
+                mum.MessageModel = message;
+                mum.UserModel = um.UserList();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(mum);
+            }
+        }        
     }
 }

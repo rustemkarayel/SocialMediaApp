@@ -10,15 +10,15 @@
     @using (Html.BeginForm("Add", "Message", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Sender")
-        <select name="UserId" class="form-control">
+        <select class="form-control" name="Sender" >
             @foreach (var item in Model.UserModel)
             {
-                <option value=" @item.UserId">@item.NickName</option>
+                <option value="@item.UserId">@item.NickName</option>
             }
         </select>
         <br />
         @Html.Label("Receiver")
-        <select name="UserId" class="form-control">
+        <select class="form-control" name="Receiver">
             @foreach (var item in Model.UserModel)
             {
                 <option value=" @item.UserId">@item.NickName</option>
