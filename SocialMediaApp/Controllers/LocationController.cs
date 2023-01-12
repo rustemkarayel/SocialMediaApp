@@ -41,7 +41,7 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("Add");
+                return View(location);
             }
         }
 
