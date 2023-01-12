@@ -12,7 +12,7 @@
 
     @using (Html.BeginForm("Update", "Location", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(locationLocationListModel => locationLocationListModel.locationModel.LocationId,new { @class = "form-control",@name="LocationId",@value="@Model.LocationId",@type="hidden"})
+        @Html.TextBox("LocationId",Model.locationModel.LocationId,new { @class = "form-control" ,@type="hidden"})
 
         @Html.Label("Location Name")
         <select name="LocationName" class="form-control">
