@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
+using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SocialMediaApp.Controllers
@@ -11,6 +12,15 @@ namespace SocialMediaApp.Controllers
         public IActionResult Index()
         {
             return View(collectionManager.CollectionList());
+        }        
+        
+        public IActionResult Delete(int id)
+        {
+            Collection collection = collectionManager.GetCollectionById(id);
+            collection.IsActive = false;
+            collectionManager.CollectionUpdate(collection);
+
+            return RedirectToAction("Index");
         }
     }
 }
