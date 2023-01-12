@@ -16,11 +16,11 @@
             {
                 if (item.SavedId == Model.SavedCollectionModel.SavedId)
                 {
-                    <option value=@item.SavedId selected>@item.User.NickName - @item.Post.Content</option>
+                    <option value=@item.SavedId selected>@item.User.NickName - @item.Post.PostContent</option>
                 }
                 else
                 {
-                    <option value="@item.SavedId">@item.User.NickName - @item.Post.Content</option>
+                    <option value="@item.SavedId">@item.User.NickName - @item.Post.PostContent</option>
                 }
             }
         </select>

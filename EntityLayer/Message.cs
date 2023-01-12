@@ -13,7 +13,7 @@ namespace EntityLayer
         [Key]
         public int MessageId { get; set; }
         [StringLength(100)]
-        public string Content { get; set; }
+        public string MessageContent { get; set; }
         public DateTime SendDate { get; set; }
         public DateTime SendTime { get; set; }
         public bool IsActive { get; set; }

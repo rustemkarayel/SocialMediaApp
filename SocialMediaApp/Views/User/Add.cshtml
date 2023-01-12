@@ -30,7 +30,7 @@
         @Html.ValidationMessageFor(user=>user.Mail,"",new{@class="text-danger"})
         <br />
         @Html.Label("Birthday")
-        @Html.TextBoxFor(user=>user.Birthday,new { @class = "form-control"})
+        @Html.TextBoxFor(user=>user.Birthday,new { @class = "form-control" ,@type="date"})
         @Html.ValidationMessageFor(user=>user.Birthday,"",new{@class="text-danger"})
         <br />
         @Html.Label("PhotoUrl")

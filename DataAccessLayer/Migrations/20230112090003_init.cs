@@ -101,7 +101,7 @@ namespace DataAccessLayer.Migrations
                 {
                     MessageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    MessageContent = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     SendDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SendTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -132,7 +132,7 @@ namespace DataAccessLayer.Migrations
                     PostId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GenerateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    PostContent = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     LocationId = table.Column<int>(type: "int", nullable: false),
@@ -197,7 +197,7 @@ namespace DataAccessLayer.Migrations
                 {
                     CommentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CommentContent = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CommentTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     PostId = table.Column<int>(type: "int", nullable: false),

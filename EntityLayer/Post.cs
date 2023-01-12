@@ -14,7 +14,7 @@ namespace EntityLayer
         public int PostId { get; set; }        
         public DateTime GenerateDate { get; set; }
         [StringLength(300)]
-        public string Content { get; set; }
+        public string PostContent { get; set; }
         [StringLength(300)]
         public string Description { get; set; }
         public bool IsActive { get; set; }
