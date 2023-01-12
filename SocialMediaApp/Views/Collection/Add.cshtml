@@ -1,0 +1,32 @@
+﻿@using EntityLayer;
+@model Collection;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Collection Add</h2>
+    <br />
+    @using (Html.BeginForm("Add", "Collection", FormMethod.Post, new { @class = "form-group" }))
+    {
+
+        @Html.Label("Collection Name")
+        @Html.TextBoxFor(collection=>collection.CollectionName,new { @class = "form-control"})
+        @Html.ValidationMessageFor(collection=>collection.CollectionName,"",new{@class="text-danger"})
+        <br />
+
+
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+
+        <input class="form-control btn btn-primary" type="submit" value="Tag Add" />
+    }
+</div>
+
