@@ -10,7 +10,6 @@
     <h2>Tag Update</h2><br />
     @using (Html.BeginForm("Update", "Tag", FormMethod.Post, new { @class = "form-group" }))
     {
-
         @Html.TextBox("TagId",Model.tagModel.TagId,new { @class = "form-control" ,@type="hidden"})
 
         @Html.Label("User")
