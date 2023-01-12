@@ -1,5 +1,5 @@
-﻿@using EntityLayer
-@model RequestUserModel
+﻿@using EntityLayer;
+@model RequestUserModel;
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,29 +9,23 @@
 @using (Html.BeginForm("Add", "Request", FormMethod.Post, new { @class = "form-group" }))
 {
     @Html.Label("Follower NickName")
-    <select class="form-control">
+    <select name="FollowerId" class="form-control">
         @foreach (var item in Model.UserModel)
         {
-            <option>@item.NickName</option>
+            <option value="@item.UserId">@item.NickName</option>
         }
     </select>
     <br />
     @Html.Label("Following NickName")
-    <select class="form-control">
+    <select name="FollowingId" class="form-control">
         @foreach(var item in Model.UserModel)
         {
-            <option>@item.NickName</option>
+            <option value="@item.UserId" >@item.NickName</option>
         }
     </select>
     <br />
     @Html.Label("Request Time")
-    {
-        var model = Model.RequestModel.RequestTime;
-        var requestTime = model.Microsecond;
-        <select class="form-control">
-            <option>@requestTime</option>
-        </select>
-    }   
+    @Html.TextBox("RequestTime","",new{@class="form-control",@type="date"})
     <br />
     @Html.Label("Request State")
     <select class="form-control">
@@ -45,7 +39,7 @@
         <option value="False">Passive</option>
     </select>
     <br />
-    <input class="form-control" type="submit" value="Add" />
+    <input class="form-control btn btn-primary" type="submit" value="Request Add" />
 }
 
 
