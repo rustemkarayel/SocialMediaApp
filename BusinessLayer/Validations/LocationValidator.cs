@@ -10,5 +10,9 @@ namespace BusinessLayer.Validations
 {
     public class LocationValidator:AbstractValidator<Location>
     {
+        public LocationValidator()
+        {
+            RuleFor(location=>location.LocationName).NotEmpty().WithMessage("Lokasyon ismi boş geçilemez !");
+        }
     }
 }
