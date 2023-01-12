@@ -10,7 +10,7 @@
     @using (Html.BeginForm("Add", "Message", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Sender")
-        <select class="form-control" name="Sender" >
+        <select class="form-control" name="SenderId">
             @foreach (var item in Model.UserModel)
             {
                 <option value="@item.UserId">@item.NickName</option>
@@ -18,7 +18,7 @@
         </select>
         <br />
         @Html.Label("Receiver")
-        <select class="form-control" name="Receiver">
+        <select class="form-control" name="ReceiverId">
             @foreach (var item in Model.UserModel)
             {
                 <option value=" @item.UserId">@item.NickName</option>
@@ -27,15 +27,12 @@
         <br />
         @Html.Label("Content")
         @Html.TextBoxFor(message=>message.MessageModel.Content,new { @class = "form-control"})
-        @Html.ValidationMessageFor(message=>message.MessageModel.Content,"",new{@class="text-danger"})
         <br />
         @Html.Label("Send Date")
-        @Html.TextBoxFor(message=>message.MessageModel.SendDate,new { @class = "form-control"})
-        @Html.ValidationMessageFor(message=>message.MessageModel.SendDate,"",new{@class="text-danger"})
+        @Html.TextBoxFor(message=>message.MessageModel.SendDate,new { @class = "form-control" ,@type="date"})
         <br />
         @Html.Label("Send Time")
-        @Html.TextBoxFor(message=>message.MessageModel.SendTime,new { @class = "form-control"})
-        @Html.ValidationMessageFor(message=>message.MessageModel.SendTime,"",new{@class="text-danger"})
+        @Html.TextBoxFor(message=>message.MessageModel.SendTime,new { @class = "form-control" ,@type="time"})
         <br />
         @Html.Label("IsActive")
         <select class="form-control" name="IsActive">
