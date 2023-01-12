@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
+using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SocialMediaApp.Controllers
@@ -11,6 +12,11 @@ namespace SocialMediaApp.Controllers
         {
             var postlikes = plm.PostLikeList();
             return View(postlikes);
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
         }
     }
 }
