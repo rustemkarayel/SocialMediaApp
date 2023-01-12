@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,27 @@ namespace SocialMediaApp.Controllers
         {
             Collection collection = new Collection();
             return View(collection);
+        }        
+        
+        [HttpPost]
+        public IActionResult Add(Collection collection)
+        {
+            CollectionValidator collectionValidator = new CollectionValidator();
+            var result = collectionValidator.Validate(collection);
+
+            if (result.IsValid)
+            {
+                collectionManager.CollectionInsert(collection);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(collection);
+            }
         }
     }
 }
