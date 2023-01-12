@@ -17,7 +17,13 @@
         @Html.ValidationMessageFor(collection=>collection.CollectionName,"",new{@class="text-danger"})
         <br />
 
+        @Html.Label("Creation Date")
+        @Html.TextBoxFor(collection=>collection.CreationDate,new { @class = "form-control" ,@type="date"})
+        <br />
 
+        @Html.Label("Creation Time")
+        @Html.TextBoxFor(collection=>collection.CreationTime,new { @class = "form-control" ,@type="time"})
+        <br />
 
         @Html.Label("IsActive")
         <select class="form-control" name="IsActive">
@@ -26,7 +32,7 @@
         </select>
         <br />
 
-        <input class="form-control btn btn-primary" type="submit" value="Tag Add" />
+        <input class="form-control btn btn-primary" type="submit" value="Collection Add" />
     }
 </div>
 
