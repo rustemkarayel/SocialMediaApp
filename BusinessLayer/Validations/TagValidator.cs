@@ -12,7 +12,16 @@ namespace BusinessLayer.Validations
     {
         public TagValidator()
         {
-            RuleFor(tag=>tag.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz !");
+
+            //Post kontrolü.
+            RuleFor(tag=>tag.PostId).NotEmpty().WithMessage("Post boş bırakılamaz !");
+            
+            //User kontrolü.
+            RuleFor(tag=>tag.UserId).NotEmpty().WithMessage("User boş bırakılamaz !");
+
+            //IsActive kontrolü.
+            //Pasif olarak eklenmiyor.
+            //RuleFor(tag=>tag.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz !");
         }
     }
 }
