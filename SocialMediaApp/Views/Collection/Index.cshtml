@@ -13,6 +13,7 @@
         <tr>
             <th>Collection ID</th>
             <th>Collection Name</th>
+            <th>Creation Date</th>
             <th>Creation Time</th>
             <th>IsActive</th>
             <th> </th>
@@ -25,7 +26,8 @@
             <tr>
                 <td>@item.CollectionId</td>
                 <td>@item.CollectionName</td>
-                <td>@item.CreationTime</td>
+                <td>@item.CreationDate.ToString().Split(" ")[0]</td>
+                <td>@item.CreationTime.ToString().Split(" ")[1]</td>
                 @if (item.IsActive)
                 {
                     <td>Aktif</td>
