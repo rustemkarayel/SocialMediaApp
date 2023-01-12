@@ -16,9 +16,9 @@ namespace BusinessLayer.Validations
             RuleFor(post=>post.GenerateDate).NotEmpty().WithMessage("GenerateDate boş bırakılamaz.");
 
             //Rule for Content
-            RuleFor(post=>post.Content).NotEmpty().WithMessage("Content boş bırakılamaz.");
-            RuleFor(post=>post.Content).MaximumLength(300).WithMessage("Maximum 300 karakter girilmelidir!");
-            RuleFor(post => post.Content).MinimumLength(2).WithMessage("Minimum 2 karakter girilmelidir!");
+            RuleFor(post=>post.PostContent).NotEmpty().WithMessage("Content boş bırakılamaz.");
+            RuleFor(post=>post.PostContent).MaximumLength(300).WithMessage("Maximum 300 karakter girilmelidir!");
+            RuleFor(post => post.PostContent).MinimumLength(2).WithMessage("Minimum 2 karakter girilmelidir!");
 
             //Rule for Description
             RuleFor(post=>post.Description).NotEmpty().WithMessage("Description boş geçilemez.");
