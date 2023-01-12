@@ -1,19 +1,18 @@
 ﻿@using EntityLayer;
-@model List<Tag>
+@model List<Genre>;
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>TAGS</h2>
+<h2>GENRES</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Tag ID</th>
-            <th>User</th>
-            <th>Post</th>
+            <th>Genre ID</th>
+            <th>Genre Name</th>
             <th>IsActive</th>
             <th> </th>
             <th> </th>
@@ -23,9 +22,8 @@
         @foreach(var item in Model)
         {
             <tr>
-                <td>@item.TagId</td>
-                <td>@item.TaggedUser.NickName</td>
-                <td>@item.Post.PostContent</td>
+                <td>@item.GenreId</td>
+                <td>@item.GenreName</td>
                 @if (item.IsActive)
                 {
                     <td>Aktif</td>
@@ -35,9 +33,9 @@
                     <td>Pasif</td>
                 }
                 <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.TagId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.GenreId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
-                <td><a href="/Tag/Update/@item.TagId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                <td><a href="/Genre/Update/@item.GenreId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
             </tr>
         }
     </tbody>
@@ -71,10 +69,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var TagId = button.attr('data-bs-whatever');
+            var GenreId = button.attr('data-bs-whatever');
 
             var a = document.querySelector("#delete-btn");
-            a.href = "/Tag/Delete/" + TagId;
+            a.href = "/Genre/Delete/" + GenreId;
         });
     });
 </script>
