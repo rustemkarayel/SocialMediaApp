@@ -19,17 +19,34 @@ namespace SocialMediaApp.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            RequestUserModel requestModel = new RequestUserModel();
-            requestModel.RequestModel = new Request();
-            requestModel.UserModel = um.UserList();
+            RequestUserModel rum = new RequestUserModel();
+            rum.RequestModel = new Request();
+            rum.UserModel = um.UserList();
 
-            return View(requestModel);
+            return View(rum);
         }
         [HttpPost]
         public IActionResult Add(Request request)
         {
-
-            return RedirectToAction("Index");
+            RequestValidator requestValidator = new RequestValidator();
+            var result = requestValidator.Validate(request);
+            if (result.IsValid)
+            {
+                rm.RequestInsert(request);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                RequestUserModel rum = new RequestUserModel();
+                rum.RequestModel = new Request();
+                rum.UserModel = um.UserList();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(rum);
+            }
+            
         }
 
     }

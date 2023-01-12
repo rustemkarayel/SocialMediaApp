@@ -14,16 +14,15 @@
             <th>Following</th>
             <th>Request Time</th>
             <th>Request State</th>        
-            <th>IsActive</th>
-           
+            <th>IsActive</th>          
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.FollowerId</td>
-                <td>@item.FollowingId</td>
+                <td>@item.Follower.NickName</td>
+                <td>@item.Following.NickName</td>
                 <td>@item.RequestTime.ToString().Split(" ")[1]</td>
                 <td>@item.RequestState</td>
                 <td>@item.IsActive</td>                                           

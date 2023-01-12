@@ -1,8 +1,30 @@
-﻿
+﻿@using EntityLayer;
+@model PostGenreLocationUserModel;
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>POST Add</h2>
-
+@using (Html.BeginForm("Add", "Post", FormMethod.Post, new { @class = "form-group" }))
+{
+    @Html.Label("Generate Date")
+    @Html.TextBoxFor(post=>post.PostModel.GenerateDate,new { @class = "form-control",@type="date"})
+    @Html.ValidationMessageFor(post=>post.PostModel.GenerateDate,"",new{@class="text-danger"})
+    <br />
+    @Html.Label("Post Content")
+    @Html.TextBoxFor(post=>post.PostModel.PostContent,new { @class = "form-control"})
+    @Html.ValidationMessageFor(post=>post.PostModel.PostContent,"",new{@class="text-danger"})
+    <br />
+    @Html.Label("Description")
+    @Html.TextBoxFor(post=>post.PostModel.Description,new { @class = "form-control"})
+    @Html.ValidationMessageFor(post=>post.PostModel.Description,"",new{@class="text-danger"})
+    <br />
+    @Html.Label("IsActive")
+    <select class="form-control" name="IsActive">
+        <option value="True">Aktif</option>
+        <option value="False">Pasif</option>
+    </select>
+    <br />
+    <input class="form-control btn btn-primary" type="submit" value="Location Add" />
+}
