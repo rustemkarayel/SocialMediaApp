@@ -49,11 +49,6 @@ namespace BusinessLayer.Validations
             RuleFor(user => user.Country).NotEmpty().WithMessage("Country boş bırakılamaz!");
             RuleFor(user => user.Country).MaximumLength(50).WithMessage("Maximum 50 karakter girilmelidir!");
 
-            //Rule for Gender
-            RuleFor(user => user.Gender).NotEmpty().WithMessage("Gender boş bırakılamaz!");
-
-            //Rule for IsActive
-            RuleFor(user => user.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz!");
         }
     }
 }

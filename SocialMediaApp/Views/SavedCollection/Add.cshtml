@@ -13,7 +13,7 @@
         <select class="form-control" name="SavedId">
             @foreach (var item in Model.SavedModel)
             {
-                <option value="@item.SavedId">@item.User.NickName - @item.Post.Content</option>
+                <option value="@item.SavedId">@item.User.NickName - @item.Post.PostContent</option>
             }
         </select>
         <br />

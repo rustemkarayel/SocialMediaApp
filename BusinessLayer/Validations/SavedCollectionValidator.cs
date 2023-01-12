@@ -12,8 +12,6 @@ namespace BusinessLayer.Validations
     {
         public SavedCollectionValidator() 
         {
-            //Rule for IsActive
-            RuleFor(savedCollection => savedCollection.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz!");
         }
     }
 }

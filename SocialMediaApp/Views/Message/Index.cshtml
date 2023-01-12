@@ -21,9 +21,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Sender</td>
-                <td>@item.Receiver</td>
-                <td>@item.Content</td>
+                <td>@item.Sender.NickName</td>
+                <td>@item.Receiver.NickName</td>
+                <td>@item.MessageContent</td>
                 <td>@item.SendDate.ToString().Split(" ")[0]</td>
                 <td>@item.SendTime.ToString().Split(" ")[1]</td>
                 @if (item.IsActive)
