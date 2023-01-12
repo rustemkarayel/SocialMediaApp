@@ -22,5 +22,12 @@ namespace SocialMediaApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            Collection collection = new Collection();
+            return View(collection);
+        }
     }
 }
