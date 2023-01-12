@@ -15,11 +15,8 @@ namespace BusinessLayer.Validations
             //Rule for RequestState
             RuleFor(request=>request.RequestTime).NotEmpty().WithMessage("RequestState boş bırakılamaz.");
 
-            //Rule for RequestState
-            RuleFor(request => request.RequestState).NotEmpty().WithMessage("RequestState boş bırakılamaz.");
-
-            //Rule for IsActive
-            RuleFor(request => request.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz.");
+           
+            
         }
     }
 }
