@@ -5,5 +5,76 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h2>POSTLİKE</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Post</th>
+            <th>like Time</th>                  
+            <th>IsActive</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@item.PostId</td>
+                    <td>@item.LikeTime.ToString().Split(" ")[1]</td>
+                    <td>@item.IsActive</td>                                           
+                @if (item.IsActive)
+                {
+                            <td>Active</td>
+                }
+                else
+                {
+                            <td>Passive</td>
+                }
+                    <td>
+                        <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostLikeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                    </td>
+                    <td><a href="/PostLike/Update/@item.PostLikeId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+</div>
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="DeleteLabel">WARNİNG!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Delete*@
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var PostLikeId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/PostLike/Delete/" + PostLikeId;
+        });
+    });
+</script>
 

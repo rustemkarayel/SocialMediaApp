@@ -1,0 +1,20 @@
+﻿@using EntityLayer
+@model PostLikeUserPostModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>PostLike Add</h2>
+
+@using (Html.BeginForm("Add", "PostLike", FormMethod.Post, new { @class = "form-group" }))
+{
+    @Html.Label("Like Time")
+    <select class="form-control">
+        @{
+            var likeTime = Model.PostLikeModel.LikeTime.ToString().Split(" ")[1];
+        }
+        <option>@likeTime</option>
+    </select>
+
+}
+
