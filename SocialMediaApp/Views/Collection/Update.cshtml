@@ -13,16 +13,16 @@
         @Html.TextBox("CollectionId",Model.CollectionModel.CollectionId,new { @class = "form-control" ,@type="hidden"})
 
         @Html.Label("Collection Name")
-        <select name="CollectionId" class="form-control">
+        <select name="CollectionName" class="form-control">
             @foreach (var item in Model.CollectionListModel)
             {
                 if (item.CollectionId == Model.CollectionModel.CollectionId)
                 {
-                    <option value=" @item.CollectionId" selected>@item.CollectionName</option>
+                    <option value=" @item.CollectionName" selected>@item.CollectionName</option>
                 }
                 else
                 {
-                    <option value=" @item.CollectionId">@item.CollectionName</option>
+                    <option value=" @item.CollectionName">@item.CollectionName</option>
                 }
             }
         </select>
