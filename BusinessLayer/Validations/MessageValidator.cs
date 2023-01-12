@@ -22,8 +22,6 @@ namespace BusinessLayer.Validations
             //Rule for SendTime
             RuleFor(message => message.SendTime).NotEmpty().WithMessage("SendTime boş bırakılamaz!");
 
-            //Rule for IsActive
-            RuleFor(message => message.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz!");
         }
     }
 }

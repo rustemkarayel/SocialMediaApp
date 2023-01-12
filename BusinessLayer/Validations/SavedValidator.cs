@@ -12,8 +12,6 @@ namespace BusinessLayer.Validations
     {
         public SavedValidator() 
         {
-            //Rule for IsActive
-            RuleFor(saved => saved.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz!");
         }
     }
 }
