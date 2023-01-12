@@ -21,7 +21,7 @@
         <select name="PostId" class="form-control">
             @foreach (var item in Model.PostModel)
             {
-                <option value=" @item.PostId">@item.Content</option>
+                <option value=" @item.PostId">@item.PostContent</option>
             }
         </select>
         <br />

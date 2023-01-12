@@ -26,7 +26,7 @@
         </select>
         <br />
         @Html.Label("Content")
-        @Html.TextBoxFor(message=>message.MessageModel.Content,new { @class = "form-control"})
+        @Html.TextBoxFor(message=>message.MessageModel.MessageContent,new { @class = "form-control"})
         <br />
         @Html.Label("Send Date")
         @Html.TextBoxFor(message=>message.MessageModel.SendDate,new { @class = "form-control" ,@type="date"})

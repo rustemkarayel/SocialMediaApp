@@ -13,8 +13,8 @@ namespace BusinessLayer.Validations
         public MessageValidator()
         {
             //Rule for Content
-            RuleFor(message => message.Content).NotEmpty().WithMessage("Content boş bırakılamaz!");
-            RuleFor(message => message.Content).MaximumLength(100).WithMessage("Maximum 100 karakter girilmelidir!");
+            RuleFor(message => message.MessageContent).NotEmpty().WithMessage("Content boş bırakılamaz!");
+            RuleFor(message => message.MessageContent).MaximumLength(100).WithMessage("Maximum 100 karakter girilmelidir!");
 
             //Rule for SendDate
             RuleFor(message => message.SendDate).NotEmpty().WithMessage("SendDate boş bırakılamaz!");

@@ -31,11 +31,11 @@
             {
                 if (item.PostId == Model.SavedModel.PostId)
                 {
-                    <option value="@item.PostId" selected>@item.Content</option>
+                    <option value="@item.PostId" selected>@item.PostContent</option>
                 }
                 else
                 {
-                    <option value="@item.PostId">@item.Content</option>
+                    <option value="@item.PostId">@item.PostContent</option>
                 }
             }
         </select>
