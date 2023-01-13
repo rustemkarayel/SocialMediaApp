@@ -2,17 +2,19 @@
 using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
 
 namespace SocialMediaApp.Controllers
 {
+  
     public class PostController : Controller
     {
         PostManager pm = new PostManager(new EfPostRepository());
         GenreManager gm= new GenreManager(new EfGenreRepository());
         LocationManager lm=new LocationManager(new EfLocationRepository());
-        UserManager um=new UserManager(new EfUserRepository());
+        UserManager um=new UserManager(new EfUserRepository());   
         public IActionResult Index()
         {
             var posts = pm.PostList();

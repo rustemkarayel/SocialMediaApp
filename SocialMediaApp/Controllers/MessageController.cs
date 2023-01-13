@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -11,9 +12,9 @@ namespace SocialMediaApp.Controllers
     {
         MessageManager mm = new MessageManager(new EfMessageRepository());
         UserManager um=new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1,int pageSize=5)
         {
-            var messages = mm.MessageList();
+            var messages = mm.MessageList().ToPagedList(page,pageSize);
             return View(messages);
         }
 
