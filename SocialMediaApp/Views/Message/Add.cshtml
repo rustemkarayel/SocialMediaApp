@@ -30,7 +30,7 @@
         <br />
         @Html.Label("Content")
         @Html.TextBox("MessageContent","",new { @class = "form-control"})
-        @Html.ValidationMessageFor(message=>message.MessageModel.MessageContent,"",new{@class="text-danger"})
+        @Html.ValidationMessage("MessageContent","",new{@class="text-danger"})
         <br />
         @Html.Label("Send Date")
         @Html.TextBox("SendDate","",new { @class = "form-control" ,@type="date"})
