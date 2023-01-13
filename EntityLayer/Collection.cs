@@ -14,7 +14,7 @@ namespace EntityLayer
 
         [StringLength(30)]
         public string CollectionName { get; set; }
-
+        public DateTime CreationDate { get; set; }
         public DateTime CreationTime { get; set; }
         public bool IsActive { get; set; }
 

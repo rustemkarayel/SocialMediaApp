@@ -1,20 +1,21 @@
 ﻿@using EntityLayer;
-@model List<Collection>;
-
+@model List<Comment>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>COLLECTIONS</h2>
+<h2>COMMENTS</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Collection ID</th>
-            <th>Collection Name</th>
-            <th>Creation Date</th>
-            <th>Creation Time</th>
+            <th>Comment ID</th>
+            <th>User</th>
+            <th>Post</th>
+            <th>Comment Content</th>
+            <th>Comment Time </th>
+            <th>Parent Comment ID </th>
             <th>IsActive</th>
             <th> </th>
             <th> </th>
@@ -24,10 +25,19 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.CollectionId</td>
-                <td>@item.CollectionName</td>
-                <td>@item.CreationDate.ToString().Split(" ")[0]</td>
-                <td>@item.CreationTime.ToString().Split(" ")[1]</td>
+                <td>@item.CommentId</td>
+                <td>@item.Commentor.NickName</td>
+                <td>@item.Post.PostContent</td>
+                <td>@item.CommentContent</td>
+                <td>@item.CommentTime</td>
+
+                @if(@item.ParentCommentId == null){
+                    <td>#</td>
+                }
+                else{
+                    <td>@item.ParentComment.CommentContent</td>
+                }
+
                 @if (item.IsActive)
                 {
                     <td>Aktif</td>
@@ -37,15 +47,15 @@
                     <td>Pasif</td>
                 }
                 <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.CollectionId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.CommentId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                 </td>
-                <td><a href="/Collection/Update/@item.CollectionId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                <td><a href="/Comment/Update/@item.CommentId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
             </tr>
         }
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/Collection/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+    <a href="/Comment/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 
 <!-- Modal -->
@@ -73,10 +83,10 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var collectionId = button.attr('data-bs-whatever');
+            var commentId = button.attr('data-bs-whatever');
 
             var a = document.querySelector("#delete-btn");
-            a.href = "/Collection/Delete/" + collectionId;
+            a.href = "/Comment/Delete/" + commentId;
         });
     });
 </script>

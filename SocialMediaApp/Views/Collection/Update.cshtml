@@ -1,0 +1,58 @@
+﻿@using EntityLayer;
+@model CollectionCollectionListModel;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Collection Update</h2><br />
+    @using (Html.BeginForm("Update", "Collection", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBox("CollectionId",Model.CollectionModel.CollectionId,new { @class = "form-control" ,@type="hidden"})
+
+        @Html.Label("Collection Name")
+        <select name="CollectionName" class="form-control">
+            @foreach (var item in Model.CollectionListModel)
+            {
+                if (item.CollectionId == Model.CollectionModel.CollectionId)
+                {
+                    <option value=" @item.CollectionName" selected>@item.CollectionName</option>
+                }
+                else
+                {
+                    <option value=" @item.CollectionName">@item.CollectionName</option>
+                }
+            }
+        </select>
+        <br />
+
+        @Html.Label("Creation Date")
+        @Html.TextBoxFor(model=>model.CollectionModel.CreationDate,new { @class = "form-control", @type="date"})
+        @Html.ValidationMessageFor(model=>model.CollectionModel.CreationDate,"",new{@class="text-danger"})
+        <br />
+
+        @Html.Label("Creation Time")
+        @Html.TextBoxFor(model=>model.CollectionModel.CreationTime,new { @class = "form-control", @type="time"})
+        @Html.ValidationMessageFor(model=>model.CollectionModel.CreationTime,"",new{@class="text-danger"})
+        <br />
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.CollectionModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+
+        <input class="form-control btn btn-primary" type="submit" value="Tag Update" />
+    }
+</div>

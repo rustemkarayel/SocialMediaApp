@@ -31,7 +31,7 @@
         @Html.ValidationMessageFor(user=>user.Mail,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Birthday")
-        @Html.TextBoxFor(user=>user.Birthday,new { @class = "form-control",@name="Birthday",@value="@Model.Birthday" } )
+        @Html.TextBox("Birthday",Model.Birthday.ToString().Split(" ")[0],new { @class = "form-control" ,@type="text" })
         @Html.ValidationMessageFor(user=>user.Birthday,"",new { @class ="text-danger" })
         <br />
         @Html.Label("PhotoUrl")

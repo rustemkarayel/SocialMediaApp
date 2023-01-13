@@ -8,7 +8,7 @@
 <div class="p-2">
     <h2>Message Update</h2><br />
     @using (Html.BeginForm("Update", "Message", FormMethod.Post, new { @class = "form-group" }))
-    {
+    {       
         @Html.TextBox("MessageId",Model.MessageModel.MessageId,new { @class = "form-control" ,@type="hidden"})
         @Html.Label("Sender")
         <select class="form-control" name="SenderId">
@@ -41,15 +41,15 @@
         </select>
         <br />
         @Html.Label("Content")
-        @Html.TextBoxFor(message=>message.MessageModel.MessageContent,new { @class = "form-control"})
+        @Html.TextBox("MessageContent",Model.MessageModel.MessageContent,new { @class = "form-control"})
         @Html.ValidationMessageFor(message=>message.MessageModel.MessageContent,"",new{@class="text-danger"})
         <br />
         @Html.Label("Send Date")
-        @Html.TextBoxFor(message=>message.MessageModel.SendDate,new { @class = "form-control"})
+        @Html.TextBox("SendDate",Model.MessageModel.SendDate.ToString().Split(" ")[0],new { @class = "form-control" ,@type="text" })
         @Html.ValidationMessageFor(message=>message.MessageModel.SendDate,"",new{@class="text-danger"})
         <br />
         @Html.Label("Send Time")
-        @Html.TextBoxFor(message=>message.MessageModel.SendTime,new { @class = "form-control"})
+        @Html.TextBox("SendTime",Model.MessageModel.SendTime.ToString().Split(" ")[1],new { @class = "form-control" ,@type="text" })
         @Html.ValidationMessageFor(message=>message.MessageModel.SendTime,"",new{@class="text-danger"})
         <br />
         @Html.Label("IsActive")
