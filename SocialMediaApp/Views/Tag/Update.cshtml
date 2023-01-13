@@ -16,7 +16,7 @@
         <select name="UserId" class="form-control">
             @foreach (var item in Model.userModel)
             {
-                if(item.UserId == Model.tagModel.UserId)
+                if (item.UserId == Model.tagModel.UserId)
                 {
                     <option value=" @item.UserId" selected>@item.NickName</option>
                 }
@@ -26,12 +26,12 @@
                 }
             }
         </select>
-        
+
         @Html.Label("Post")
         <select name="PostId" class="form-control">
             @foreach (var item in Model.postModel)
             {
-                if(item.PostId == Model.tagModel.PostId)
+                if (item.PostId == Model.tagModel.PostId)
                 {
                     <option value=" @item.PostId" selected>@item.PostContent</option>
                 }
@@ -41,7 +41,7 @@
                 }
             }
         </select>
-        <br />       
+        <br />
 
         @Html.Label("IsActive")
         <select class="form-control" name="IsActive">

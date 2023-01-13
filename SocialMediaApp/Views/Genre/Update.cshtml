@@ -1,0 +1,37 @@
+﻿@using EntityLayer;
+@model Genre;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Genre Update</h2><br />
+    @using (Html.BeginForm("Update", "Genre", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBox("GenreId",Model.GenreId,new { @class = "form-control" ,@type="hidden"})
+
+        @Html.Label("Genre Name")
+        @Html.TextBoxFor(genre=>genre.GenreName,new {@class = "form-control"})
+        @Html.ValidationMessageFor(genre=>genre.GenreName,"",new {@class = "text-danger"})
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+
+        <input class="form-control btn btn-primary" type="submit" value="Genre Update" />
+    }
+</div>
+

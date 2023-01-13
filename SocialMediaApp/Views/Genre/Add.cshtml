@@ -1,0 +1,29 @@
+﻿@using EntityLayer;
+@model Genre;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Genre Add</h2>
+    <br />
+
+    @using (Html.BeginForm("Add", "Genre", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Genre Name")
+        @Html.TextBoxFor(genre=>genre.GenreName,new { @class = "form-control"})
+        @Html.ValidationMessageFor(genre=>genre.GenreName,"",new{@class="text-danger"})
+        <br />
+
+
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Genre Add" />
+    }
+</div>
