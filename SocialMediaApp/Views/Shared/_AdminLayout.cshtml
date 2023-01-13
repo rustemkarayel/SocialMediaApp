@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Security.Claims;
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -20,8 +21,10 @@
     <link rel="stylesheet" href="~/admin_dashboard/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   
 </head>
 <body>
     <div class="container-scroller">
@@ -53,7 +56,7 @@
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">David Greymaax</p>
+                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Email)?.Value :)</p>
                             </div>
                         </a>
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -61,8 +64,8 @@
                                 <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-logout me-2 text-primary"></i> Signout
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="mdi mdi-logout me-2 text-primary"></i> Logout
                             </a>
                         </div>
                     </li>
@@ -208,8 +211,8 @@
                         </a>
                         <div class="collapse" id="user">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/User/Index">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/User/Add">Add</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/User/UserList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/User/UserInsert">Add</a></li>
                             </ul>
                         </div>
                     </li>
@@ -221,8 +224,8 @@
                         </a>
                         <div class="collapse" id="post">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Post/Index">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Post/Add">Add</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Post/PostList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Post/PostInsert">Add</a></li>
                             </ul>
                         </div>
                     </li>
@@ -294,6 +297,28 @@
     <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/Admin/Logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Logout Modal Script*@
+    
     <!-- plugins:js -->
     <script src="~/admin_dashboard/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
