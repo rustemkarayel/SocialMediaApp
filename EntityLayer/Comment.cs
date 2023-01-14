@@ -15,7 +15,7 @@ namespace EntityLayer
 
         [StringLength(100)]
         public string CommentContent { get; set; }
-
+        public DateTime CommentDate { get; set; }
         public DateTime CommentTime { get; set; }
         public bool IsActive { get; set; }
 

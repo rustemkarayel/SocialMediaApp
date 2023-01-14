@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +25,9 @@ namespace SocialMediaApp.Controllers
             commentManager.CommentUpdate(comment);
 
             return RedirectToAction("Index");
-        }        
-        
+        }
+
+        [HttpGet]
         public IActionResult Add()
         {
             CommentPostUserCommentList model = new CommentPostUserCommentList();
@@ -35,6 +37,69 @@ namespace SocialMediaApp.Controllers
             model.PostModel = postManager.PostList();
 
             return View(model);
+        }        
+        
+        [HttpPost]
+        public IActionResult Add(Comment comment)
+        {
+            CommentValidator commentValidator = new CommentValidator();
+            var result = commentValidator.Validate(comment);
+
+            if(result.IsValid)
+            {
+                commentManager.CommentInsert(comment);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach(var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return RedirectToAction("Add");
+            }
         }
-    }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            CommentPostUserCommentList model = new CommentPostUserCommentList();
+
+            model.CommentModel = commentManager.GetCommentById(id);
+            model.CommentListModel = commentManager.CommentList();
+            model.UserModel = userManager.UserList();
+            model.PostModel = postManager.PostList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Comment comment)
+        {
+            CommentValidator commentValidator = new CommentValidator();
+            var result = commentValidator.Validate(comment);
+
+            if (result.IsValid)
+            {
+                commentManager.CommentUpdate(comment);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                CommentPostUserCommentList model = new CommentPostUserCommentList();
+
+                model.CommentModel = comment;
+                model.CommentListModel = commentManager.CommentList();
+                model.UserModel = userManager.UserList();
+                model.PostModel = postManager.PostList();
+
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+
+                return View(model);
+            }
+        }
+    } 
 }

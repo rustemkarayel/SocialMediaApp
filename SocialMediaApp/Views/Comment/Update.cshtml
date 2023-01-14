@@ -1,26 +1,26 @@
 ﻿@using EntityLayer;
 @model CommentPostUserCommentList;
-
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="p-2">
-    <h2>Comment Add</h2>
+    <h2>Comment Update</h2>
     <br />
-    @using (Html.BeginForm("Add", "Comment", FormMethod.Post, new { @class = "form-group" }))
+    @using (Html.BeginForm("Update", "Comment", FormMethod.Post, new { @class = "form-group" }))
     {
+        @Html.TextBox("CommentId",Model.CommentModel.CommentId,new { @class = "form-control" ,@type="hidden"})
 
         @Html.Label("Content")
-        @Html.TextBoxFor(model=>model.CommentModel.CommentContent,new {@class = "form-control"})
-        @Html.ValidationMessageFor(model=>model.CommentModel.CommentContent,"",new {@class = "text-danger"})
+        @Html.TextBox("CommentContent",Model.CommentModel.CommentContent,new { @class = "form-control"})
+        @Html.ValidationMessage("CommentContent","",new{@class="text-danger"})
         <br />
 
         @Html.Label("Date")
         @Html.TextBoxFor(model=>model.CommentModel.CommentTime,new { @class = "form-control" ,@type="date"})
         <br />
-        
+
         @Html.Label("Time")
         @Html.TextBoxFor(model=>model.CommentModel.CommentTime,new { @class = "form-control" ,@type="time"})
         <br />
@@ -41,8 +41,8 @@
                 <option value=" @item.PostId">@item.PostContent</option>
             }
         </select>
-        <br />        
-        
+        <br />
+
         @Html.Label("Parent")
         <select name="ParentId" class="form-control">
             @foreach (var item in Model.CommentListModel)
@@ -58,6 +58,6 @@
             <option value="False">Pasif</option>
         </select>
         <br />
-        <input class="form-control btn btn-primary" type="submit" value="Comment Add" />
+        <input class="form-control btn btn-primary" type="submit" value="Comment Update" />
     }
 </div>
