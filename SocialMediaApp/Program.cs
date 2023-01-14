@@ -64,6 +64,24 @@ namespace SocialMediaApp
                 name: "User", pattern: "User/UserInsert", defaults: new { controller = "User", action = "Add" }
                 );
             app.MapControllerRoute(
+                name: "Message", pattern: "Message/MessageList", defaults: new { controller = "Message", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Message", pattern: "Message/MessageInsert", defaults: new { controller = "Message", action = "Add" }
+                );
+            app.MapControllerRoute(
+                name: "Saved", pattern: "Saved/SavedList", defaults: new { controller = "Saved", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Saved", pattern: "Saved/SavedInsert", defaults: new { controller = "Saved", action = "Add" }
+                );
+            app.MapControllerRoute(
+                name: "SavedCollection", pattern: "SavedCollection/SavedCollectionList", defaults: new { controller = "SavedCollection", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "SavedCollection", pattern: "SavedCollection/SavedCollectionInsert", defaults: new { controller = "SavedCollection", action = "Add" }
+                );
+            app.MapControllerRoute(
                 name: "Post", pattern: "Post/PostList", defaults: new { controller = "Post", action = "Index" }
                 );
             app.MapControllerRoute(
