@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
 using SocialMediaApp.Models;
 using System.ComponentModel;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -15,9 +16,9 @@ namespace SocialMediaApp.Controllers
         SavedManager sm = new SavedManager(new EfSavedRepository());
         CollectionManager cm = new CollectionManager(new EfCollectionRepository());
 
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=5)
         {
-            var savedCollections = scm.SavedCollectionList();
+            var savedCollections = scm.SavedCollectionList().ToPagedList(page, pageSize);
             return View(savedCollections);
         }
 
@@ -38,7 +39,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 scm.SavedCollectionInsert(savedCollection);
-                return RedirectToAction("Index");
+                return RedirectToAction("SavedCollectionList");
             }
             else
             {
@@ -59,7 +60,7 @@ namespace SocialMediaApp.Controllers
             SavedCollection savedCollection = scm.SavedCollectionGetById(id);
             savedCollection.IsActive = false;
             scm.SavedCollectionUpdate(savedCollection);
-            return RedirectToAction("Index");
+            return RedirectToAction("SavedCollectionList");
         }
 
         [HttpGet]
@@ -80,7 +81,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 scm.SavedCollectionUpdate(savedCollection);
-                return RedirectToAction("Index");
+                return RedirectToAction("SavedCollectionList");
             }
             else
             {

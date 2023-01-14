@@ -34,7 +34,7 @@ namespace SocialMediaApp.Controllers
             if(result.IsValid)
             {
                 mm.MessageInsert(message);
-                return RedirectToAction("Index");
+                return RedirectToAction("MessageList");
             }
             else
             {
@@ -54,7 +54,7 @@ namespace SocialMediaApp.Controllers
             Message message=mm.MessageGetById(id);
             message.IsActive= false;
             mm.MessageUpdate(message);  
-            return RedirectToAction("Index");
+            return RedirectToAction("MessageList");
         }
 
         [HttpGet]
@@ -75,7 +75,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 mm.MessageUpdate(message);
-                return RedirectToAction("Index");
+                return RedirectToAction("MessageList");
             }
             else
             {

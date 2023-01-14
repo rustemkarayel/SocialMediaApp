@@ -1,5 +1,8 @@
 ﻿@using EntityLayer;
-@model List<User>; 
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model PagedList<User>; 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -65,6 +68,14 @@
 <div class="text-center d-flex justify-content-start p-2">
 <a href="/User/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
+
+@*SAYFALAMA*@
+@Html.PagedListPager((IPagedList)Model,page => Url.Action("Index",new { page }),
+            new PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" },
+                UlElementClasses = new String[] {"pagination" },
+                ContainerDivClasses = new String[]{"pagination-container"} })
 
 <!-- Modal -->
 @*#decisionPopup Model*@

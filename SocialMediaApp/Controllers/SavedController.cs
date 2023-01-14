@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -13,9 +14,9 @@ namespace SocialMediaApp.Controllers
         UserManager um=new UserManager(new EfUserRepository());
         PostManager pm=new PostManager(new EfPostRepository());
 
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=5)
         {
-            var saveds=sm.SavedList();
+            var saveds=sm.SavedList().ToPagedList(page,pageSize);
             return View(saveds);
         }
 
@@ -36,7 +37,7 @@ namespace SocialMediaApp.Controllers
             if(result.IsValid) 
             {
                 sm.SavedInsert(saved);
-                return RedirectToAction("Index");
+                return RedirectToAction("SavedList");
             }
             else
             {
@@ -57,7 +58,7 @@ namespace SocialMediaApp.Controllers
             Saved saved=sm.SavedGetById(id);
             saved.IsActive= false;
             sm.SavedUpdate(saved);
-            return RedirectToAction("Index");
+            return RedirectToAction("SavedList");
         }
 
         [HttpGet] 
@@ -78,7 +79,7 @@ namespace SocialMediaApp.Controllers
             if(result.IsValid)
             {
                 sm.SavedUpdate(saved);
-                return RedirectToAction("Index");
+                return RedirectToAction("SavedList");
             }
             else
             {               

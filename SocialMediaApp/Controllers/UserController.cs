@@ -3,15 +3,16 @@ using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
     public class UserController : Controller
     {
         UserManager um = new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=5)
         {
-            var users = um.UserList();
+            var users = um.UserList().ToPagedList(page,pageSize);
             return View(users);
         }
 
@@ -29,7 +30,7 @@ namespace SocialMediaApp.Controllers
             if(result.IsValid)
             {
                 um.UserInsert(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("UserList");
             }
             else
             {
@@ -46,7 +47,7 @@ namespace SocialMediaApp.Controllers
             User user = um.UserGetById(id);
             user.IsActive = false;
             um.UserUpdate(user);
-            return RedirectToAction("Index");
+            return RedirectToAction("UserList");
         }
 
         [HttpGet]
@@ -64,7 +65,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 um.UserUpdate(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("UserList");
             }
             else
             {

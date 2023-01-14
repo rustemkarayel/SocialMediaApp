@@ -86,7 +86,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 adminManager.AdminInsert(admin);
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminList");
             }
             else
             {
@@ -103,7 +103,7 @@ namespace SocialMediaApp.Controllers
             Admin admin=adminManager.AdminGetById(id);
             admin.IsActive = false;
             adminManager.AdminUpdate(admin);
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminList");
         }
     }
 }
