@@ -50,11 +50,12 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapControllerRoute(
-                name: "Post", pattern: "Post/PostList", defaults: new { controller = "Post", action = "Index" }
+                name: "Admin", pattern: "Admin/AdminList", defaults: new { controller = "Admin", action = "Index" }
                 );
             app.MapControllerRoute(
-                name: "Post", pattern: "Post/PostInsert", defaults: new { controller = "Post", action = "Add" }
+                name: "Admin", pattern: "Admin/AdminInsert", defaults: new { controller = "Admin", action = "Add" }
                 );
             app.MapControllerRoute(
                 name: "User", pattern: "User/UserList", defaults: new { controller = "User", action = "Index" }
@@ -62,6 +63,13 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "User", pattern: "User/UserInsert", defaults: new { controller = "User", action = "Add" }
                 );
+            app.MapControllerRoute(
+                name: "Post", pattern: "Post/PostList", defaults: new { controller = "Post", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Post", pattern: "Post/PostInsert", defaults: new { controller = "Post", action = "Add" }
+                );
+            
 
             app.Run();
         }

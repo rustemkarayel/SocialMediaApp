@@ -6,14 +6,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using NToastNotify;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete.EntityFramework;
+using X.PagedList;
+using BusinessLayer.Validations;
 
 namespace SocialMediaApp.Controllers
 {
 
     public class AdminController : Controller
     {
+        AdminManager adminManager = new AdminManager(new EfAdminRepository());
         private readonly IToastNotification _toastNotification;
-
+        //logger ekle!
         public AdminController(IToastNotification toastNotification)
         {
             _toastNotification = toastNotification;
@@ -48,7 +53,7 @@ namespace SocialMediaApp.Controllers
                     .SignInAsync(
                     principal,
                     new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(1) });
-                return RedirectToAction("UserList", "User");
+                return RedirectToAction("AdminList", "Admin");
             }
             _toastNotification.AddErrorToastMessage("Username or password incorrect !");
             TempData["init"] = 1;
@@ -59,6 +64,46 @@ namespace SocialMediaApp.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
+        //sifreleme ekle!
 
+        [HttpGet]
+        public IActionResult Index(int page=1,int pageSize = 5)
+        {
+            var admins=adminManager.AdminList().ToPagedList(page, pageSize);
+            return View(admins);  
+        }
+
+        [HttpGet]
+        public IActionResult Add() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(Admin admin)
+        {
+            AdminValidator adminValidator = new AdminValidator();
+            var result=adminValidator.Validate(admin);
+            if (result.IsValid)
+            {
+                adminManager.AdminInsert(admin);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Admin admin=adminManager.AdminGetById(id);
+            admin.IsActive = false;
+            adminManager.AdminUpdate(admin);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,0 +1,95 @@
+﻿@using EntityLayer;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model PagedList<Admin>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ADMİNS</h2>
+<div style="overflow:auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mail</th>
+                <th>Password</th>
+                <th>AdminType</th>
+                <th>IsActive</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.AdminFirstName</td>
+                    <td>@item.AdminLastName</td>
+                    <td>@item.AdminMail</td>
+                    <td>*************</td>
+                    <td>@item.AdminType</td>
+                    @if (item.IsActive)
+                    {
+                        <td>Aktif</td>
+                    }
+                    else
+                    {
+                        <td>Pasif</td>
+                    }
+                    <td>
+                        <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.AdminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                    </td>
+                    <td><a href="/Admin/Update/@item.AdminId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Admin/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+</div>
+
+@*SAYFALAMA*@
+@Html.PagedListPager((IPagedList)Model,page => Url.Action("Index",new { page }),
+            new PagedListRenderOptions {
+                LiElementClasses = new string[] { "page-item" },
+                PageClasses = new string[] { "page-link" },
+                UlElementClasses = new String[] {"pagination" },
+                ContainerDivClasses = new String[]{"pagination-container"} })
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="DeleteLabel">WARNING!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Delete*@
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var AdminId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Admin/Delete/" + AdminId;
+        });
+    });
+</script>
