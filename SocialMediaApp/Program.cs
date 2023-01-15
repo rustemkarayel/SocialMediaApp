@@ -1,3 +1,4 @@
+using EntityLayer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -87,7 +88,46 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "Post", pattern: "Post/PostInsert", defaults: new { controller = "Post", action = "Add" }
                 );
-            
+
+            //Comment
+            app.MapControllerRoute(
+                name: "Comment", pattern: "Comment/comment-list", defaults: new { controller = "Comment", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Comment", pattern: "Comment/comment-insert", defaults: new { controller = "Comment", action = "Add" }
+                );
+
+            //Collection
+            app.MapControllerRoute(
+                name: "Collection", pattern: "Collection/collection-list", defaults: new { controller = "Collection", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Collection", pattern: "Collection/collection-insert", defaults: new { controller = "Collection", action = "Add" }
+                );
+
+            //Tag
+            app.MapControllerRoute(
+                name: "Tag", pattern: "Tag/tag-list", defaults: new { controller = "Tag", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Tag", pattern: "Tag/tag-insert", defaults: new { controller = "Tag", action = "Add" }
+                );
+
+            //Location
+            app.MapControllerRoute(
+                name: "Location", pattern: "Location/location-list", defaults: new { controller = "Location", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Location", pattern: "Location/location-insert", defaults: new { controller = "Location", action = "Add" }
+                );
+
+            //Type
+            app.MapControllerRoute(
+                name: "Type", pattern: "Type/type-list", defaults: new { controller = "Type", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Type", pattern: "Type/type-insert", defaults: new { controller = "Type", action = "Add" }
+                );
 
             app.Run();
         }
