@@ -24,7 +24,7 @@ namespace SocialMediaApp.Controllers
             comment.IsActive= false;
             commentManager.CommentUpdate(comment);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("comment-list");
         }
 
         [HttpGet]
@@ -48,7 +48,7 @@ namespace SocialMediaApp.Controllers
             if(result.IsValid)
             {
                 commentManager.CommentInsert(comment);
-                return RedirectToAction("Index");
+                return RedirectToAction("comment-list");
             }
             else
             {
@@ -56,7 +56,7 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("Add");
+                return RedirectToAction("comment-insert");
             }
         }
 
@@ -82,7 +82,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 commentManager.CommentUpdate(comment);
-                return RedirectToAction("Index");
+                return RedirectToAction("comment-list");
             }
             else
             {

@@ -33,7 +33,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 locationManager.LocationInsert(location);
-                return RedirectToAction("Index");
+                return RedirectToAction("location-list");
             }
             else
             {
@@ -41,7 +41,7 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View(location);
+                return View();
             }
         }
 
@@ -51,7 +51,7 @@ namespace SocialMediaApp.Controllers
             location.IsActive = false;
             locationManager.LocationUpdate(location);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("location-list");
         }
 
         [HttpGet]
@@ -74,7 +74,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 locationManager.LocationUpdate(location);
-                return RedirectToAction("Index");
+                return RedirectToAction("location-list");
             }
             else
             {

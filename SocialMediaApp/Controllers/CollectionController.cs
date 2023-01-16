@@ -22,14 +22,13 @@ namespace SocialMediaApp.Controllers
             collection.IsActive = false;
             collectionManager.CollectionUpdate(collection);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("collection-list");
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            Collection collection = new Collection();
-            return View(collection);
+            return View();
         }        
         
         [HttpPost]
@@ -41,7 +40,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 collectionManager.CollectionInsert(collection);
-                return RedirectToAction("Index");
+                return RedirectToAction("collection-list");
             }
             else
             {
@@ -49,7 +48,7 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View(collection);
+                return View();
             }
         }
 
@@ -73,7 +72,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 collectionManager.CollectionUpdate(collection);
-                return RedirectToAction("Index");
+                return RedirectToAction("collection-list");
             }
             else
             {
