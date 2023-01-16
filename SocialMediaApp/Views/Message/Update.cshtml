@@ -46,11 +46,11 @@
         <br />
         @Html.Label("Send Date")
         @Html.TextBox("SendDate",Model.MessageModel.SendDate.ToString().Split(" ")[0],new { @class = "form-control" ,@type="text" })
-        @Html.ValidationMessageFor(message=>message.MessageModel.SendDate,"",new{@class="text-danger"})
+        @Html.ValidationMessage("SendDate","",new{@class="text-danger"})
         <br />
         @Html.Label("Send Time")
         @Html.TextBox("SendTime",Model.MessageModel.SendTime.ToString().Split(" ")[1],new { @class = "form-control" ,@type="text" })
-        @Html.ValidationMessageFor(message=>message.MessageModel.SendTime,"",new{@class="text-danger"})
+        @Html.ValidationMessage("SendTime","",new{@class="text-danger"})
         <br />
         @Html.Label("IsActive")
         <select class="form-control" name="IsActive">
