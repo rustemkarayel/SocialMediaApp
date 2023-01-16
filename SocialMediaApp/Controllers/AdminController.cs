@@ -52,7 +52,7 @@ namespace SocialMediaApp.Controllers
                 await HttpContext
                     .SignInAsync(
                     principal,
-                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(1) });
+                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(5) });
                 return RedirectToAction("AdminList", "Admin");
             }
             _toastNotification.AddErrorToastMessage("Username or password incorrect !");

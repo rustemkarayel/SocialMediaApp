@@ -57,24 +57,15 @@
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="nav-profile-img">
-                                <img src="assets/images/faces/face1.jpg" alt="image">
-                                <span class="availability-status online"></span>
-                            </div>
+                        <a class="nav-link" id="profileDropdown" href="#" aria-expanded="false">
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Email)?.Value :)</p>
+                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Email)?.Value</p>
                             </div>
                         </a>
-                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#decisionPopup2">
-                                <i class="mdi mdi-logout me-2 text-primary"></i> Logout
-                            </a>
-                        </div>
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-cached me-2 text-success"></i> Log
+                        </a>
                     </li>
                     <li class="nav-item d-none d-lg-block full-screen-link">
                         <a class="nav-link">
@@ -170,7 +161,7 @@
                         </div>
                     </li>
                     <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#decisionPopup2">
                             <i class="mdi mdi-power"></i>
                         </a>
                     </li>
@@ -193,26 +184,33 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="assets/images/faces/face1.jpg" alt="profile">
+                                <img src="~/admin_dashboard/rstm.jpg" alt="profile">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2">David Grey. H</span>
+                                <span class="font-weight-bold mb-2">Rüstem Karayel</span>
                                 <span class="text-secondary text-small">Project Manager</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Admin/AdminList">
-                            <span class="menu-title">ADMİN</span>
-                            <i class="mdi mdi-home menu-icon"></i>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="admin">
+                            <span class="menu-title">Admin</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-home"></i>
                         </a>
+                        <div class="collapse" id="admin">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Admin/AdminList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Admin/AdminInsert">Add</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
-                            <span class="menu-title">USER</span>
+                            <span class="menu-title">User</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-account"></i>
                         </a>
@@ -225,9 +223,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
-                            <span class="menu-title">POST</span>
+                            <span class="menu-title">Post</span>
                             <i class="menu-arrow"></i>
-                            <i class="mdi mdi-contacts menu-icon"></i>
+                            <i class="mdi mdi-contacts"></i>
                         </a>
                         <div class="collapse" id="post">
                             <ul class="nav flex-column sub-menu">
@@ -238,7 +236,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#message" aria-expanded="false" aria-controls="message">
-                            <span class="menu-title">MESSAGE</span>
+                            <span class="menu-title">Message</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-message-processing"></i>
                         </a>
@@ -251,7 +249,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#saved" aria-expanded="false" aria-controls="saved">
-                            <span class="menu-title">SAVED</span>
+                            <span class="menu-title">Saved</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-content-save"></i>
                         </a>
@@ -264,7 +262,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#savedCollection" aria-expanded="false" aria-controls="savedCollection">
-                            <span class="menu-title">SAVED COLLECTİON</span>
+                            <span class="menu-title">Saved Collection</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-content-save-all"></i>
                         </a>
@@ -353,59 +351,6 @@
                                 <li class="nav-item"> <a class="nav-link" href="/Type/type-insert">Add</a></li>
                             </ul>
                         </div>
-                    </li>
-                    <!-- End Type Toggle -->
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">
-                            <span class="menu-title">Forms</span>
-                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">
-                            <span class="menu-title">Charts</span>
-                            <i class="mdi mdi-chart-bar menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">
-                            <span class="menu-title">Tables</span>
-                            <i class="mdi mdi-table-large menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                            <span class="menu-title">Sample Pages</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-medical-bag menu-icon"></i>
-                        </a>
-                        <div class="collapse" id="general-pages">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item sidebar-actions">
-                        <span class="nav-link">
-                            <div class="border-bottom">
-                                <h6 class="font-weight-normal mb-3">Projects</h6>
-                            </div>
-                            <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-                            <div class="mt-4">
-                                <div class="border-bottom">
-                                    <p class="text-secondary">Categories</p>
-                                </div>
-                                <ul class="gradient-bullet-list mt-4">
-                                    <li>Free</li>
-                                    <li>Pro</li>
-                                </ul>
-                            </div>
-                        </span>
                     </li>
                 </ul>
             </nav>
