@@ -11,27 +11,25 @@
     <thead>
         <tr>
             <th>User</th>
-            <th>Post</th>
+            <th>Post Creator</th>
             <th>like Time</th>                  
-            <th>IsActive</th>
-
+            <th>IsActive</th>           
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
                 <tr>
-                    <td>@item.UserId</td>
-                    <td>@item.PostId</td>
-                    <td>@item.LikeTime.ToString().Split(" ")[1]</td>
-                    <td>@item.IsActive</td>                                           
+                    <td>@item.PostLiker.NickName</td>
+                    <td>@item.Post.Creator.NickName</td>
+                    <td>@item.LikeTime.ToString().Split(" ")[1]</td>                                          
                 @if (item.IsActive)
                 {
-                            <td>Active</td>
+                            <td>Aktif</td>
                 }
                 else
                 {
-                            <td>Passive</td>
+                            <td>Pasif</td>
                 }
                     <td>
                         <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostLikeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
