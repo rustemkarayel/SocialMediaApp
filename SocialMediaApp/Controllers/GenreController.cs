@@ -21,14 +21,13 @@ namespace SocialMediaApp.Controllers
             genre.IsActive = false;
             genreManager.GenreUpdate(genre);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("genre-list");
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            Genre genre = new Genre();
-            return View(genre);
+            return View();
         }
 
         [HttpPost]
@@ -40,7 +39,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 genreManager.GenreInsert(genre);
-                return RedirectToAction("Index");
+                return RedirectToAction("genre-list");
             }
             else
             {
@@ -48,7 +47,7 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("Add");
+                return View();
             }
         }
 
@@ -68,7 +67,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 genreManager.GenreUpdate(genre);
-                return RedirectToAction("Index");
+                return RedirectToAction("genre-list");
             }
             else
             {

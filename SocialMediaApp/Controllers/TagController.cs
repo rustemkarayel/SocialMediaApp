@@ -24,7 +24,7 @@ namespace SocialMediaApp.Controllers
             Tag tag = tagManager.GetTagById(id);
             tag.IsActive = false;
             tagManager.TagUpdate(tag);
-            return RedirectToAction("Index");
+            return RedirectToAction("tag-list");
         }
 
         [HttpGet]
@@ -48,7 +48,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 tagManager.TagInsert(tag);
-                return RedirectToAction("Index");
+                return RedirectToAction("tag-list");
             }
             else
             {
@@ -56,7 +56,14 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("Add");
+
+                TagUserPostModel tagUserPostModel = new TagUserPostModel();
+
+                tagUserPostModel.tagModel = tag;
+                tagUserPostModel.userModel = userManager.UserList();
+                tagUserPostModel.postModel = postManager.PostList();
+
+                return View(tagUserPostModel);
             }
         }
 
@@ -81,7 +88,7 @@ namespace SocialMediaApp.Controllers
            if(result.IsValid)
            {
                 tagManager.TagUpdate(tag);
-                return RedirectToAction("Index");
+                return RedirectToAction("tag-list");
            }
             else
             {
