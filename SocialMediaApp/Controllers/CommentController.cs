@@ -56,7 +56,15 @@ namespace SocialMediaApp.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("comment-insert");
+
+                CommentPostUserCommentList model = new CommentPostUserCommentList();
+
+                model.CommentModel = comment;
+                model.CommentListModel = commentManager.CommentList();
+                model.UserModel = userManager.UserList();
+                model.PostModel = postManager.PostList();
+
+                return View(model);
             }
         }
 
