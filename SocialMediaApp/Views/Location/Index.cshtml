@@ -44,7 +44,13 @@
     <a href="/Location/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 
-<!-- Modal -->
+@*SAYFALAMA*@
+<div style="position:relative;">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PagingPartialView" model="@Model" />
+    </div>
+</div>
+
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">
     <div class="modal-dialog">

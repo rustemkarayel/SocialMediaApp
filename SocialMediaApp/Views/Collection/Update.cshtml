@@ -29,13 +29,13 @@
         <br />
 
         @Html.Label("Creation Date")
-        @Html.TextBoxFor(model=>model.CollectionModel.CreationDate,new { @class = "form-control", @type="date"})
-        @Html.ValidationMessageFor(model=>model.CollectionModel.CreationDate,"",new{@class="text-danger"})
+        @Html.TextBox("CreationDate",Model.CollectionModel.CreationDate,new { @class = "form-control" ,@type="date" })
+        @Html.ValidationMessage("CreationDate","",new {@class = "text-danger"})
         <br />
 
         @Html.Label("Creation Time")
-        @Html.TextBoxFor(model=>model.CollectionModel.CreationTime,new { @class = "form-control", @type="time"})
-        @Html.ValidationMessageFor(model=>model.CollectionModel.CreationTime,"",new{@class="text-danger"})
+        @Html.TextBox("CreationTime",Model.CollectionModel.CreationTime,new { @class = "form-control" ,@type="time" })
+        @Html.ValidationMessage("CreationTime","",new {@class = "text-danger"})
         <br />
 
         @Html.Label("IsActive")

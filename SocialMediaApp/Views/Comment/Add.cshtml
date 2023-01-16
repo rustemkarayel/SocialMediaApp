@@ -13,16 +13,18 @@
     {
 
         @Html.Label("Content")
-        @Html.TextBoxFor(model=>model.CommentModel.CommentContent,new {@class = "form-control"})
-        @Html.ValidationMessageFor(model=>model.CommentModel.CommentContent,"",new {@class = "text-danger"})
+        @Html.TextBox("CommentContent",Model.CommentModel.CommentContent,new { @class = "form-control" ,@type="text" })
+        @Html.ValidationMessage("CommentContent","",new {@class = "text-danger"})
         <br />
 
         @Html.Label("Date")
-        @Html.TextBoxFor(model=>model.CommentModel.CommentTime,new { @class = "form-control" ,@type="date"})
+        @Html.TextBox("CommentDate",Model.CommentModel.CommentDate,new { @class = "form-control" ,@type="date" })
+        @Html.ValidationMessage("CommentDate","",new {@class = "text-danger"})
         <br />
-        
+
         @Html.Label("Time")
-        @Html.TextBoxFor(model=>model.CommentModel.CommentTime,new { @class = "form-control" ,@type="time"})
+        @Html.TextBox("CommentTime",Model.CommentModel.CommentTime,new { @class = "form-control" ,@type="time" })
+        @Html.ValidationMessage("CommentTime","",new {@class = "text-danger"})
         <br />
 
         @Html.Label("Commentor")
