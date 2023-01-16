@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -13,9 +14,9 @@ namespace SocialMediaApp.Controllers
         UserManager userManager = new UserManager(new EfUserRepository());
         PostManager postManager = new PostManager(new EfPostRepository());
         
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var tags = tagManager.TagList();
+            var tags = tagManager.TagList().ToPagedList(page, pageSize);
             return View(tags);
         }
         
