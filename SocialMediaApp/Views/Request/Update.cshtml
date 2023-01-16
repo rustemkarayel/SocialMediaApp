@@ -1,0 +1,76 @@
+﻿@using EntityLayer;
+@model RequestUserModel;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    @using (Html.BeginForm("Update", "Request", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <h2>Request Update</h2>
+        @Html.TextBox("RequestId",Model.RequestModel.RequestId,new { @class = "form-control" ,@type="hidden"})
+        @Html.Label("Request(Follower-Following)")
+        <select class="form-control" name="FollowerId">
+            @foreach (var item in @Model.UserModel)
+            {
+                if (item.UserId == Model.RequestModel.FollowerId)
+                {
+                    <option value=@item.UserId selected>@item.NickName</option>
+                }
+                else
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        <select class="form-control" name="FollowingId">
+            @foreach (var item in Model.UserModel)
+            {
+                if (item.UserId == Model.RequestModel.FollowingId)
+                {
+                    <option value=@item.UserId selected>@item.NickName</option>
+                }
+                else
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Request Time")
+        @Html.TextBox("RequestTime","",new {@class="form-control",@type="time"})
+        <br />
+        @Html.Label("Request State")
+        <select class="form-control" name="RequestState">
+            @if (Model.RequestModel.RequestState)
+            {
+                <option value="True" selected>True</option>
+                <option value="False">False</option>
+            }
+            else
+            {
+                <option value="True" selected>True</option>
+                <option value="False">False</option>
+            }
+        </select>
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.RequestModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Request Update" />
+    }
+</div>
+

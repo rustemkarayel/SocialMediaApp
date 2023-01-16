@@ -24,15 +24,21 @@
                 <td>@item.Follower.NickName</td>
                 <td>@item.Following.NickName</td>
                 <td>@item.RequestTime.ToString().Split(" ")[1]</td>
-                <td>@item.RequestState</td>
-                <td>@item.IsActive</td>                                           
-                @if (item.IsActive)
+                 @if (item.RequestState)
                 {
-                    <td>Active</td>
+                    <td>True</td>
                 }
                 else
                 {
-                    <td>Passive</td>
+                    <td>False</td>
+                }                                         
+                @if (item.IsActive)
+                {
+                    <td>Aktif</td>
+                }
+                else
+                {
+                    <td>Pasif</td>
                 }
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.RequestId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
