@@ -23,15 +23,14 @@
             <tr>
                 <td>@item.GenerateDate.ToString().Split(" ")[0]</td>
                 <td>@item.PostContent</td>
-                <td>@item.Description</td>
-                <td>@item.IsActive</td>
+                <td>@item.Description</td>                
                 @if (item.IsActive)
                 {
-                    <td>Active</td>
+                    <td>Aktif</td>
                 }
                 else
                 {
-                    <td>Passive</td>
+                    <td>Pasif</td>
                 }
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
