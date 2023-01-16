@@ -1,8 +1,43 @@
-﻿
+﻿@using EntityLayer;
+@model CommentLikeUserCommentModel;
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Add</h1>
+<div class="p-2">
+    @using (Html.BeginForm("Add", "CommentLike", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <h2>CommentLike Add</h2>
+
+        <br />
+        @Html.Label("Comment Liker")
+        <select class="form-control" name="UserId">
+            @foreach (var item in Model.UserModel)
+            {
+                <option value="@item.UserId">@item.NickName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Comment")
+        <select class="form-control" name="CommentId">
+            @foreach (var item in Model.CommentModel)
+            {
+                <option value="@item.CommentId">@item.CommentContent</option>
+            }
+        </select>
+        <br />
+        @Html.Label("CommentLike Time")
+        @Html.TextBox("CommentLikeTime","",new {@class="form-control",@type="time"})
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Comment Like Add" />
+
+    }
+</div>
 

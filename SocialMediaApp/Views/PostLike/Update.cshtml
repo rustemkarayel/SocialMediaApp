@@ -1,0 +1,63 @@
+﻿@using EntityLayer;
+@model PostLikeUserPostModel;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    @using (Html.BeginForm("Update", "PostLike", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <h2>PostLike Update</h2>
+        @Html.TextBox("PostLikeId",Model.PostLikeModel.PostLikeId,new { @class = "form-control" ,@type="hidden"})
+        @Html.Label("User Nickname")
+        <select class="form-control" name="UserId">
+            @foreach (var item in Model.UserModel)
+            {
+                if (item.UserId == Model.PostLikeModel.UserId)
+                {
+                    <option value=" @item.UserId" selected>@item.NickName</option>
+                }
+                else
+                {
+                    <option value=" @item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Post Creator")
+        <select class="form-control" name="PostId">
+            @foreach (var item in Model.PostModel)
+            {
+                if (item.PostId == Model.PostLikeModel.PostId)
+                {
+                    <option value=" @item.PostId" selected>@item.Creator.NickName</option>
+                }
+                else
+                {
+                    <option value=" @item.PostId">@item.Creator.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Like Time")
+        @Html.TextBox("LikeTime","",new {@class="form-control",@type="time"})
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.PostLikeModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="PostLike Update" />
+    }
+</div>
+

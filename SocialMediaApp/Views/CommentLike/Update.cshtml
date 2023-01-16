@@ -1,0 +1,66 @@
+﻿@using EntityLayer;
+@model CommentLikeUserCommentModel;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    @using (Html.BeginForm("Update", "CommentLike", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <h2>CommentLike Update</h2>
+
+        <br />
+        @Html.TextBox("CommentLikeId",Model.CommentLikeModel.CommentLikeId,new { @class = "form-control" ,@type="hidden"})
+        @Html.Label("Comment Liker")
+        <select class="form-control" name="UserId">
+            @foreach (var item in Model.UserModel)
+            {
+                if (item.UserId == Model.CommentLikeModel.UserId)
+                {
+                    <option value=" @item.UserId" selected>@item.NickName</option>
+                }
+                else
+                {
+                    <option value=" @item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Comment")
+        <select class="form-control" name="CommentId">
+            @foreach (var item in Model.CommentModel)
+            {
+                if (item.CommentId == Model.CommentLikeModel.CommentId)
+                {
+                    <option value=" @item.CommentId" selected>@item.CommentContent</option>
+                }
+                else
+                {
+                    <option value=" @item.CommentId">@item.CommentContent</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("CommentLike Time")
+        @Html.TextBox("CommentLikeTime",Model.CommentLikeModel.CommentLikeTime,new { @class = "form-control",@type="time"})
+        @Html.ValidationMessage("CommentLikeTime","",new{@class="text-danger"})
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.CommentLikeModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Comment Like Update" />
+    }
+</div>
+

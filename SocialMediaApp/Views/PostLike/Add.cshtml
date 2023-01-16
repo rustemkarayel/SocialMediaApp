@@ -1,20 +1,42 @@
-﻿@using EntityLayer
-@model PostLikeUserPostModel
+﻿@using EntityLayer;
+@model PostLikeUserPostModel;
 @{
     ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>PostLike Add</h2>
+<div class="p-2">
+    <h2>PostLike Add</h2>
 
-@using (Html.BeginForm("Add", "PostLike", FormMethod.Post, new { @class = "form-group" }))
-{
-    @Html.Label("Like Time")
-    <select class="form-control">
-        @{
-            var likeTime = Model.PostLikeModel.LikeTime.ToString().Split(" ")[1];
-        }
-        <option>@likeTime</option>
-    </select>
+    @using (Html.BeginForm("Add", "PostLike", FormMethod.Post, new { @class = "form-group" }))
+    {     
+        @Html.Label("User Nickname")
+        <select class="form-control" name="UserId">
+            @foreach(var item in Model.UserModel)
+            {
+                <option value="@item.UserId">@item.NickName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Post Creator")
+        <select class="form-control" name="PostId">
+            @foreach(var item in Model.PostModel)
+            {
+                <option value="@item.Creator.NickName">@item.Creator.NickName</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Like Time")
+        @Html.TextBox("LikeTime","",new {@class="form-control",@type="time"})
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            <option value="True">Aktif</option>
+            <option value="False">Pasif</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Post Like Add" />
+    }
+</div>
 
-}
 
