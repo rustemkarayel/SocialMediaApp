@@ -1,0 +1,84 @@
+﻿@using EntityLayer;
+@model PostGenreLocationUserModel;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h2>Post Update</h2><br />
+    @using (Html.BeginForm("Update", "Post", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBox("PostId",Model.PostModel.PostId,new { @class = "form-control" ,@type="hidden"})
+        @Html.Label("User Creator")
+        <select class="form-control" name="UserId">
+            @foreach (var item in Model.UserModel)
+            {
+                if (item.UserId == Model.PostModel.UserId)
+                {
+                    <option value=" @item.UserId" selected>@item.NickName</option>
+                }
+                else
+                {
+                    <option value=" @item.UserId">@item.NickName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("GenerateDate")
+        @Html.TextBox("GenerateDate","",new{@class="form-control",@type="date"})
+        <br />
+        @Html.Label("Post Content")
+        @Html.TextBox("PostContent","",new{@class="form-control"})
+        <br />
+        @Html.Label("Description")
+        @Html.TextBox("Description","",new{@class="form-control"})
+        <br />
+        @Html.Label("Location Name")
+        <select class="form-control" name="LocationId">
+            @foreach (var item in Model.LocationModel)
+            {
+                if (item.LocationId == Model.PostModel.LocationId)
+                {
+                    <option value=" @item.LocationId" selected>@item.LocationName</option>
+                }
+                else
+                {
+                    <option value=" @item.LocationId">@item.LocationName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Genre Name")
+        <select class="form-control" name="GenreId">
+            @foreach (var item in Model.GenreModel)
+            {
+                if (item.GenreId == Model.PostModel.GenreId)
+                {
+                    <option value=" @item.GenreId" selected>@item.GenreName</option>
+                }
+                else
+                {
+                    <option value=" @item.GenreId">@item.GenreName</option>
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("IsActive")
+        <select class="form-control" name="IsActive">
+            @if (Model.PostModel.IsActive)
+            {
+                <option value="True" selected>Aktif</option>
+                <option value="False">Pasif</option>
+            }
+            else
+            {
+                <option value="False" selected>Pasif</option>
+                <option value="True">Aktif</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Post Update" />
+    }
+</div>
+

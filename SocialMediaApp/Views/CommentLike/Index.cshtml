@@ -20,18 +20,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.UserId</td>
-                <td>@item.CommentId</td>
-                <td>@item.CommentLikeTime.ToString().Split(" ")[1]</td>
-                <td>@item.IsActive</td>
-                <td>@item.IsActive</td>
+                <td>@item.CommentLiker.NickName</td>
+                <td>@item.Comment.CommentContent</td>
+                <td>@item.CommentLikeTime.ToString().Split(" ")[1]</td>                
                 @if (item.IsActive)
                 {
-                    <td>Active</td>
+                    <td>Aktif</td>
                 }
                 else
                 {
-                    <td>Passive</td>
+                    <td>Pasif</td>
                 }
                 <td>
                     <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.CommentLikeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>

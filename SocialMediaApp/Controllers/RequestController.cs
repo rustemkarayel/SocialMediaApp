@@ -38,7 +38,7 @@ namespace SocialMediaApp.Controllers
             else
             {
                 RequestUserModel rum = new RequestUserModel();
-                rum.RequestModel = new Request();
+                rum.RequestModel = request;
                 rum.UserModel = um.UserList();
                 foreach (var item in result.Errors)
                 {
@@ -46,8 +46,46 @@ namespace SocialMediaApp.Controllers
                 }
                 return View(rum);
             }
-            
         }
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            Request request = rm.GetRequestById(id);
+            RequestUserModel rum = new RequestUserModel();
+            rum.RequestModel = request;
+            rum.UserModel= um.UserList();
+            return View(rum);
+        }
+        [HttpPost]
+        public IActionResult Update(Request request)
+        {
+            RequestValidator requestValidator = new RequestValidator();
+            var result = requestValidator.Validate(request);
+            if (result.IsValid)
+            {
+                rm.RequestUpdate(request);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                RequestUserModel rum = new RequestUserModel();
+                rum.RequestModel = request;
+                rum.UserModel = um.UserList();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(rum);
+            }
+        }
+        public IActionResult Delete(int id)
+        {
+            Request request=rm.GetRequestById(id);
+            request.IsActive= false;
+            rm.RequestUpdate(request);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
