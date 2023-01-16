@@ -42,7 +42,7 @@ namespace SocialMediaApp.Controllers
             else
             {
                 SavedUserPostModel supm=new SavedUserPostModel();   
-                supm.SavedModel = new Saved();
+                supm.SavedModel = saved;
                 supm.UserModel= um.UserList();
                 supm.PostModel = pm.PostList();
                 foreach (var item in result.Errors)

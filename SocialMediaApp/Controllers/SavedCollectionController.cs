@@ -44,7 +44,7 @@ namespace SocialMediaApp.Controllers
             else
             {
                 SavedCollectionSavedCollectionModel scscm = new SavedCollectionSavedCollectionModel();
-                scscm.SavedCollectionModel = new SavedCollection();
+                scscm.SavedCollectionModel = savedCollection;
                 scscm.SavedModel = sm.SavedList();
                 scscm.CollectionModel = cm.CollectionList();
                 foreach (var item in result.Errors)

@@ -39,7 +39,7 @@ namespace SocialMediaApp.Controllers
             else
             {
                 MessageUserModel mum=new MessageUserModel();
-                mum.MessageModel = new Message();
+                mum.MessageModel = message;
                 mum.UserModel = um.UserList();              
                 foreach (var item in result.Errors)
                 {
