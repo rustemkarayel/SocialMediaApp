@@ -12,7 +12,9 @@ namespace BusinessLayer.Validations
     {
         public LocationValidator()
         {
-            RuleFor(location=>location.LocationName).NotEmpty().WithMessage("Lokasyon ismi boş geçilemez !");
+            //Name
+            RuleFor(genre => genre.LocationName).NotEmpty().WithMessage("Name alanı boş geçilemez !");
+            RuleFor(genre => genre.LocationName).MaximumLength(50).WithMessage("Name alanı maksimum 50 karakter olmalı !");
         }
     }
 }
