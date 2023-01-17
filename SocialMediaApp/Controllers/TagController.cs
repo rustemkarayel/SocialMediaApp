@@ -16,8 +16,7 @@ namespace SocialMediaApp.Controllers
         
         public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var tags = tagManager.TagList().ToPagedList(page, pageSize);
-            return View(tags);
+            return View(tagManager.TagList().ToPagedList(page, pageSize));
         }
         
         public IActionResult Delete(int id)

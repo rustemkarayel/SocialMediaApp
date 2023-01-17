@@ -5,17 +5,19 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using SocialMediaApp.Models;
+using System.Drawing.Printing;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
     public class LocationController : Controller
     {
         LocationManager locationManager = new LocationManager(new EfLocationRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var locations = locationManager.LocationList();
-            return View(locations);
+            return View(locationManager.LocationList().ToPagedList(page, pageSize));
         }
 
         [HttpGet]

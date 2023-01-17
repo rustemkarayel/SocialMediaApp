@@ -3,6 +3,8 @@ using BusinessLayer.Validations;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Printing;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -10,9 +12,9 @@ namespace SocialMediaApp.Controllers
     {
         GenreManager genreManager = new GenreManager(new EfGenreRepository());
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            return View(genreManager.GenreList());
+            return View(genreManager.GenreList().ToPagedList(page, pageSize));
         }
         
         public IActionResult Delete(int id)
