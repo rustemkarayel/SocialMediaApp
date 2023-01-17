@@ -8,46 +8,47 @@
 }
 
 <div class="card">
+
     <div class="card-header">
-        <h2>TAGS</h2>
+        <h2>Tags</h2>
     </div>
 
     <div class="card-body">
         <table class="table table-hover">
-            <thead class="text-warning">
-                <tr>
-                    <th>Tag ID</th>
-                    <th>User</th>
-                    <th>Post</th>
-                    <th>IsActive</th>
-                    <th> </th>
-                    <th> </th>
-                </tr>
+            <thead class="table-head ">
+                <tr >
+                        <th>Tag ID</th>
+                        <th>User</th>
+                        <th>Post</th>
+                        <th>IsActive</th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@item.TagId</td>
-                        <td>@item.TaggedUser.NickName</td>
-                        <td>@item.Post.PostContent</td>
+            <tr>
+                <td>@item.TagId</td>
+                <td>@item.TaggedUser.NickName</td>
+                <td>@item.Post.PostContent</td>
                         @if (item.IsActive)
                         {
-                            <td>Aktif</td>
+                    <td>Aktif</td>
                         }
                         else
                         {
-                            <td>Pasif</td>
+                    <td>Pasif</td>
                         }
-                        <td>
-                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.TagId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                        </td>
-                        <td><a href="/Tag/Update/@item.TagId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-                    </tr>
+                <td>
+                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.TagId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                </td>
+                <td><a href="/Tag/Update/@item.TagId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+            </tr>
                 }
-            </tbody>
-        </table>
-    </div>
+    </tbody>
+    </table>
+</div>
 </div>
 
 @*EKLEME BUTONU*@
