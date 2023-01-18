@@ -2,99 +2,110 @@
 @using X.PagedList;
 @model List<Comment>;
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>COMMENTS</h2>
+<div class="card">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Comment ID</th>
-            <th>User</th>
-            <th>Post</th>
-            <th>Comment Content</th>
-            <th>Comment Time </th>
-            <th>Parent Comment ID </th>
-            <th>IsActive</th>
-            <th> </th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.CommentId</td>
-                <td>@item.Commentor.NickName</td>
-                <td>@item.Post.PostContent</td>
-                <td>@item.CommentContent</td>
-                <td>@item.CommentTime</td>
+	<div class="card-header">
+		<h2>Comments</h2>
+	</div>
 
-                @if(@item.ParentCommentId == null){
-                    <td>#</td>
-                }
-                else{
-                    <td>@item.ParentComment.CommentContent</td>
-                }
+	<div class="card-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Comment ID</th>
+					<th>User</th>
+					<th>Post</th>
+					<th>Comment Content</th>
+					<th>Comment Time </th>
+					<th>Parent Comment ID </th>
+					<th>IsActive</th>
+					<th> </th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.CommentId</td>
+						<td>@item.Commentor.NickName</td>
+						<td>@item.Post.PostContent</td>
+						<td>@item.CommentContent</td>
+						<td>@item.CommentTime</td>
 
-                @if (item.IsActive)
-                {
-                    <td>Aktif</td>
-                }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.CommentId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/Comment/Update/@item.CommentId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+						@if (@item.ParentCommentId == null)
+						{
+							<td>#</td>
+						}
+						else
+						{
+							<td>@item.ParentComment.CommentContent</td>
+						}
+
+						@if (item.IsActive)
+						{
+							<td>Aktif</td>
+						}
+						else
+						{
+							<td>Pasif</td>
+						}
+						<td>
+							<button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.CommentId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+						</td>
+						<td><a href="/Comment/Update/@item.CommentId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@*EKLEME*@
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/Comment/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+	<a href="/Comment/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 
 @*SAYFALAMA*@
 <div style="position:relative;">
-    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
-    </div>
+	<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+		<partial name="PagingPartialView" model="@Model" />
+	</div>
 </div>
 
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="DeleteLabel">WARNING!</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title" id="DeleteLabel">WARNING!</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				Are you sure you want to delete?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+				<a id="delete-btn" href="" class="btn btn-success">Yes</a>
+			</div>
+		</div>
+	</div>
 </div>
 
 @*Delete*@
 <script>
-    $(document).ready(function () {
-        $('#decisionPopup').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var commentId = button.attr('data-bs-whatever');
+	$(document).ready(function () {
+		$('#decisionPopup').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);
+			var commentId = button.attr('data-bs-whatever');
 
-            var a = document.querySelector("#delete-btn");
-            a.href = "/Comment/Delete/" + commentId;
-        });
-    });
+			var a = document.querySelector("#delete-btn");
+			a.href = "/Comment/Delete/" + commentId;
+		});
+	});
 </script>
 

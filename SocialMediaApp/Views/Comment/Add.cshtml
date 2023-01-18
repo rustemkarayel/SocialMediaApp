@@ -6,60 +6,65 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>Comment Add</h2>
-    <br />
-    @using (Html.BeginForm("Add", "Comment", FormMethod.Post, new { @class = "form-group" }))
-    {
+<div class="card">
 
-        @Html.Label("Content")
-        @Html.TextBox("CommentContent",Model.CommentModel.CommentContent,new { @class = "form-control" ,@type="text" })
-        @Html.ValidationMessage("CommentContent","",new {@class = "text-danger"})
-        <br />
+    <div class="card-header">
+        <h2>Comment Insert</h2>
+    </div>
 
-        @Html.Label("Date")
-        @Html.TextBox("CommentDate",Model.CommentModel.CommentDate,new { @class = "form-control" ,@type="date" })
-        @Html.ValidationMessage("CommentDate","",new {@class = "text-danger"})
-        <br />
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Comment", FormMethod.Post, new { @class = "form-group" }))
+        {
 
-        @Html.Label("Time")
-        @Html.TextBox("CommentTime",Model.CommentModel.CommentTime,new { @class = "form-control" ,@type="time" })
-        @Html.ValidationMessage("CommentTime","",new {@class = "text-danger"})
-        <br />
+            @Html.Label("Content")
+            @Html.TextBox("CommentContent",Model.CommentModel.CommentContent,new { @class = "form-control" ,@type="text" })
+            @Html.ValidationMessage("CommentContent","",new {@class = "text-danger"})
+            <br />
 
-        @Html.Label("Commentor")
-        <select name="UserId" class="form-control">
-            @foreach (var item in Model.UserModel)
-            {
-                <option value="@item.UserId">@item.NickName</option>
-            }
-        </select>
-        <br />
+            @Html.Label("Date")
+            @Html.TextBox("CommentDate",Model.CommentModel.CommentDate,new { @class = "form-control" ,@type="date" })
+            @Html.ValidationMessage("CommentDate","",new {@class = "text-danger"})
+            <br />
 
-        @Html.Label("Post")
-        <select name="PostId" class="form-control">
-            @foreach (var item in Model.PostModel)
-            {
-                <option value=" @item.PostId">@item.PostContent</option>
-            }
-        </select>
-        <br />        
-        
-        @Html.Label("Parent")
-        <select name="ParentId" class="form-control">
-            @foreach (var item in Model.CommentListModel)
-            {
-                <option value=" @item.CommentId">@item.CommentContent</option>
-            }
-        </select>
-        <br />
+            @Html.Label("Time")
+            @Html.TextBox("CommentTime",Model.CommentModel.CommentTime,new { @class = "form-control" ,@type="time" })
+            @Html.ValidationMessage("CommentTime","",new {@class = "text-danger"})
+            <br />
 
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            <option value="True">Aktif</option>
-            <option value="False">Pasif</option>
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="Comment Add" />
-    }
+            @Html.Label("Commentor")
+            <select name="UserId" class="form-control">
+                @foreach (var item in Model.UserModel)
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            </select>
+            <br />
+
+            @Html.Label("Post")
+            <select name="PostId" class="form-control">
+                @foreach (var item in Model.PostModel)
+                {
+                    <option value=" @item.PostId">@item.PostContent</option>
+                }
+            </select>
+            <br />
+
+            @Html.Label("Parent")
+            <select name="ParentId" class="form-control">
+                @foreach (var item in Model.CommentListModel)
+                {
+                    <option value=" @item.CommentId">@item.CommentContent</option>
+                }
+            </select>
+            <br />
+
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Aktif</option>
+                <option value="False">Pasif</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Comment Add" />
+        }
+    </div>
 </div>
