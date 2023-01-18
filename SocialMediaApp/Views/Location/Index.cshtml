@@ -7,40 +7,49 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>LOCATIONS</h2>
+<div class="card">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Location ID</th>
-            <th>Location Name</th>
-            <th>IsActive</th>
-            <th> </th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.LocationId</td>
-                <td>@item.LocationName</td>
-                @if (item.IsActive)
+    <div class="card-header">
+        <h2>Locations</h2>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Location ID</th>
+                    <th>Location Name</th>
+                    <th>IsActive</th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <td>Aktif</td>
+                    <tr>
+                        <td>@item.LocationId</td>
+                        <td>@item.LocationName</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.LocationId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/Location/Update/@item.LocationId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
                 }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.LocationId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/Location/Update/@item.LocationId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*EKLEME*@
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Location/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
