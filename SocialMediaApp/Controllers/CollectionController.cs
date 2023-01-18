@@ -4,7 +4,6 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
-using System.Drawing.Printing;
 using X.PagedList;
 
 namespace SocialMediaApp.Controllers

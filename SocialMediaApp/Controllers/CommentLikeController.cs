@@ -34,7 +34,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 clm.CommentLikeInsert(commentLike);
-                return RedirectToAction("Index");
+                return RedirectToAction("CommentLikeList");
             }
             else
             {
@@ -67,7 +67,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 clm.CommmentLikeUpdate(commentLike);
-                return RedirectToAction("Index");
+                return RedirectToAction("CommentLikeList");
             }
             else
             {
@@ -87,7 +87,7 @@ namespace SocialMediaApp.Controllers
             CommentLike commentLike=clm.GetCommentLikeById(id);
             commentLike.IsActive= false;
             clm.CommmentLikeUpdate(commentLike);
-            return RedirectToAction("Index");
+            return RedirectToAction("CommentLikeList");
         }
     }
 }

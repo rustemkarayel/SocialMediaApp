@@ -38,7 +38,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 pm.PostInsert(post);
-                return RedirectToAction("Index");
+                return RedirectToAction("PostList");
             }
             else
             {
@@ -75,7 +75,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 pm.PostUpdate(post);
-                return RedirectToAction("Index");
+                return RedirectToAction("PostList");
             }
             else
             {
@@ -97,7 +97,7 @@ namespace SocialMediaApp.Controllers
             Post post = pm.GetPostById(id);
             post.IsActive = false;
             pm.PostUpdate(post);
-            return RedirectToAction("Index");
+            return RedirectToAction("PostList");
         }
 
     }

@@ -10,9 +10,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th>User</th>
+            <th>PostLiker</th>
             <th>Post Creator</th>
-            <th>like Time</th>                  
+            <th>Like Time</th>                  
             <th>IsActive</th>           
         </tr>
     </thead>
@@ -21,7 +21,7 @@
         {
                 <tr>
                     <td>@item.PostLiker.NickName</td>
-                    <td>@item.Post.Creator.NickName</td>
+                    <td>@item.Post.PostContent</td>
                     <td>@item.LikeTime.ToString().Split(" ")[1]</td>                                          
                 @if (item.IsActive)
                 {

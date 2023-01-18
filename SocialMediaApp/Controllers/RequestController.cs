@@ -33,7 +33,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 rm.RequestInsert(request);
-                return RedirectToAction("Index");
+                return RedirectToAction("RequestList");
             }
             else
             {
@@ -64,7 +64,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 rm.RequestUpdate(request);
-                return RedirectToAction("Index");
+                return RedirectToAction("RequestList");
             }
             else
             {
@@ -83,7 +83,7 @@ namespace SocialMediaApp.Controllers
             Request request=rm.GetRequestById(id);
             request.IsActive= false;
             rm.RequestUpdate(request);
-            return RedirectToAction("Index");
+            return RedirectToAction("RequestList");
         }
 
 

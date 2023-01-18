@@ -35,7 +35,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 plm.PostLikeInsert(postLike);
-                return RedirectToAction("Index");
+                return RedirectToAction("PostLikeList");
             }
             else
             {
@@ -68,7 +68,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 plm.PostLikeUpdate(postLike);
-                return RedirectToAction("Index");
+                return RedirectToAction("PostLikeList");
             }
             else
             {
@@ -88,7 +88,7 @@ namespace SocialMediaApp.Controllers
             PostLike postLike = plm.GetPostLikeById(id);
             postLike.IsActive = false;
             plm.PostLikeUpdate(postLike);
-            return RedirectToAction("Index");
+            return RedirectToAction("PostLikeList");
         }
     }
 }
