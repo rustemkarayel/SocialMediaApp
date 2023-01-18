@@ -10,7 +10,7 @@
 
     @using (Html.BeginForm("Add", "PostLike", FormMethod.Post, new { @class = "form-group" }))
     {     
-        @Html.Label("User Nickname")
+        @Html.Label("PostLiker")
         <select class="form-control" name="UserId">
             @foreach(var item in Model.UserModel)
             {
@@ -18,11 +18,11 @@
             }
         </select>
         <br />
-        @Html.Label("Post Creator")
+        @Html.Label("Post Content")
         <select class="form-control" name="PostId">
             @foreach(var item in Model.PostModel)
             {
-                <option value="@item.Creator.NickName">@item.Creator.NickName</option>
+                <option value="@item.PostId">@item.PostContent</option>
             }
         </select>
         <br />

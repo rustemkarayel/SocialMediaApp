@@ -15,6 +15,7 @@
             <option value="@item.UserId">@item.NickName</option>
         }
     </select>
+    <br />
     @Html.Label("Generate Date")
     @Html.TextBox("GenerateDate","",new { @class = "form-control",@type="date"})
     @Html.ValidationMessage("GenerateDate","",new{@class="text-danger"})
