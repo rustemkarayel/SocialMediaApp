@@ -40,7 +40,7 @@
 
         .content-wrapper {
             background-color: #EEEEEE;
-            border-radius:10px;
+            border-radius: 10px;
         }
 
         .card {
@@ -266,11 +266,12 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Start Post Toogle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
                             <span class="menu-title">Post</span>
                             <i class="menu-arrow"></i>
-                            <i class="mdi mdi-contacts"></i>
+                            <i class="mdi mdi-email-outline"></i>
                         </a>
                         <div class="collapse" id="post">
                             <ul class="nav flex-column sub-menu">
@@ -279,6 +280,22 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- End Post Toogle -->
+                    <!-- Start PostLike Toogle -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
+                            <span class="menu-title">PostLike</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-checkbox-marked-circle"></i>
+                        </a>
+                        <div class="collapse" id="postLike">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- End PostLike Toogle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#message" aria-expanded="false" aria-controls="message">
                             <span class="menu-title">Message</span>
@@ -334,6 +351,21 @@
                         </div>
                     </li>
                     <!-- End Comment Toggle -->
+                    <!-- Start CommentLike Toogle -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#commentLike" aria-expanded="false" aria-controls="commentLike">
+                            <span class="menu-title">CommentLike</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-comment-check"></i>
+                        </a>
+                        <div class="collapse" id="commentLike">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- End CommentLike Toogle -->
                     <!-- Start Collection Toggle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
@@ -393,6 +425,23 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- End Type Toogle -->
+
+                    <!--Start Request Toogle  -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
+                            <span class="menu-title">Request</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-human-greeting"></i>
+                        </a>
+                        <div class="collapse" id="request">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- End Request Toogle -->
                 </ul>
             </nav>
             <!-- Side Bar End-->
