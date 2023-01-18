@@ -78,6 +78,7 @@ namespace SocialMediaApp.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Add(Admin admin)
         {
@@ -104,6 +105,12 @@ namespace SocialMediaApp.Controllers
             admin.IsActive = false;
             adminManager.AdminUpdate(admin);
             return RedirectToAction("AdminList");
+        }
+
+        [HttpGet]
+        public IActionResult Update()
+        {
+            return View();
         }
     }
 }
