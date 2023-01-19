@@ -1,70 +1,76 @@
 ﻿@using EntityLayer;
 @using X.PagedList;
-@model PagedList<User>; 
+@model PagedList<User>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>USERS</h2>
-<div style="overflow:auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
-<table class="table">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Nick Name</th>
-            <th>Password</th>
-            <th>Mail</th>
-            <th>Birthday</th>
-            <th>PhotoUrl</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>Gender</th>
-            <th>IsActive</th>
-            <th> </th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.NickName</td>
-                <td>*************</td>               
-                <td>@item.Mail</td>
-                <td>@item.Birthday.ToString().Split(" ")[0]</td>
-                <td>@item.PhotoUrl</td>
-                <td>@item.Phone</td>
-                <td>@item.Country</td>
-                @if (item.Gender)
+<div class="card">
+    <div class="card-header">
+        <h2>Users</h2>
+    </div>
+    <div class="card-body  overflow-auto">
+        <table class="table table-hover">
+            <thead class="table-head ">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Nick Name</th>
+                    <th>Password</th>
+                    <th>Mail</th>
+                    <th>Birthday</th>
+                    <th>PhotoUrl</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    <th>Gender</th>
+                    <th>IsActive</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <td>Erkek</td>
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.NickName</td>
+                        <td>*************</td>
+                        <td>@item.Mail</td>
+                        <td>@item.Birthday.ToString().Split(" ")[0]</td>
+                        <td>@item.PhotoUrl</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Country</td>
+                        @if (item.Gender)
+                        {
+                            <td>Erkek</td>
+                        }
+                        else
+                        {
+                            <td>Kadın</td>
+                        }
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.UserId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/User/Update/@item.UserId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
                 }
-                else{
-                    <td>Kadın</td>
-                }
-                @if (item.IsActive)
-                {
-                    <td>Aktif</td>
-                }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.UserId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/User/Update/@item.UserId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
 </div>
+@*ADD BUTON*@
 <div class="text-center d-flex justify-content-start p-2">
-<a href="/User/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+    <a href="/User/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 
 @*SAYFALAMA*@

@@ -5,31 +5,36 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>Saved Add</h2><br />
-    @using (Html.BeginForm("Add", "Saved", FormMethod.Post, new { @class = "form-group" }))
-    {
-        @Html.Label("User")
-        <select name="UserId" class="form-control">
-            @foreach (var item in Model.UserModel)
-            {
-                <option value=" @item.UserId">@item.NickName</option>
-            }
-        </select>
-        <br />
-        @Html.Label("Post")
-        <select name="PostId" class="form-control">
-            @foreach (var item in Model.PostModel)
-            {
-                <option value=" @item.PostId">@item.PostContent</option>
-            }
-        </select>
-        <br />
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            <option value="True">Aktif</option>
-            <option value="False">Pasif</option>
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="Saved Add" />
-    }
+<div class="card">
+    <div class="card-header">
+        <h2>Saved Insert</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Saved", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.Label("User")
+            <select name="UserId" class="form-control">
+                @foreach (var item in Model.UserModel)
+                {
+                    <option value=" @item.UserId">@item.NickName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("Post")
+            <select name="PostId" class="form-control">
+                @foreach (var item in Model.PostModel)
+                {
+                    <option value=" @item.PostId">@item.PostContent</option>
+                }
+            </select>
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Aktif</option>
+                <option value="False">Pasif</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Saved Add" />
+        }
+    </div>
+</div>

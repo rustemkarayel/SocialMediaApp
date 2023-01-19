@@ -6,44 +6,52 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-<h2>MESSAGES</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>Content</th>
-            <th>Send Date</th>
-            <th>Send Time</th>
-            <th>IsActive</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Sender.NickName</td>
-                <td>@item.Receiver.NickName</td>
-                <td>@item.MessageContent</td>
-                <td>@item.SendDate.ToString().Split(" ")[0]</td>
-                <td>@item.SendTime.ToString().Split(" ")[1]</td>
-                @if (item.IsActive)
+<div class="card">
+    <div class="card-header">
+        <h2>Messages</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead class="table-head ">
+                <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Content</th>
+                    <th>Send Date</th>
+                    <th>Send Time</th>
+                    <th>IsActive</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <td>Aktif</td>
+                    <tr>
+                        <td>@item.Sender.NickName</td>
+                        <td>@item.Receiver.NickName</td>
+                        <td>@item.MessageContent</td>
+                        <td>@item.SendDate.ToString().Split(" ")[0]</td>
+                        <td>@item.SendTime.ToString().Split(" ")[1]</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.MessageId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/Message/Update/@item.MessageId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
                 }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.MessageId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/Message/Update/@item.MessageId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
+@*ADD BUTON*@
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Message/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
@@ -61,7 +69,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title" id="DeleteLabel">WARNİNG!</h1>
+                <h1 class="modal-title" id="DeleteLabel">WARNING!</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
