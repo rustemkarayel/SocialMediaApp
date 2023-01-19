@@ -92,9 +92,24 @@
         }
 
         .btn-primary {
-            width: 10%;
-            position: absolute;
-            left: 45%;
+            width: 15%;
+            position:absolute;
+            left:42.5%;
+        }
+
+        .cardinho{
+            margin-top: -3vh;
+            border-radius: 2vh !important;
+            overflow:hidden;
+
+        }
+
+        .cardinho-body{
+            background: #FEFCF3;
+        }
+
+        .gradient-custom-2 {
+            background: #251749;
         }
 
     </style>
@@ -246,6 +261,7 @@
             </div>
         </nav>
         <!-- Top Navbar End-->
+
         <!--Body Container Start-->
         <div class="container-fluid page-body-wrapper">
 
@@ -253,7 +269,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
-                        <a href="#" class="nav-link">
+                        <a href="~/Admin/AdminProfile"  class="nav-link">
                             <div class="nav-profile-image">
                                 <img src="~/admin_dashboard/rstm.jpg" alt="profile">
                                 <span class="login-status online"></span>
@@ -439,15 +455,15 @@
                     <!-- End Location Toggle -->
                     <!-- Start Type Toggle -->
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#type" aria-expanded="false" aria-controls="type">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#genre" aria-expanded="false" aria-controls="type">
                             <span class="menu-title">Type</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-plus-circle"></i>
                         </a>
-                        <div class="collapse" id="type">
+                        <div class="collapse" id="genre">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Type/type-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Type/type-insert">Add</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Genre/genre-list">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Genre/genre-insert">Add</a></li>
                             </ul>
                         </div>
                     </li>

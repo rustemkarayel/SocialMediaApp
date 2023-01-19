@@ -1,16 +1,19 @@
 ﻿@using EntityLayer;
 @model Admin;
+
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="card">
     <div class="card-header">
-        <h2>Admin Insert</h2>
+        <h2>Admin Update</h2>
     </div>
+
     <div class="card-body">
-        @using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { @class = "form-group" }))
+
+        @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group" }))
         {
             @Html.Label("First Name")
             @Html.TextBoxFor(admin=>admin.AdminFirstName,new { @class = "form-control"})
@@ -38,7 +41,7 @@
                 <option value="False">Pasif</option>
             </select>
             <br />
-            <input class="form-control btn btn-primary" type="submit" value="Admin Add" />
+            <input class="form-control btn btn-primary" type="submit" value="Add" />
         }
     </div>
 </div>

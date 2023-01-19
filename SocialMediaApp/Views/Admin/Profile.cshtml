@@ -1,8 +1,48 @@
-﻿
+﻿@using EntityLayer;
+@model Admin;
+
 @{
-    ViewData["Title"] = "Profile";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Profile";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Profile</h1>
+<div class="cardinho">
+
+	@*Top Background Start*@
+	<div class="text-white d-flex mt-0" style="background-color: #000; height:200px;">
+
+		@*Admin Image Start*@
+		<div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+			<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" 
+				class="img-fluid img-thumbnail mt-4 mb-2"
+				 style="width: 150px; z-index: 1">
+
+			<button type="button" class="btn btn-outline-dark" style="z-index: 1;">
+				Edit profile
+			</button>
+		</div>
+		@*Admin Image End*@
+
+		@*Admin Name Start*@
+		<div class="ms-3" style="margin-top: 130px;">
+			<h5>BABBAKEEEEEEEE</h5>
+			<p>New York</p>
+		</div>
+		@*Admin Name End*@
+
+	</div>
+	@*Top Background End*@
+
+	@*Body Start*@
+	<div class="cardinho-body p-4 text-black">
+		<div class="mb-5 mt-5">
+			<p class="lead fw-bold mb-1">About</p>
+			<div class="p-4" style="background-color: #f8f9fa;">
+				<p class="font-italic mb-1">Web Developer</p>
+				<p class="font-italic mb-1">Lives in New York</p>
+				<p class="font-italic mb-0">Photographer</p>
+			</div>
+		</div>
+	</div>
+</div>
 

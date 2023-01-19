@@ -5,56 +5,60 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>Saved Collection Update</h2>
-    @using (Html.BeginForm("Update", "SavedCollection", FormMethod.Post, new { @class = "form-group" }))
-    {
-        @Html.TextBox("SavedCollectionId",Model.SavedCollectionModel.SavedCollectionId,new { @class = "form-control" ,@type="hidden"})
-        @Html.Label("Saved(User-Post)")
-        <select class="form-control" name="SavedId">
-            @foreach (var item in @Model.SavedModel)
-            {
-                if (item.SavedId == Model.SavedCollectionModel.SavedId)
+<div class="card">
+    <div class="card-header">
+        <h2>Saved Collection Update</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Update", "SavedCollection", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.TextBox("SavedCollectionId",Model.SavedCollectionModel.SavedCollectionId,new { @class = "form-control" ,@type="hidden"})
+            @Html.Label("Saved(User-Post)")
+            <select class="form-control" name="SavedId">
+                @foreach (var item in @Model.SavedModel)
                 {
-                    <option value=@item.SavedId selected>@item.User.NickName - @item.Post.PostContent</option>
+                    if (item.SavedId == Model.SavedCollectionModel.SavedId)
+                    {
+                        <option value=@item.SavedId selected>@item.User.NickName - @item.Post.PostContent</option>
+                    }
+                    else
+                    {
+                        <option value="@item.SavedId">@item.User.NickName - @item.Post.PostContent</option>
+                    }
+                }
+            </select>
+            <br />
+            @Html.Label("Collection Name")
+            <select class="form-control" name="CollectionId">
+                @foreach (var item in @Model.CollectionModel)
+                {
+                    if (item.CollectionId == Model.SavedCollectionModel.CollectionId)
+                    {
+                        <option value="@item.CollectionId" selected>@item.CollectionName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.CollectionId">@item.CollectionName</option>
+                    }
+                }
+            </select>
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                @if (Model.SavedCollectionModel.IsActive)
+                {
+                    <option value="True" selected>Aktif</option>
+                    <option value="False">Pasif</option>
                 }
                 else
                 {
-                    <option value="@item.SavedId">@item.User.NickName - @item.Post.PostContent</option>
+                    <option value="False" selected>Pasif</option>
+                    <option value="True">Aktif</option>
                 }
-            }
-        </select>
-        <br />
-        @Html.Label("Collection Name")
-        <select class="form-control" name="CollectionId">
-            @foreach (var item in @Model.CollectionModel)
-            {
-                if (item.CollectionId == Model.SavedCollectionModel.CollectionId)
-                {
-                    <option value="@item.CollectionId" selected>@item.CollectionName</option>
-                }
-                else
-                {
-                    <option value="@item.CollectionId">@item.CollectionName</option>
-                }
-            }
-        </select>
-        <br />
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            @if (Model.SavedCollectionModel.IsActive)
-            {
-                <option value="True" selected>Aktif</option>
-                <option value="False">Pasif</option>
-            }
-            else
-            {
-                <option value="False" selected>Pasif</option>
-                <option value="True">Aktif</option>
-            }
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="Saved Collection Update" />
-    }
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Saved Collection Update" />
+        }
+    </div>
 </div>
 

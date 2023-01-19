@@ -5,69 +5,73 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>Message Update</h2><br />
-    @using (Html.BeginForm("Update", "Message", FormMethod.Post, new { @class = "form-group" }))
-    {       
-        @Html.TextBox("MessageId",Model.MessageModel.MessageId,new { @class = "form-control" ,@type="hidden"})
-        @Html.Label("Sender")
-        <select class="form-control" name="SenderId">
-            @foreach (var item in Model.UserModel)
-            {
-                if (item.UserId == Model.MessageModel.SenderId)
+<div class="card">
+    <div class="card-header">
+        <h2>Message Update</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Update", "Message", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.TextBox("MessageId",Model.MessageModel.MessageId,new { @class = "form-control" ,@type="hidden"})
+            @Html.Label("Sender")
+            <select class="form-control" name="SenderId">
+                @foreach (var item in Model.UserModel)
                 {
-                    <option value=" @item.UserId" selected>@item.NickName</option>
+                    if (item.UserId == Model.MessageModel.SenderId)
+                    {
+                        <option value=" @item.UserId" selected>@item.NickName</option>
+                    }
+                    else
+                    {
+                        <option value=" @item.UserId">@item.NickName</option>
+                    }
+                }
+            </select>
+            <br />
+            @Html.Label("Receiver")
+            <select class="form-control" name="ReceiverId">
+                @foreach (var item in Model.UserModel)
+                {
+                    if (item.UserId == Model.MessageModel.ReceiverId)
+                    {
+                        <option value=" @item.UserId" selected>@item.NickName</option>
+                    }
+                    else
+                    {
+                        <option value=" @item.UserId">@item.NickName</option>
+                    }
+                }
+            </select>
+            <br />
+            @Html.Label("Content")
+            @Html.TextBox("MessageContent",Model.MessageModel.MessageContent,new { @class = "form-control"})
+            @Html.ValidationMessage("MessageContent","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Send Date")
+            @Html.TextBox("SendDate",Model.MessageModel.SendDate.ToString().Split(" ")[0],new { @class = "form-control" ,@type="text" })
+            @Html.ValidationMessage("SendDate","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Send Time")
+            @Html.TextBox("SendTime",Model.MessageModel.SendTime.ToString().Split(" ")[1],new { @class = "form-control" ,@type="text" })
+            @Html.ValidationMessage("SendTime","",new{@class="text-danger"})
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                @if (Model.MessageModel.IsActive)
+                {
+                    <option value="True" selected>Aktif</option>
+                    <option value="False">Pasif</option>
                 }
                 else
                 {
-                    <option value=" @item.UserId">@item.NickName</option>
+                    <option value="False" selected>Pasif</option>
+                    <option value="True">Aktif</option>
                 }
-            }
-        </select>
-        <br />
-        @Html.Label("Receiver")
-        <select class="form-control" name="ReceiverId">
-            @foreach (var item in Model.UserModel)
-            {
-                if (item.UserId == Model.MessageModel.ReceiverId)
-                {
-                    <option value=" @item.UserId" selected>@item.NickName</option>
-                }
-                else
-                {
-                    <option value=" @item.UserId">@item.NickName</option>
-                }
-            }
-        </select>
-        <br />
-        @Html.Label("Content")
-        @Html.TextBox("MessageContent",Model.MessageModel.MessageContent,new { @class = "form-control"})
-        @Html.ValidationMessage("MessageContent","",new{@class="text-danger"})
-        <br />
-        @Html.Label("Send Date")
-        @Html.TextBox("SendDate",Model.MessageModel.SendDate.ToString().Split(" ")[0],new { @class = "form-control" ,@type="text" })
-        @Html.ValidationMessage("SendDate","",new{@class="text-danger"})
-        <br />
-        @Html.Label("Send Time")
-        @Html.TextBox("SendTime",Model.MessageModel.SendTime.ToString().Split(" ")[1],new { @class = "form-control" ,@type="text" })
-        @Html.ValidationMessage("SendTime","",new{@class="text-danger"})
-        <br />
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            @if (Model.MessageModel.IsActive)
-            {
-                <option value="True" selected>Aktif</option>
-                <option value="False">Pasif</option>
-            }
-            else
-            {
-                <option value="False" selected>Pasif</option>
-                <option value="True">Aktif</option>
-            }
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="Message Update" />
-    }
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Message Update" />
+        }
+    </div>
 </div>
 
 

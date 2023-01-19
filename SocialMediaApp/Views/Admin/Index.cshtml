@@ -6,47 +6,52 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>ADMİNS</h2>
-<div style="overflow:auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Mail</th>
-                <th>Password</th>
-                <th>AdminType</th>
-                <th>IsActive</th>
-                <th> </th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<div class="card">
+    <div class="card-header">
+        <h2>Admins</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead class="table-head ">
                 <tr>
-                    <td>@item.AdminFirstName</td>
-                    <td>@item.AdminLastName</td>
-                    <td>@item.AdminMail</td>
-                    <td>*************</td>
-                    <td>@item.AdminType</td>
-                    @if (item.IsActive)
-                    {
-                        <td>Aktif</td>
-                    }
-                    else
-                    {
-                        <td>Pasif</td>
-                    }
-                    <td>
-                        <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.AdminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                    </td>
-                    <td><a href="/Admin/Update/@item.AdminId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mail</th>
+                    <th>Password</th>
+                    <th>AdminType</th>
+                    <th>IsActive</th>
+                    <th> </th>
+                    <th> </th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.AdminFirstName</td>
+                        <td>@item.AdminLastName</td>
+                        <td>@item.AdminMail</td>
+                        <td>*************</td>
+                        <td>@item.AdminType</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.AdminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/Admin/Update/@item.AdminId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+@*ADD BUTON*@
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Admin/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>

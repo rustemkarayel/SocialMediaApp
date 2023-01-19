@@ -5,47 +5,51 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>Message Add</h2><br />
-    @using (Html.BeginForm("Add", "Message", FormMethod.Post, new { @class = "form-group" }))
-    {
-        @Html.Label("Sender")
-        <select class="form-control" name="SenderId">
-            @foreach (var item in Model.UserModel)
-            {             
-                <option value="@item.UserId">@item.NickName</option>        
-            }
-        </select>
-        <br />
-        @Html.Label("Receiver")
-        <select class="form-control" name="ReceiverId">
-            @foreach (var item in Model.UserModel)
-            {
-                
-                
+<div class="card">
+    <div class="card-header">
+        <h2>Message Insert</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Message", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.Label("Sender")
+            <select class="form-control" name="SenderId">
+                @foreach (var item in Model.UserModel)
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("Receiver")
+            <select class="form-control" name="ReceiverId">
+                @foreach (var item in Model.UserModel)
+                {
                     <option value=" @item.UserId">@item.NickName</option>
-                          
-            }
-        </select>
-        <br />
-        @Html.Label("Content")
-        @Html.TextBox("MessageContent","",new { @class = "form-control"})
-        @Html.ValidationMessage("MessageContent","",new{@class="text-danger"})
-        <br />
-        @Html.Label("Send Date")
-        @Html.TextBox("SendDate","",new { @class = "form-control" ,@type="date"})
-        @Html.ValidationMessageFor(message=>message.MessageModel.SendDate,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Send Time")
-        @Html.TextBox("SendTime","",new { @class = "form-control" ,@type="time"})
-        @Html.ValidationMessageFor(message=>message.MessageModel.SendTime,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            <option value="True">Aktif</option>
-            <option value="False">Pasif</option>
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="Message Add" />
-    }
+                }
+            </select>
+            <br />
+            @Html.Label("Content")
+            @Html.TextBox("MessageContent","",new { @class = "form-control"})
+            @Html.ValidationMessage("MessageContent","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Send Date")
+            @Html.TextBox("SendDate","",new { @class = "form-control" ,@type="date"})
+            @Html.ValidationMessageFor(message=>message.MessageModel.SendDate,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Send Time")
+            @Html.TextBox("SendTime","",new { @class = "form-control" ,@type="time"})
+            @Html.ValidationMessageFor(message=>message.MessageModel.SendTime,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Aktif</option>
+                <option value="False">Pasif</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Message Add" />
+        }
+    </div>
 </div>
+
+
+

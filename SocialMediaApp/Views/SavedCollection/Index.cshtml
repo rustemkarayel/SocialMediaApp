@@ -6,37 +6,46 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>SAVED COLLECTIONS</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Saved(User-Post)</th>
-            <th>Collection Name</th>
-            <th>IsActive</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Saved.User.NickName - @item.Saved.Post.PostContent</td>
-                <td>@item.Collection.CollectionName</td>
-                @if (item.IsActive)
+<div class="card">
+    <div class="card-header">
+        <h2>Saved Collections</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead class="table-head ">
+                <tr>
+                    <th>Saved(User-Post)</th>
+                    <th>Collection Name</th>
+                    <th>IsActive</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <td>Aktif</td>
+                    <tr>
+                        <td>@item.Saved.User.NickName - @item.Saved.Post.PostContent</td>
+                        <td>@item.Collection.CollectionName</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.SavedCollectionId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/SavedCollection/Update/@item.SavedCollectionId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
                 }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.SavedCollectionId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/SavedCollection/Update/@item.SavedCollectionId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
+@*ADD BUTON*@
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/SavedCollection/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
