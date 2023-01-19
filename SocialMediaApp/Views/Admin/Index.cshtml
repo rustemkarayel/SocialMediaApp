@@ -1,9 +1,12 @@
 ﻿@using EntityLayer;
+@using System.Security.Claims;
 @using X.PagedList;
 @model PagedList<Admin>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ClaimsPrincipal currentUser = this.User;
+    var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
 }
 
 <div class="card">
@@ -44,7 +47,14 @@
                         <td>
                             <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.AdminId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
-                        <td><a href="/Admin/Update/@item.AdminId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                        @if(item.AdminMail == currentUserMail){
+                            
+                            <td><a href="/Admin/Update/@item.AdminId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
                     </tr>
                 }
             </tbody>

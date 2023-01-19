@@ -1,9 +1,9 @@
 ﻿@using System.Security.Claims;
-
+@using EntityLayer
+@model Admin;
 @{
 	ViewData["Title"] = "Profile";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	var mail = @User.FindFirst(ClaimTypes.Email)?.Value;
 }
 
 <div class="cardinho">
@@ -13,22 +13,18 @@
 
 		@*Admin Image Start*@
 		<div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-			<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" 
+			<img src="@Model.imgUrl" 
 				class="img-fluid img-thumbnail mt-4 mb-2"
 				 style="width: 150px; z-index: 1">
-
-			@*<button href="~/Admin/Update/@Model" type="button" class="btn btn-outline-dark" style="z-index: 1;">
-				@*Edit profile*@
-				@*@Model.AdminFirstName*@
-			@*</button>*@
-			<a href="~/Admin/Update/@mail" class="btn btn-outline-dark" style="z-index: 1">Edit profile</a>
+			
+			<a href="~/Admin/Update" class="btn btn-outline-dark" style="z-index: 1">Edit profile</a>
 		</div>
 		@*Admin Image End*@
 
 		@*Admin Name Start*@
 		<div class="ms-3" style="margin-top: 130px;">
-			<h5>BABBAKEEEEEEEE</h5>
-			<p>New York</p>
+			<h5>@Model.AdminFirstName</h5>
+			<p>@Model.AdminType</p>
 		</div>
 		@*Admin Name End*@
 

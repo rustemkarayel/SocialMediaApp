@@ -36,6 +36,10 @@
             @Html.TextBoxFor(admin=>admin.AdminType,new { @class = "form-control"})
             @Html.ValidationMessageFor(admin=>admin.AdminType,"",new{@class="text-danger"})
             <br />
+            @Html.Label("Image Url")
+            @Html.TextBoxFor(admin=>admin.imgUrl,new { @class = "form-control"})
+            @Html.ValidationMessageFor(admin=>admin.imgUrl,"",new{@class="text-danger"})
+            <br />
             @Html.Label("IsActive")
             <select class="form-control" name="IsActive">
                 <option value="True">Aktif</option>
