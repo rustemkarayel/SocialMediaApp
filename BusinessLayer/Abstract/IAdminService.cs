@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void AdminUpdate(Admin admin);
         List<Admin> AdminList();
         Admin AdminGetById(int id);
+        Admin AdminGetByEMail(string email);
     }
 }

@@ -22,6 +22,11 @@ namespace BusinessLayer.Concrete
             adminDal.delete(admin);          
         }
 
+        public Admin AdminGetByEMail(string email)
+        {
+            return adminDal.get(x => x.AdminMail == email);
+        }
+
         public Admin AdminGetById(int id)
         {
             return adminDal.get(x=>x.AdminId==id);
