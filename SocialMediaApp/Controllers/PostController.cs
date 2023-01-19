@@ -5,6 +5,7 @@ using EntityLayer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -15,9 +16,9 @@ namespace SocialMediaApp.Controllers
         GenreManager gm= new GenreManager(new EfGenreRepository());
         LocationManager lm=new LocationManager(new EfLocationRepository());
         UserManager um=new UserManager(new EfUserRepository());   
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=5)
         {
-            var posts = pm.PostList();
+            var posts = pm.PostList().ToPagedList(page,pageSize);
             return View(posts);
         }
         [HttpGet]
