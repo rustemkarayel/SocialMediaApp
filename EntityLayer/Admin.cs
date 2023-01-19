@@ -26,6 +26,9 @@ namespace EntityLayer
 
         [StringLength(15)]
         public string AdminType { get; set; }
+        [StringLength(100)]
+        public string imgUrl { get; set; }
         public bool IsActive { get; set; }
+
     }
 }
