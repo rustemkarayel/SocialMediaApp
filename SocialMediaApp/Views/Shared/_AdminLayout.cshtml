@@ -1,6 +1,12 @@
 ﻿@using System.Security.Claims;
+@using EntityLayer;
+@model Admin;
 @{
     Layout = null;
+
+    ClaimsPrincipal currentUser = this.User;
+    var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
+    var currentUserName = currentUser.FindFirst(ClaimTypes.Name).Value;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -273,13 +279,13 @@
                         @*<a href="~/Admin/Profile/@User.FindFirst(ClaimTypes.Email)?.Value" class="nav-link">*@
                         <a href="~/Admin/AdminProfile" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="~/admin_dashboard/rstm.jpg" alt="profile">
+                                <img src="@Model.imgUrl" alt="profile">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2">Rüstem Karayel</span>
-                                <span class="text-secondary text-small">Project Manager</span>
+                                <span class="font-weight-bold mb-2">@Model.AdminFirstName</span>
+                                <span class="text-secondary text-small">@Model.AdminType</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
