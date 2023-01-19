@@ -92,16 +92,15 @@
         }
 
         .btn-primary {
-            width: 15%;
+            width: 20% !important;
             position:absolute;
-            left:42.5%;
+            left:40%;
         }
 
         .cardinho{
             margin-top: -3vh;
             border-radius: 2vh !important;
             overflow:hidden;
-
         }
 
         .cardinho-body{
@@ -140,10 +139,10 @@
                     </form>
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item nav-profile dropdown">
+                    <li class="nav-item nav-profile">
                         <a class="nav-link" id="profileDropdown" href="#" aria-expanded="false">
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Email)?.Value</p>
+                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Name)?.Value Bey</p>
                             </div>
                         </a>
                     <li class="nav-item nav-logout d-none d-lg-block">
@@ -269,7 +268,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
-                        <a href="~/Admin/AdminProfile"  class="nav-link">
+                        <a href="~/Admin/AdminProfile/@User.FindFirst(ClaimTypes.Name)?.Value"  class="nav-link">
                             <div class="nav-profile-image">
                                 <img src="~/admin_dashboard/rstm.jpg" alt="profile">
                                 <span class="login-status online"></span>

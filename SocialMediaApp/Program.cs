@@ -64,6 +64,9 @@ namespace SocialMediaApp
                name: "Admin", pattern: "Admin/AdminProfile", defaults: new { controller = "Admin", action = "Profile" }
                );
             app.MapControllerRoute(
+               name: "Admin", pattern: "Admin/AdminUpdate", defaults: new { controller = "Admin", action = "Update" }
+               );
+            app.MapControllerRoute(
                 name: "User", pattern: "User/UserList", defaults: new { controller = "User", action = "Index" }
                 );
             app.MapControllerRoute(
