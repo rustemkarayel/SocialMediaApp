@@ -10,7 +10,7 @@
     @using (Html.BeginForm("Update", "Post", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.TextBox("PostId",Model.PostModel.PostId,new { @class = "form-control" ,@type="hidden"})
-        @Html.Label("User Creator")
+        @Html.Label("Creator NickName")
         <select class="form-control" name="UserId">
             @foreach (var item in Model.UserModel)
             {

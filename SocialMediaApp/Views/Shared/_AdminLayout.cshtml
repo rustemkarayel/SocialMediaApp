@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="~/admin_dashboard/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <style>
 
         * {
             box-sizing: border-box;
-            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
         }
 
         i {
@@ -40,7 +40,7 @@
 
         .content-wrapper {
             background-color: #EEEEEE;
-            border-radius:10px;
+            border-radius: 10px;
         }
 
         .card {
@@ -51,18 +51,44 @@
             box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
             border-radius: 3px;
             color: rgba(0,0,0, 0.87);
-            background: #fff;
+            background: #FEFCF3;
+            border-radius: 20px;
         }
 
         .card-header {
-            border-radius: 3px;
+            border-radius: 1vh !important;
             box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
             margin: auto;
-            margin-top: -30px;
             padding: 15px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            position: relative;
+            background: #251749;
+            color: white;
+            margin-top: -30px;
             width: 60%;
-            background-color: #999999;
+            height: 20%;
+        }
+
+        .table{
+            font-family: Tahoma, !important;
+            text-align: center;
+        }
+        .table thead {
+            background: #251749;
+            color: white;
+        }
+
+        .table th {
+            font-size: 2vh;
+            line-height: 3rem !important;
+        }
+
+        .table td {
+            font-size: 1.7vh;
         }
 
         .btn-primary {
@@ -266,11 +292,12 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Start Post Toogle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
                             <span class="menu-title">Post</span>
                             <i class="menu-arrow"></i>
-                            <i class="mdi mdi-contacts"></i>
+                            <i class="mdi mdi-email-outline"></i>
                         </a>
                         <div class="collapse" id="post">
                             <ul class="nav flex-column sub-menu">
@@ -279,6 +306,22 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- End Post Toogle -->
+                    <!-- Start PostLike Toogle -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
+                            <span class="menu-title">PostLike</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-checkbox-marked-circle"></i>
+                        </a>
+                        <div class="collapse" id="postLike">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- End PostLike Toogle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#message" aria-expanded="false" aria-controls="message">
                             <span class="menu-title">Message</span>
@@ -334,6 +377,21 @@
                         </div>
                     </li>
                     <!-- End Comment Toggle -->
+                    <!-- Start CommentLike Toogle -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#commentLike" aria-expanded="false" aria-controls="commentLike">
+                            <span class="menu-title">CommentLike</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-comment-check"></i>
+                        </a>
+                        <div class="collapse" id="commentLike">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- End CommentLike Toogle -->
                     <!-- Start Collection Toggle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
@@ -393,6 +451,22 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- End Type Toogle -->
+                    <!--Start Request Toogle  -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
+                            <span class="menu-title">Request</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-human-greeting"></i>
+                        </a>
+                        <div class="collapse" id="request">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- End Request Toogle -->
                 </ul>
             </nav>
             <!-- Side Bar End-->
@@ -443,5 +517,6 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

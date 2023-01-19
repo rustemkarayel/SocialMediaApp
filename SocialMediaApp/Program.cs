@@ -84,13 +84,20 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "SavedCollection", pattern: "SavedCollection/SavedCollectionInsert", defaults: new { controller = "SavedCollection", action = "Add" }
                 );
+            //Post
             app.MapControllerRoute(
                 name: "Post", pattern: "Post/PostList", defaults: new { controller = "Post", action = "Index" }
                 );
             app.MapControllerRoute(
                 name: "Post", pattern: "Post/PostInsert", defaults: new { controller = "Post", action = "Add" }
                 );
-
+            //PostLike
+            app.MapControllerRoute(
+              name: "PostLike", pattern: "PostLike/PostLikeList", defaults: new { controller = "PostLike", action = "Index" }
+              );
+            app.MapControllerRoute(
+                name: "PostLike", pattern: "PostLike/PostLikeInsert", defaults: new { controller = "PostLike", action = "Add" }
+                );
             //Comment
             app.MapControllerRoute(
                 name: "Comment", pattern: "Comment/comment-list", defaults: new { controller = "Comment", action = "Index" }
@@ -98,7 +105,13 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "Comment", pattern: "Comment/comment-insert", defaults: new { controller = "Comment", action = "Add" }
                 );
-
+            //CommentLike
+            app.MapControllerRoute(
+             name: "CommentLike", pattern: "CommentLike/CommentLikeList", defaults: new { controller = "CommentLike", action = "Index" }
+             );
+            app.MapControllerRoute(
+                name: "Comment", pattern: "CommentLike/CommentLikeInsert", defaults: new { controller = "CommentLike", action = "Add" }
+                );
             //Collection
             app.MapControllerRoute(
                 name: "Collection", pattern: "Collection/collection-list", defaults: new { controller = "Collection", action = "Index" }
@@ -130,7 +143,13 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "Type", pattern: "Type/type-insert", defaults: new { controller = "Type", action = "Add" }
                 );
-
+            //Request
+                app.MapControllerRoute(
+                name: "Request", pattern: "Request/RequestList", defaults: new { controller = "Request", action = "Index" }
+                );
+            app.MapControllerRoute(
+                name: "Request", pattern: "Request/RequestInsert", defaults: new { controller = "Request", action = "Add" }
+                );
             app.Run();
         }
     }
