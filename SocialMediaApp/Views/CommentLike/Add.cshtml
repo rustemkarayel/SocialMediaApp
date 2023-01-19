@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
+<div class="card">
+    <div class="card-header">
+        <h2>CommentLike Add</h2>
+    </div>
+    <div class="card-body">
     @using (Html.BeginForm("Add", "CommentLike", FormMethod.Post, new { @class = "form-group" }))
     {
         <h2>CommentLike Add</h2>
@@ -36,8 +40,9 @@
             <option value="False">Pasif</option>
         </select>
         <br />
-        <input class="form-control btn btn-primary" type="submit" value="Comment Like Add" />
+        <input class="form-control btn btn-primary" type="submit" value="CommentLike Add" />
 
     }
+    </div>
 </div>
 
