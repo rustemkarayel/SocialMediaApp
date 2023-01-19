@@ -1,13 +1,16 @@
 ﻿@using EntityLayer;
-@model List<Post>;
+@using X.PagedList;
+@model PagedList<Post>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>POST</h2>
-
-<table class="table">
+<div class="card">
+    <div class="card-header">
+        <h2>POST</h2>
+    </div>
+<div class="card-body">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Creator NickName</th>
@@ -24,7 +27,7 @@
             <tr>
                 <td>@item.Creator.NickName</td>
                 <td>@item.GenerateDate.ToString().Split(" ")[0]</td>
-                <td>@item.PostContent</td>
+                <td style="word-break:break-word">@item.PostContent</td>
                 <td>@item.Description</td>                
                 @if (item.IsActive)
                 {
@@ -45,7 +48,14 @@
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Post/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
-
+    </div>
+</div>
+@*SAYFALAMA*@
+<div style="position:relative;">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PagingPartialView" model="@Model" />
+    </div>
+</div>
 <!-- Modal -->
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">
