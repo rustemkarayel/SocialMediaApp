@@ -15,6 +15,7 @@
 
         @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group" }))
         {
+            @Html.TextBoxFor(admin=>admin.AdminId,new { @class = "form-control",@name="AdminId",@value="@Model.AdminId",@type="hidden"})
             @Html.Label("First Name")
             @Html.TextBoxFor(admin=>admin.AdminFirstName,new { @class = "form-control"})
             @Html.ValidationMessageFor(admin=>admin.AdminFirstName,"",new{@class="text-danger"})
@@ -41,7 +42,7 @@
                 <option value="False">Pasif</option>
             </select>
             <br />
-            <input class="form-control btn btn-primary" type="submit" value="Add" />
+            <input class="form-control btn btn-primary" type="submit" value="Update" />
         }
     </div>
 </div>

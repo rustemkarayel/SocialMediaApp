@@ -13,6 +13,7 @@ using BusinessLayer.Validations;
 using Azure;
 using Microsoft.AspNetCore.Identity;
 using SocialMediaApp.Models;
+using Microsoft.Extensions.Primitives;
 
 namespace SocialMediaApp.Controllers
 {
@@ -47,7 +48,7 @@ namespace SocialMediaApp.Controllers
             var result = c.Admins.Where(x => x.AdminMail == admin.AdminMail && x.AdminPassword == admin.AdminPassword).SingleOrDefault();
             if (result != null)
             {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Email, admin.AdminMail) };
+                var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.AdminMail), new Claim(ClaimTypes.Name,result.AdminFirstName) };
 
                 var userIdentify = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
@@ -56,7 +57,7 @@ namespace SocialMediaApp.Controllers
                     .SignInAsync(
                     principal,
                     new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(5) });
-                return RedirectToAction("AdminList", "Admin");
+                return RedirectToAction("AdminProfile", "Admin");
             }
             _toastNotification.AddErrorToastMessage("Username or password incorrect !");
             TempData["init"] = 1;
@@ -110,13 +111,22 @@ namespace SocialMediaApp.Controllers
             return RedirectToAction("AdminList");
         }
 
-        [HttpGet]
-        public IActionResult Update()
-        {
-            return View();
-        }        
-        
-        [HttpPost]
+        //[HttpGet]
+        //public IActionResult Update(int id)
+        //{
+        //    Admin admin = adminManager.AdminGetById(id);
+        //    return View(admin);
+        //}
+
+		[HttpGet]
+		public IActionResult Update(string email)
+		{
+            Admin admin = adminManager.AdminGetByEMail(email);
+			return View(admin);
+		}
+
+
+		[HttpPost]
         public IActionResult Update(Admin admin)
         {
             AdminValidator validator  = new AdminValidator();

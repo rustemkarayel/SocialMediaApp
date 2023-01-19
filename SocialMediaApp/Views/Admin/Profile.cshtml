@@ -1,9 +1,11 @@
 ﻿@using EntityLayer;
+@using System.Security.Claims;
 @model Admin;
 
 @{
 	ViewData["Title"] = "Profile";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
 
 <div class="cardinho">
@@ -17,9 +19,10 @@
 				class="img-fluid img-thumbnail mt-4 mb-2"
 				 style="width: 150px; z-index: 1">
 
-			<button type="button" class="btn btn-outline-dark" style="z-index: 1;">
+			@*<button click="~/Admin/Update/@Model.AdminMail" type="button" class="btn btn-outline-dark" style="z-index: 1;">
 				Edit profile
-			</button>
+			</button>*@
+			<a href="~/Admin/Update" type="button" class="btn btn-outline-dark" style="z-index: 1">Edit profile</a>
 		</div>
 		@*Admin Image End*@
 
