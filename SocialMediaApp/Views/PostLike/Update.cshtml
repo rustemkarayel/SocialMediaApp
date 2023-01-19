@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
+<div class="card">
+    <div class="card-header">
+        <h2>PostLike Update</h2>
+    </div>
+    <div class="card-body">
     @using (Html.BeginForm("Update", "PostLike", FormMethod.Post, new { @class = "form-group" }))
     {
         <h2>PostLike Update</h2>
@@ -59,5 +63,6 @@
         <br />
         <input class="form-control btn btn-primary" type="submit" value="PostLike Update" />
     }
+    </div>
 </div>
 

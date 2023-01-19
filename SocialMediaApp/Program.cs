@@ -144,10 +144,10 @@ namespace SocialMediaApp
 
             //Type
             app.MapControllerRoute(
-                name: "Type", pattern: "Type/type-list", defaults: new { controller = "Type", action = "Index" }
+                name: "Genre", pattern: "Genre/genre-list", defaults: new { controller = "Genre", action = "Index" }
                 );
             app.MapControllerRoute(
-                name: "Type", pattern: "Type/type-insert", defaults: new { controller = "Type", action = "Add" }
+                name: "Genre", pattern: "Genre/genre-insert", defaults: new { controller = "Genre", action = "Add" }
                 );
             //Request
                 app.MapControllerRoute(

@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -11,9 +12,9 @@ namespace SocialMediaApp.Controllers
     {
         RequestManager rm = new RequestManager(new EfRequestRepository());
         UserManager um = new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=10)
         {
-            var requests = rm.RequestList();
+            var requests = rm.RequestList().ToPagedList();
             return View(requests);
         }
         [HttpGet]

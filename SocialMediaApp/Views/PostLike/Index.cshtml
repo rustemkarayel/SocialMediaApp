@@ -1,48 +1,58 @@
 ﻿@using EntityLayer;
-@model List<PostLike>;
+@using X.PagedList;
+@model PagedList<PostLike>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>POSTLİKE</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>PostLiker</th>
-            <th>Post Creator</th>
-            <th>Like Time</th>                  
-            <th>IsActive</th>           
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="card">
+    <div class="card-header">
+        <h2>POSTLİKE</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>@item.PostLiker.NickName</td>
-                    <td>@item.Post.PostContent</td>
-                    <td>@item.LikeTime.ToString().Split(" ")[1]</td>                                          
-                @if (item.IsActive)
-                {
-                            <td>Aktif</td>
-                }
-                else
-                {
-                            <td>Pasif</td>
-                }
-                    <td>
-                        <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostLikeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                    </td>
-                    <td><a href="/PostLike/Update/@item.PostLikeId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    <th>PostLiker</th>
+                    <th>Post Creator</th>
+                    <th>Like Time</th>
+                    <th>IsActive</th>
                 </tr>
-        }
-    </tbody>
-</table>
-<div class="text-center d-flex justify-content-start p-2">
-    <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.PostLiker.NickName</td>
+                        <td>@item.Post.PostContent</td>
+                        <td>@item.LikeTime.ToString().Split(" ")[1]</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostLikeId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/PostLike/Update/@item.PostLikeId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center d-flex justify-content-start p-2">
+            <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
+        </div>
+    </div>
 </div>
-
+@*SAYFALAMA*@
+<div style="position:relative;">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PagingPartialView" model="@Model" />
+    </div>
+</div>
 <!-- Modal -->
 @*#decisionPopup Model*@
 <div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="DeleteLabel" aria-hidden="true">

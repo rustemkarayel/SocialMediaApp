@@ -4,43 +4,48 @@
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>Request Add</h2>
-@using (Html.BeginForm("Add", "Request", FormMethod.Post, new { @class = "form-group" }))
-{
-    @Html.Label("Follower NickName")
-    <select name="FollowerId" class="form-control">
-        @foreach (var item in Model.UserModel)
+<div class="card">
+    <div class="card-header">
+        <h2>Request Add</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Request", FormMethod.Post, new { @class = "form-group" }))
         {
-            <option value="@item.UserId">@item.NickName</option>
+            @Html.Label("Follower NickName")
+            <select name="FollowerId" class="form-control">
+                @foreach (var item in Model.UserModel)
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("Following NickName")
+            <select name="FollowingId" class="form-control">
+                @foreach (var item in Model.UserModel)
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("Request Time")
+            @Html.TextBox("RequestTime","",new{@class="form-control",@type="time"})
+            @Html.ValidationMessage("RequestTime","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Request State")
+            <select class="form-control">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Active</option>
+                <option value="False">Passive</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Request Add" />
         }
-    </select>
-    <br />
-    @Html.Label("Following NickName")
-    <select name="FollowingId" class="form-control">
-        @foreach(var item in Model.UserModel)
-        {
-            <option value="@item.UserId" >@item.NickName</option>
-        }
-    </select>
-    <br />
-    @Html.Label("Request Time")
-    @Html.TextBox("RequestTime","",new{@class="form-control",@type="time"})
-    <br />
-    @Html.Label("Request State")
-    <select class="form-control">
-        <option value="true">True</option>
-        <option value="false">False</option>
-    </select>
-    <br />
-    @Html.Label("IsActive")
-    <select class="form-control" name="IsActive">
-        <option value="True">Active</option>
-        <option value="False">Passive</option>
-    </select>
-    <br />
-    <input class="form-control btn btn-primary" type="submit" value="Request Add" />
-}
-
+    </div>
+</div>
 
 

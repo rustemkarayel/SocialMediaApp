@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -12,9 +13,9 @@ namespace SocialMediaApp.Controllers
         CommentLikeManager clm = new CommentLikeManager(new EfCommentLikeRepository());
         CommentManager cm = new CommentManager(new EfCommentRepository());
         UserManager um = new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=10)
         {
-            var commentlikes = clm.CommentLikeList();
+            var commentlikes = clm.CommentLikeList().ToPagedList(page,pageSize);
             return View(commentlikes);
         }
         [HttpGet]
