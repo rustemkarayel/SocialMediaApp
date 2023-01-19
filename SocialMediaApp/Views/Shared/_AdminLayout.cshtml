@@ -73,37 +73,38 @@
             height: 20%;
         }
 
-        .table{
+        .table {
             font-family: Tahoma, !important;
             text-align: center;
         }
-        .table thead {
-            background: #251749;
-            color: white;
-        }
 
-        .table th {
-            font-size: 2vh;
-            line-height: 3rem !important;
-        }
+            .table thead {
+                background: #251749;
+                color: white;
+            }
 
-        .table td {
-            font-size: 1.7vh;
-        }
+            .table th {
+                font-size: 2vh;
+                line-height: 3rem !important;
+            }
+
+            .table td {
+                font-size: 1.7vh;
+            }
 
         .btn-primary {
             width: 20% !important;
-            position:absolute;
-            left:40%;
+            position: absolute;
+            left: 40%;
         }
 
-        .cardinho{
+        .cardinho {
             margin-top: -3vh;
             border-radius: 2vh !important;
-            overflow:hidden;
+            overflow: hidden;
         }
 
-        .cardinho-body{
+        .cardinho-body {
             background: #FEFCF3;
         }
 
@@ -260,7 +261,6 @@
             </div>
         </nav>
         <!-- Top Navbar End-->
-
         <!--Body Container Start-->
         <div class="container-fluid page-body-wrapper">
 
@@ -268,7 +268,10 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
-                        <a href="~/Admin/AdminProfile/@User.FindFirst(ClaimTypes.Name)?.Value"  class="nav-link">
+                        @*<a href="~/Admin/AdminProfile/@User.FindFirst(ClaimTypes.Name)?.Value"  class="nav-link">*@
+                        @*<a href="~/Admin/AdminProfile/@User.FindFirst(ClaimTypes.Email)?.Value"  class="nav-link">*@
+                        @*<a href="~/Admin/Profile/@User.FindFirst(ClaimTypes.Email)?.Value" class="nav-link">*@
+                        <a href="~/Admin/AdminProfile" class="nav-link">
                             <div class="nav-profile-image">
                                 <img src="~/admin_dashboard/rstm.jpg" alt="profile">
                                 <span class="login-status online"></span>
