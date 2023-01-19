@@ -5,6 +5,7 @@ using EntityLayer;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -13,9 +14,9 @@ namespace SocialMediaApp.Controllers
         PostLikeManager plm = new PostLikeManager(new EfPostLikeRepository());
         PostManager pm = new PostManager(new EfPostRepository());
         UserManager um = new UserManager(new EfUserRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page=1,int pageSize=10)
         {
-            var postlikes = plm.PostLikeList();
+            var postlikes = plm.PostLikeList().ToPagedList(page,pageSize);
             return View(postlikes);
         }
         [HttpGet]
