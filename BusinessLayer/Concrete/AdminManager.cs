@@ -24,7 +24,7 @@ namespace BusinessLayer.Concrete
 
         public Admin AdminGetByEMail(string email)
         {
-            return adminDal.get(x => x.AdminMail == email);
+            return adminDal.get(x=>x.AdminMail==email);
         }
 
         public Admin AdminGetById(int id)
