@@ -5,60 +5,64 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>User Add</h2><br />
-    @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class = "form-group" }))
-    {
-        @Html.Label("First Name")
-        @Html.TextBoxFor(user=>user.FirstName,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.FirstName,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Last Name")
-        @Html.TextBoxFor(user=>user.LastName,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.LastName,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Nick Name")
-        @Html.TextBoxFor(user=>user.NickName,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.NickName,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Password")
-        @Html.TextBoxFor(user=>user.Password,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.Password,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Mail")
-        @Html.TextBoxFor(user=>user.Mail,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.Mail,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Birthday")
-        @Html.TextBoxFor(user=>user.Birthday,new { @class = "form-control" ,@type="date"})
-        @Html.ValidationMessageFor(user=>user.Birthday,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("PhotoUrl")
-        @Html.TextBoxFor(user=>user.PhotoUrl,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.PhotoUrl,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Phone")
-        @Html.TextBoxFor(user=>user.Phone,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.Phone,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Country")
-        @Html.TextBoxFor(user=>user.Country,new { @class = "form-control"})
-        @Html.ValidationMessageFor(user=>user.Country,"",new{@class="text-danger"})
-        <br />
-        @Html.Label("Gender")
-        <select class="form-control" name="Gender">
-            <option value="True">Erkek</option>
-            <option value="False">Kadın</option>
-        </select>
-        <br />
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            <option value="True">Aktif</option>
-            <option value="False">Pasif</option>
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="User Add" />
-    }
+<div class="card">
+    <div class="card-header">
+        <h2>User Insert</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.Label("First Name")
+            @Html.TextBoxFor(user=>user.FirstName,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.FirstName,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Last Name")
+            @Html.TextBoxFor(user=>user.LastName,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.LastName,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Nick Name")
+            @Html.TextBoxFor(user=>user.NickName,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.NickName,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Password")
+            @Html.TextBoxFor(user=>user.Password,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.Password,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Mail")
+            @Html.TextBoxFor(user=>user.Mail,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.Mail,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Birthday")
+            @Html.TextBoxFor(user=>user.Birthday,new { @class = "form-control" ,@type="date"})
+            @Html.ValidationMessageFor(user=>user.Birthday,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("PhotoUrl")
+            @Html.TextBoxFor(user=>user.PhotoUrl,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.PhotoUrl,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Phone")
+            @Html.TextBoxFor(user=>user.Phone,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.Phone,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Country")
+            @Html.TextBoxFor(user=>user.Country,new { @class = "form-control"})
+            @Html.ValidationMessageFor(user=>user.Country,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Gender")
+            <select class="form-control" name="Gender">
+                <option value="True">Erkek</option>
+                <option value="False">Kadın</option>
+            </select>
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Aktif</option>
+                <option value="False">Pasif</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="User Add" />
+        }
+    </div>
 </div>
 
 

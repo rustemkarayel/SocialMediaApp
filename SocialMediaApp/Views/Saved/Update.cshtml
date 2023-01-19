@@ -5,55 +5,59 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="p-2">
-    <h2>Saved Update</h2>
-    @using (Html.BeginForm("Update", "Saved", FormMethod.Post, new { @class = "form-group" }))
-    {
-        @Html.TextBox("SavedId",Model.SavedModel.SavedId,new { @class = "form-control" ,@type="hidden"})
-        @Html.Label("User")
-        <select class="form-control" name="UserId">
-            @foreach (var item in @Model.UserModel)
-            {
-                if (item.UserId == Model.SavedModel.UserId)
+<div class="card">
+    <div class="card-header">
+        <h2>Saved Update</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Update", "Saved", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.TextBox("SavedId",Model.SavedModel.SavedId,new { @class = "form-control" ,@type="hidden"})
+            @Html.Label("User")
+            <select class="form-control" name="UserId">
+                @foreach (var item in @Model.UserModel)
                 {
-                    <option value=@item.UserId selected>@item.NickName</option>
+                    if (item.UserId == Model.SavedModel.UserId)
+                    {
+                        <option value=@item.UserId selected>@item.NickName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.UserId">@item.NickName</option>
+                    }
+                }
+            </select>
+            <br />
+            @Html.Label("Post")
+            <select class="form-control" name="PostId">
+                @foreach (var item in @Model.PostModel)
+                {
+                    if (item.PostId == Model.SavedModel.PostId)
+                    {
+                        <option value="@item.PostId" selected>@item.PostContent</option>
+                    }
+                    else
+                    {
+                        <option value="@item.PostId">@item.PostContent</option>
+                    }
+                }
+            </select>
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                @if (Model.SavedModel.IsActive)
+                {
+                    <option value="True" selected>Aktif</option>
+                    <option value="False">Pasif</option>
                 }
                 else
                 {
-                    <option value="@item.UserId">@item.NickName</option>
+                    <option value="False" selected>Pasif</option>
+                    <option value="True">Aktif</option>
                 }
-            }
-        </select>
-        <br />
-        @Html.Label("Post")
-        <select class="form-control" name="PostId">
-            @foreach (var item in @Model.PostModel)
-            {
-                if (item.PostId == Model.SavedModel.PostId)
-                {
-                    <option value="@item.PostId" selected>@item.PostContent</option>
-                }
-                else
-                {
-                    <option value="@item.PostId">@item.PostContent</option>
-                }
-            }
-        </select>
-        <br />
-        @Html.Label("IsActive")
-        <select class="form-control" name="IsActive">
-            @if (Model.SavedModel.IsActive)
-            {
-                <option value="True" selected>Aktif</option>
-                <option value="False">Pasif</option>
-            }
-            else
-            {
-                <option value="False" selected>Pasif</option>
-                <option value="True">Aktif</option>
-            }
-        </select>
-        <br />
-        <input class="form-control btn btn-primary" type="submit" value="Saved Update" />
-    }
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Saved Update" />
+        }
+    </div>
 </div>
