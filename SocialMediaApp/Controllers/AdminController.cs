@@ -10,6 +10,9 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using X.PagedList;
 using BusinessLayer.Validations;
+using Azure;
+using Microsoft.AspNetCore.Identity;
+using SocialMediaApp.Models;
 
 namespace SocialMediaApp.Controllers
 {
@@ -111,6 +114,28 @@ namespace SocialMediaApp.Controllers
         public IActionResult Update()
         {
             return View();
+        }        
+        
+        [HttpPost]
+        public IActionResult Update(Admin admin)
+        {
+            AdminValidator validator  = new AdminValidator();
+            var result = validator.Validate(admin);
+
+            if (result.IsValid)
+            {
+                adminManager.AdminUpdate(admin);
+                return RedirectToAction("AdminList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+
+                return View(admin);
+            }
         }
     }
 }

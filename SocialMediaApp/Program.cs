@@ -1,4 +1,6 @@
+using System.Reflection;
 using EntityLayer;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -43,7 +45,7 @@ namespace SocialMediaApp
             app.UseStaticFiles();
 
             app.UseRouting();
-          
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -58,6 +60,9 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "Admin", pattern: "Admin/AdminInsert", defaults: new { controller = "Admin", action = "Add" }
                 );
+            app.MapControllerRoute(
+               name: "Admin", pattern: "Admin/AdminProfile", defaults: new { controller = "Admin", action = "Profile" }
+               );
             app.MapControllerRoute(
                 name: "User", pattern: "User/UserList", defaults: new { controller = "User", action = "Index" }
                 );
