@@ -4,8 +4,11 @@
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>POST Add</h2>
+<div class="card">
+<div class="card-header">
+<h2>Post Add</h2>
+</div>
+<div class="card-body">
 @using (Html.BeginForm("Add", "Post", FormMethod.Post, new { @class = "form-group" }))
 {
     @Html.Label("Creator NickName")
@@ -52,3 +55,5 @@
     <br />
     <input class="form-control btn btn-primary" type="submit" value="Post Add" />
 }
+</div>
+</div>
