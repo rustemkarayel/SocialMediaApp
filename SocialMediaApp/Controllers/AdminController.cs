@@ -23,8 +23,10 @@ namespace SocialMediaApp.Controllers
     {
         AdminManager adminManager = new AdminManager(new EfAdminRepository());
         private readonly IToastNotification _toastNotification;
-        //logger ekle!
-        public AdminController(IToastNotification toastNotification)
+
+
+		//logger ekle!
+		public AdminController(IToastNotification toastNotification)
         {
             _toastNotification = toastNotification;
         }
@@ -39,7 +41,10 @@ namespace SocialMediaApp.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            return View();
+			ClaimsPrincipal currentUser = this.User;
+			var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
+            Admin admin = adminManager.AdminGetByEMail(currentUserMail);
+			return View(admin);
         }
 
         [AllowAnonymous]
@@ -114,41 +119,37 @@ namespace SocialMediaApp.Controllers
             return RedirectToAction("AdminList");
         }
 
-        //[HttpGet]
-        //public IActionResult Update(int id)
-        //{
-        //    Admin admin = adminManager.AdminGetById(id);
-        //    return View(admin);
-        //}
-
         [HttpGet]
         public IActionResult Update(string email)
-        {
-            Admin admin = adminManager.AdminGetByEMail(email);
+		{
+			ClaimsPrincipal currentUser = this.User;
+			var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
+
+			Admin admin = adminManager.AdminGetByEMail(currentUserMail);
             return View(admin);
         }
 
 
-        //[HttpPost]
-        //      public IActionResult Update(Admin admin)
-        //      {
-        //          AdminValidator validator  = new AdminValidator();
-        //          var result = validator.Validate(admin);
+        [HttpPost]
+        public IActionResult Update(Admin admin)
+        {
+            AdminValidator validator = new AdminValidator();
+            var result = validator.Validate(admin);
 
-        //          if (result.IsValid)
-        //          {
-        //              adminManager.AdminUpdate(admin);
-        //              return RedirectToAction("AdminList");
-        //          }
-        //          else
-        //          {
-        //              foreach (var item in result.Errors)
-        //              {
-        //                  ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-        //              }
+            if (result.IsValid)
+            {
+                adminManager.AdminUpdate(admin);
+                return RedirectToAction("AdminList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
 
-        //              return View(admin);
-        //          }
-        //      }
+                return View(admin);
+            }
+        }
     }
 }
