@@ -1,0 +1,48 @@
+﻿@using EntityLayer;
+@model Admin;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Admin Update</h2>
+    </div>
+
+    <div class="card-body">
+
+        @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.Label("First Name")
+            @Html.TextBoxFor(admin=>admin.AdminFirstName,new { @class = "form-control"})
+            @Html.ValidationMessageFor(admin=>admin.AdminFirstName,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Last Name")
+            @Html.TextBoxFor(admin=>admin.AdminLastName,new { @class = "form-control"})
+            @Html.ValidationMessageFor(admin=>admin.AdminLastName,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Mail")
+            @Html.TextBoxFor(admin=>admin.AdminMail,new { @class = "form-control", @type="mail"})
+            @Html.ValidationMessageFor(admin=>admin.AdminMail,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("Password")
+            @Html.TextBoxFor(admin=>admin.AdminPassword,new { @class = "form-control"})
+            @Html.ValidationMessageFor(admin=>admin.AdminPassword,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("AdminType")
+            @Html.TextBoxFor(admin=>admin.AdminType,new { @class = "form-control"})
+            @Html.ValidationMessageFor(admin=>admin.AdminType,"",new{@class="text-danger"})
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Aktif</option>
+                <option value="False">Pasif</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Add" />
+        }
+    </div>
+</div>
+
