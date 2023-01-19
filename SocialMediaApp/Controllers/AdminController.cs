@@ -14,6 +14,7 @@ using Azure;
 using Microsoft.AspNetCore.Identity;
 using SocialMediaApp.Models;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json.Linq;
 
 namespace SocialMediaApp.Controllers
 {
@@ -34,6 +35,7 @@ namespace SocialMediaApp.Controllers
         {
             return View();
         }
+        
         [HttpGet]
         public IActionResult Profile()
         {
@@ -48,7 +50,7 @@ namespace SocialMediaApp.Controllers
             var result = c.Admins.Where(x => x.AdminMail == admin.AdminMail && x.AdminPassword == admin.AdminPassword).SingleOrDefault();
             if (result != null)
             {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.AdminMail), new Claim(ClaimTypes.Name,result.AdminFirstName) };
+                var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.AdminMail), new Claim(ClaimTypes.Name,result.AdminFirstName)};
 
                 var userIdentify = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
@@ -57,6 +59,7 @@ namespace SocialMediaApp.Controllers
                     .SignInAsync(
                     principal,
                     new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(5) });
+
                 return RedirectToAction("AdminProfile", "Admin");
             }
             _toastNotification.AddErrorToastMessage("Username or password incorrect !");
@@ -118,34 +121,34 @@ namespace SocialMediaApp.Controllers
         //    return View(admin);
         //}
 
-		[HttpGet]
-		public IActionResult Update(string email)
-		{
-            Admin admin = adminManager.AdminGetByEMail(email);
-			return View(admin);
-		}
-
-
-		[HttpPost]
-        public IActionResult Update(Admin admin)
+        [HttpGet]
+        public IActionResult Update(string email)
         {
-            AdminValidator validator  = new AdminValidator();
-            var result = validator.Validate(admin);
-
-            if (result.IsValid)
-            {
-                adminManager.AdminUpdate(admin);
-                return RedirectToAction("AdminList");
-            }
-            else
-            {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-
-                return View(admin);
-            }
+            Admin admin = adminManager.AdminGetByEMail(email);
+            return View(admin);
         }
+
+
+        //[HttpPost]
+        //      public IActionResult Update(Admin admin)
+        //      {
+        //          AdminValidator validator  = new AdminValidator();
+        //          var result = validator.Validate(admin);
+
+        //          if (result.IsValid)
+        //          {
+        //              adminManager.AdminUpdate(admin);
+        //              return RedirectToAction("AdminList");
+        //          }
+        //          else
+        //          {
+        //              foreach (var item in result.Errors)
+        //              {
+        //                  ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+        //              }
+
+        //              return View(admin);
+        //          }
+        //      }
     }
 }
