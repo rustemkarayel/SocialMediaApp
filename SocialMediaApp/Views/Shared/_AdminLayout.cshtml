@@ -1,35 +1,24 @@
-﻿@using System.Security.Claims;
-@using EntityLayer;
-@model Admin;
-@{
+﻿@{
     Layout = null;
-
-    ClaimsPrincipal currentUser = this.User;
-    var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
-    var currentUserName = currentUser.FindFirst(ClaimTypes.Name).Value;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Purple Admin</title>
-    <!-- plugins:css -->
+
     <link rel="stylesheet" href="~/admin_dashboard/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/admin_dashboard/assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
     <link rel="stylesheet" href="~/admin_dashboard/assets/css/style.css">
-    <!-- End layout styles -->
     <link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
     <style>
 
         * {
@@ -120,16 +109,15 @@
 
     </style>
 </head>
-<body>
 
-    <!--Main Body Container Start-->
+<body>
     <div class="container-scroller">
 
-        <!-- Top Navbar Start-->
+        <!-- Top Navbar Start -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -146,19 +134,28 @@
                     </form>
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item nav-profile">
-                        <a class="nav-link" id="profileDropdown" href="#" aria-expanded="false">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="assets/images/faces/face1.jpg" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
                             <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Name)?.Value Bey</p>
+                                <p class="mb-1 text-black">David Greymaax</p>
                             </div>
                         </a>
-                    <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-cached me-2 text-success"></i> Log
-                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-cached me-2 text-success"></i> Activity Log
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-logout me-2 text-primary"></i> Signout
+                            </a>
+                        </div>
                     </li>
                     <li class="nav-item d-none d-lg-block full-screen-link">
-                        <a class="nav-link" style="cursor:pointer">
+                        <a class="nav-link">
                             <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
                         </a>
                     </li>
@@ -251,7 +248,7 @@
                         </div>
                     </li>
                     <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#decisionPopup2">
+                        <a class="nav-link" href="#">
                             <i class="mdi mdi-power"></i>
                         </a>
                     </li>
@@ -266,30 +263,35 @@
                 </button>
             </div>
         </nav>
-        <!-- Top Navbar End-->
-        <!--Body Container Start-->
+        <!-- Top Navbar End -->
+        
         <div class="container-fluid page-body-wrapper">
 
-            <!-- Side Bar Start-->
+            <!-- Side Bar Start -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
+
                 <ul class="nav">
+
+                    <!-- Admin Profile Start -->
                     <li class="nav-item nav-profile">
                         @*<a href="~/Admin/AdminProfile/@User.FindFirst(ClaimTypes.Name)?.Value"  class="nav-link">*@
                         @*<a href="~/Admin/AdminProfile/@User.FindFirst(ClaimTypes.Email)?.Value"  class="nav-link">*@
                         @*<a href="~/Admin/Profile/@User.FindFirst(ClaimTypes.Email)?.Value" class="nav-link">*@
                         <a href="~/Admin/AdminProfile" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="@Model.imgUrl" alt="profile">
+                                <img src="#" alt="profile">
                                 <span class="login-status online"></span>
-                                <!--change to offline or busy as needed-->
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2">@Model.AdminFirstName</span>
-                                <span class="text-secondary text-small">@Model.AdminType</span>
+                                <span class="font-weight-bold mb-2">AdminFirstName</span>
+                                <span class="text-secondary text-small">AdminType</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
                     </li>
+                    <!-- Admin Profile End -->
+
+                    <!-- Admin Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="admin">
                             <span class="menu-title">Admin</span>
@@ -303,6 +305,9 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Admin Toggle End -->
+
+                    <!-- User Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
                             <span class="menu-title">User</span>
@@ -316,7 +321,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- Start Post Toogle -->
+                    <!-- User Toggle End -->
+
+                    <!-- Post Toogle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
                             <span class="menu-title">Post</span>
@@ -330,7 +337,8 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Post Toogle -->
+                    <!-- Post Toogle End -->
+
                     <!-- Start PostLike Toogle -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
@@ -345,7 +353,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End PostLike Toogle -->
+                    <!-- PostLike Toogle End -->
+
+                    <!-- Message Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#message" aria-expanded="false" aria-controls="message">
                             <span class="menu-title">Message</span>
@@ -359,6 +369,9 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Message Toggle End -->
+
+                    <!-- Saved Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#saved" aria-expanded="false" aria-controls="saved">
                             <span class="menu-title">Saved</span>
@@ -372,6 +385,9 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Saved Toggle End -->
+
+                    <!-- SavedCollection Toggle Start-->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#savedCollection" aria-expanded="false" aria-controls="savedCollection">
                             <span class="menu-title">Saved Collection</span>
@@ -385,8 +401,9 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- SavedCollection Toggle End -->
 
-                    <!-- Start Comment Toggle -->
+                    <!-- Comment Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment">
                             <span class="menu-title">Comment</span>
@@ -400,8 +417,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Comment Toggle -->
-                    <!-- Start CommentLike Toogle -->
+                    <!-- Comment Toggle End -->
+
+                    <!-- CommentLike Toogle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#commentLike" aria-expanded="false" aria-controls="commentLike">
                             <span class="menu-title">CommentLike</span>
@@ -415,8 +433,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End CommentLike Toogle -->
-                    <!-- Start Collection Toggle -->
+                    <!-- CommentLike Toogle End -->
+
+                    <!-- Collection Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
                             <span class="menu-title">Collection</span>
@@ -430,8 +449,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Collection Toggle -->
-                    <!-- Start Tag Toggle -->
+                    <!-- Collection Toggle End -->
+
+                    <!-- Tag Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#tag" aria-expanded="false" aria-controls="tag">
                             <span class="menu-title">Tag</span>
@@ -445,8 +465,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Tag Toggle -->
-                    <!-- Start Location Toggle -->
+                    <!-- Tag Toggle End -->
+
+                    <!-- Location Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#location" aria-expanded="false" aria-controls="location">
                             <span class="menu-title">Location</span>
@@ -460,8 +481,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Location Toggle -->
-                    <!-- Start Type Toggle -->
+                    <!-- Location Toggle End -->
+
+                    <!-- Type Toggle Start-->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#genre" aria-expanded="false" aria-controls="type">
                             <span class="menu-title">Type</span>
@@ -475,8 +497,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Type Toogle -->
-                    <!--Start Request Toogle  -->
+                    <!-- Type Toogle End -->
+
+                    <!-- Request Toogle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
                             <span class="menu-title">Request</span>
@@ -490,45 +513,23 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- End Request Toogle -->
+                    <!--  Request Toogle End -->
+
                 </ul>
             </nav>
-            <!-- Side Bar End-->
+            <!-- Side Bar End -->
 
+            <!-- Main Content Start -->
             <div class="main-panel">
-
-                <!-- RenderBody Start-->
                 <div class="content-wrapper">
                     @RenderBody()
                 </div>
-                <!-- RenderBody End-->
-
             </div>
-
+            <!-- Main Content End -->
         </div>
-        <!--Body Container End-->
 
     </div>
-    <!--Main Body Container End-->
-    @*#decisionPopup2 Model*@
-    <div class="modal fade" id="decisionPopup2" tabindex="=-1" aria-labelledby="askLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" id="askLabel">Ready to Leave?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Select "Yes" below if you are ready to end your current session.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <a href="/Admin/Logout" class="btn btn-success">Yes</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <script src="~/admin_dashboard/assets/vendors/js/vendor.bundle.base.js"></script>
 
     <script src="~/admin_dashboard/assets/vendors/chart.js/Chart.min.js"></script>
@@ -542,5 +543,6 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 </body>
 </html>
