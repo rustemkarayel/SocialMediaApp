@@ -1,5 +1,6 @@
 ﻿@using EntityLayer;
 @using System.Security.Claims;
+@using SocialMediaApp.PagedList;
 @using X.PagedList;
 @model PagedList<Admin>;
 @{
@@ -7,6 +8,22 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ClaimsPrincipal currentUser = this.User;
     var currentUserMail = currentUser.FindFirst(ClaimTypes.Email).Value;
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
+}
+
+@section searchbar{
+    <!-- Topbar Search -->
+<div class="search-field d-none d-md-block">
+    <form class="d-flex align-items-center h-100" action="#">
+        <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+            </div>
+            <input type="text" class="form-control bg-transparent border-0" placeholder="Admin Search">
+        </div>
+    </form>
+</div>
 }
 
 <div class="card">
@@ -69,7 +86,7 @@
 @*SAYFALAMA*@
 <div style="position:relative;">
     <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
+        <partial name="PartialCustomPagerView" model="@pager" />
     </div>
 </div>
 

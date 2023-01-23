@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using SocialMediaApp.Models;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json.Linq;
+using SocialMediaApp.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -79,10 +80,38 @@ namespace SocialMediaApp.Controllers
         //sifreleme ekle!
 
         [HttpGet]
-        public IActionResult Index(int page=1,int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var admins=adminManager.AdminList().ToPagedList(page, pageSize);
-            return View(admins);  
+            //var admins=adminManager.AdminList().ToPagedList(page, pageSize);
+            //return View(admins);
+           
+            int pageSize = 5;
+            Context c = new Context();
+            Pager pager;
+            List<Admin> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Admins.Where(admin => admin.AdminFirstName.Contains(searchText) || admin.AdminLastName.Contains(searchText) ||
+                admin.AdminMail.Contains(searchText) || admin.AdminType.Contains(searchText) || 
+                admin.imgUrl.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Admins.Where(admin => admin.AdminFirstName.Contains(searchText) || admin.AdminLastName.Contains(searchText) ||
+                admin.AdminMail.Contains(searchText) || admin.AdminType.Contains(searchText) ||
+                admin.imgUrl.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Admins.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Admins.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+            ViewBag.pager = pager;
+            ViewBag.actionName = "AdminList";
+            ViewBag.contrName = "Admin";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
 
         [HttpGet]
