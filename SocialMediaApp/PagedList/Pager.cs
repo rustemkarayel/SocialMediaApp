@@ -18,12 +18,12 @@ namespace SocialMediaApp.PagedList
 
 		}
 
-		public Pager(int itemCounts,int pageSize, int page=1)
+		public Pager(int itemCounts,int pageSize, int page)
         {
 
             ActivePage = page;
             TotalData = itemCounts;
-            CurrentData = pageSize;
+            CurrentData = pageSize;     //Bir sayfada görüntülenecek sayfa sayısı
 
             PageSize = (int)Math.Ceiling((decimal)TotalData / (decimal)CurrentData);
             
