@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using SocialMediaApp.PagedList;
 using X.PagedList;
 
 namespace SocialMediaApp.Controllers
@@ -14,9 +16,49 @@ namespace SocialMediaApp.Controllers
         UserManager userManager = new UserManager(new EfUserRepository());
         PostManager postManager = new PostManager(new EfPostRepository());
 
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            return View(commentManager.CommentList().ToPagedList(page, pageSize));
+            //return View(commentManager.CommentList().ToPagedList(page, pageSize));
+
+            int pageSize = 5;
+
+            Context c = new Context();
+            Pager pager;
+            List<Comment> data;
+
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Comments.Where(
+                        comment => comment.CommentContent.Contains(searchText) ||
+                        comment.Commentor.FirstName.Contains(searchText) ||
+                        comment.Post.PostContent.Contains(searchText) ||
+                        comment.CommentContent.Contains(searchText) ||
+                        comment.CommentTime.ToString().Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Comments.Where(
+                        comment => comment.CommentContent.Contains(searchText) ||
+                        comment.Commentor.FirstName.Contains(searchText) ||
+                        comment.Post.PostContent.Contains(searchText) ||
+                        comment.CommentContent.Contains(searchText) ||
+                        comment.CommentTime.ToString().Contains(searchText)
+                ).ToList().Count;
+            }
+            else
+            {
+                data = c.Comments.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Comments.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "collection-list";
+            ViewBag.contrName = "Collection";
+            ViewBag.searchText = searchText;
+
+            return View(data);
         }           
         
         public IActionResult Delete(int id)

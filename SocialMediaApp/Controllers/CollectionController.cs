@@ -1,10 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
-using X.PagedList;
+using SocialMediaApp.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -12,9 +13,44 @@ namespace SocialMediaApp.Controllers
     {
         CollectionManager collectionManager = new CollectionManager(new EfCollectionRepository());
 
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            return View(collectionManager.CollectionList().ToPagedList(page, pageSize));
+            int pageSize = 2;
+
+            Context context = new Context();
+            Pager pager;
+            List<Collection> data;
+
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = context.Collections.Where(
+                        collection=>collection.CollectionName.Contains(searchText) || 
+                        collection.CreationDate.ToString().Contains(searchText) ||
+                        collection.CreationTime.ToString().Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = context.Collections.Where(
+                        collection => collection.CollectionName.Contains(searchText) ||
+                        collection.CreationDate.ToString().Contains(searchText) ||
+                        collection.CreationTime.ToString().Contains(searchText)
+                ).ToList().Count;
+            }
+            else
+            {
+                data = context.Collections.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = context.Collections.ToList().Count;
+            }
+
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "collection-list";
+            ViewBag.contrName = "Collection";
+            ViewBag.searchText = searchText;
+
+            return View(data);
+
         }        
         
         public IActionResult Delete(int id)
