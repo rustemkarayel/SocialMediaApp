@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class PostLike
-    {
+    public class PostLike : BaseEntity
+	{
         [Key]
         public int PostLikeId { get; set; }        
         public DateTime LikeTime { get; set; }

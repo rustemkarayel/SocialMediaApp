@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Genre
-    {
+    public class Genre : BaseEntity
+	{
         [Key]
         public int GenreId { get; set; }
 

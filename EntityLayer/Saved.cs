@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Saved
-    {
+    public class Saved : BaseEntity
+	{
         [Key]
         public int SavedId { get; set; }
         public bool IsActive { get; set; }

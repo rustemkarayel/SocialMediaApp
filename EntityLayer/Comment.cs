@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Comment
-    {
+    public class Comment : BaseEntity
+	{
         [Key]
         public int CommentId { get; set; }
 

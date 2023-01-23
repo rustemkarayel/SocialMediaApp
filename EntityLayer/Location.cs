@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Location
-    {
+    public class Location : BaseEntity
+	{
         [Key]
         public int LocationId { get; set; }
 

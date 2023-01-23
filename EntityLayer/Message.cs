@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace EntityLayer
 {
-    public class Message
-    {
+    public class Message : BaseEntity
+	{
         [Key]
         public int MessageId { get; set; }
         [StringLength(100)]
