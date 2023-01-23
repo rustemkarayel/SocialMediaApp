@@ -85,7 +85,7 @@ namespace SocialMediaApp.Controllers
             //var admins=adminManager.AdminList().ToPagedList(page, pageSize);
             //return View(admins);
            
-            int pageSize = 5;
+            int pageSize = 2;
             Context c = new Context();
             Pager pager;
             List<Admin> data;
@@ -106,11 +106,11 @@ namespace SocialMediaApp.Controllers
                 itemCounts = c.Admins.ToList().Count;
             }
 
-            pager = new Pager(pageSize, itemCounts, page);
+            pager = new Pager(itemCounts,pageSize,page);
             ViewBag.pager = pager;
-            ViewBag.actionName = "AdminList";
-            ViewBag.contrName = "Admin";
             ViewBag.searchText = searchText;
+            ViewBag.contrName = "Admin";
+            ViewBag.actionName = "AdminList";      
             return View(data);
         }
 
