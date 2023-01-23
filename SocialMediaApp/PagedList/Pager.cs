@@ -13,7 +13,12 @@ namespace SocialMediaApp.PagedList
         //Bir sayfada görüntülenecek sayfa sayısı
         public int CurrentData { get; set; }
 
-        public Pager(int itemCounts,int pageSize, int page=1)
+		public Pager()
+		{
+
+		}
+
+		public Pager(int itemCounts,int pageSize, int page=1)
         {
 
             ActivePage = page;
@@ -38,10 +43,6 @@ namespace SocialMediaApp.PagedList
                     BeginPage = EndPage - 9;
                 }
             }      
-        }
-        public Pager()
-        {
-
         }
     }
 }
