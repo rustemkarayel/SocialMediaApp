@@ -23,8 +23,8 @@
 
 		@*Admin Name Start*@
 		<div class="ms-3" style="margin-top: 130px;">
-			<h5>@Model.AdminFirstName</h5>
-			<p>@Model.AdminType</p>
+			<h5>@User.FindFirst(ClaimTypes.Name)?.Value </h5>
+			<p>@User.FindFirst(ClaimTypes.Actor)?.Value</p>
 		</div>
 		@*Admin Name End*@
 
