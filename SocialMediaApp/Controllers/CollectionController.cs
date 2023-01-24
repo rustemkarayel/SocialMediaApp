@@ -42,7 +42,7 @@ namespace SocialMediaApp.Controllers
                 itemCounts = context.Collections.ToList().Count;
             }
 
-            pager = new Pager(pageSize, itemCounts, page);
+            pager = new Pager(itemCounts, pageSize, page);
 
             ViewBag.pager = pager;
             ViewBag.actionName = "collection-list";
