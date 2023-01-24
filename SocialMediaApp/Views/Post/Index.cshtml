@@ -1,9 +1,12 @@
 ﻿@using EntityLayer;
-@using X.PagedList;
-@model PagedList<Post>;
+@using SocialMediaApp.PagedList;
+@model List<Post>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Pager and Search
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
 <div class="card">
     <div class="card-header">
@@ -18,7 +21,8 @@
             <th>Content</th>
             <th>Description</th>      
             <th>IsActive</th>
-
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +31,9 @@
             <tr>
                 <td>@item.Creator.NickName</td>
                 <td>@item.GenerateDate.ToString().Split(" ")[0]</td>
-                <td style="word-break:break-word">@item.PostContent</td>
+                        <td style="word-break:break-all;">
+                            @item.PostContent
+                        </td>
                 <td>@item.Description</td>                
                 @if (item.IsActive)
                 {
@@ -45,15 +51,16 @@
         }
     </tbody>
 </table>
+
+    </div>
+</div>
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/Post/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
-    </div>
-</div>
 @*SAYFALAMA*@
 <div style="position:relative;">
-    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PartialCustomPagerView" model="@pager" />
     </div>
 </div>
 <!-- Modal -->
