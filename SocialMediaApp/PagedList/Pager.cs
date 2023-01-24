@@ -18,7 +18,7 @@ namespace SocialMediaApp.PagedList
 
 		}
 
-		public Pager(int itemCounts,int pageSize, int page)
+		public Pager(int itemCounts,int pageSize, int page)     //parametre sırası önemli.
         {
 
             ActivePage = page;

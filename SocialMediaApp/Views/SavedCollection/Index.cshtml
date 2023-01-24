@@ -1,9 +1,26 @@
 ﻿@using EntityLayer;
-@using X.PagedList;
-@model PagedList<SavedCollection>;
+@using SocialMediaApp.PagedList;
+@model List<SavedCollection>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Pager and Search
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
+}
+
+@section searchbar{
+    <!-- Topbar Search -->
+    <div class="search-field d-none d-md-block">
+        <form asp-controller="SavedCollection" asp-action="SavedCollectionList" class="d-flex align-items-center h-100">
+            <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Saved Collection Search">
+            </div>
+        </form>
+    </div>
 }
 
 <div class="card">
@@ -53,7 +70,7 @@
 @*SAYFALAMA*@
 <div style="position:relative;">
     <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
+        <partial name="PartialCustomPagerView" model="@pager" />
     </div>
 </div>
 
