@@ -1,13 +1,16 @@
 ﻿@using EntityLayer;
-@using X.PagedList;
-@model PagedList<PostLike>;
+@using SocialMediaApp.PagedList;
+@model List<PostLike>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+      //Pager and Search
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
 <div class="card">
     <div class="card-header">
-        <h2>POSTLİKE</h2>
+        <h2>POSTLIKE</h2>
     </div>
     <div class="card-body">
         <table class="table table-hover">
@@ -17,6 +20,8 @@
                     <th>Post Creator</th>
                     <th>Like Time</th>
                     <th>IsActive</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -42,15 +47,17 @@
                 }
             </tbody>
         </table>
-        <div class="text-center d-flex justify-content-start p-2">
-            <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
-        </div>
+     
     </div>
+</div>
+
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 @*SAYFALAMA*@
 <div style="position:relative;">
-    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PartialCustomPagerView" model="@pager" />
     </div>
 </div>
 <!-- Modal -->
