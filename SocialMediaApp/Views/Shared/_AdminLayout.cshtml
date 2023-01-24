@@ -273,8 +273,8 @@
                                 <span class="login-status online"></span>
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2">AdminFirstName</span>
-                                <span class="text-secondary text-small">AdminType</span>
+                                <span class="font-weight-bold mb-2">@User.FindFirst(ClaimTypes.Name)?.Value </span>
+                                <span class="text-secondary text-small">@User.FindFirst(ClaimTypes.Actor)?.Value</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
@@ -313,6 +313,22 @@
                     </li>
                     <!-- User Toggle End -->
 
+                    <!-- Request Toogle Start -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
+                            <span class="menu-title">Request</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-human-greeting"></i>
+                        </a>
+                        <div class="collapse" id="request">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestInsert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!--  Request Toogle End -->
+
                     <!-- Post Toogle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
@@ -328,22 +344,6 @@
                         </div>
                     </li>
                     <!-- Post Toogle End -->
-
-                    <!-- Start PostLike Toogle -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
-                            <span class="menu-title">PostLike</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-checkbox-marked-circle"></i>
-                        </a>
-                        <div class="collapse" id="postLike">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- PostLike Toogle End -->
 
                     <!-- Message Toggle Start -->
                     <li class="nav-item">
@@ -361,6 +361,22 @@
                     </li>
                     <!-- Message Toggle End -->
 
+                    <!-- Comment Toggle Start -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment">
+                            <span class="menu-title">Comment</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-comment-outline"></i>
+                        </a>
+                        <div class="collapse" id="comment">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Comment/comment-list">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Comment/comment-insert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- Comment Toggle End -->
+
                     <!-- Saved Toggle Start -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#saved" aria-expanded="false" aria-controls="saved">
@@ -376,6 +392,22 @@
                         </div>
                     </li>
                     <!-- Saved Toggle End -->
+
+                    <!-- Collection Toggle Start -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
+                            <span class="menu-title">Collection</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-bookmark-check"></i>
+                        </a>
+                        <div class="collapse" id="collection">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Collection/collection-list">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Collection/collection-insert">Add</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- Collection Toggle End -->
 
                     <!-- SavedCollection Toggle Start-->
                     <li class="nav-item">
@@ -393,21 +425,21 @@
                     </li>
                     <!-- SavedCollection Toggle End -->
 
-                    <!-- Comment Toggle Start -->
+                    <!-- Start PostLike Toogle -->
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment">
-                            <span class="menu-title">Comment</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
+                            <span class="menu-title">PostLike</span>
                             <i class="menu-arrow"></i>
-                            <i class="mdi mdi-comment-outline"></i>
+                            <i class="mdi mdi-checkbox-marked-circle"></i>
                         </a>
-                        <div class="collapse" id="comment">
+                        <div class="collapse" id="postLike">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Comment/comment-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Comment/comment-insert">Add</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeList">Index</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeInsert">Add</a></li>
                             </ul>
                         </div>
                     </li>
-                    <!-- Comment Toggle End -->
+                    <!-- PostLike Toogle End -->
 
                     <!-- CommentLike Toogle Start -->
                     <li class="nav-item">
@@ -424,22 +456,6 @@
                         </div>
                     </li>
                     <!-- CommentLike Toogle End -->
-
-                    <!-- Collection Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
-                            <span class="menu-title">Collection</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-bookmark-check"></i>
-                        </a>
-                        <div class="collapse" id="collection">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Collection/collection-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Collection/collection-insert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Collection Toggle End -->
 
                     <!-- Tag Toggle Start -->
                     <li class="nav-item">
@@ -488,23 +504,6 @@
                         </div>
                     </li>
                     <!-- Type Toogle End -->
-
-                    <!-- Request Toogle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
-                            <span class="menu-title">Request</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-human-greeting"></i>
-                        </a>
-                        <div class="collapse" id="request">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!--  Request Toogle End -->
-
                 </ul>
             </nav>
             <!-- Side Bar End -->
