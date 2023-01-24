@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using SocialMediaApp.PagedList;
 using X.PagedList;
 
 namespace SocialMediaApp.Controllers
@@ -16,10 +18,36 @@ namespace SocialMediaApp.Controllers
         GenreManager gm= new GenreManager(new EfGenreRepository());
         LocationManager lm=new LocationManager(new EfLocationRepository());
         UserManager um=new UserManager(new EfUserRepository());   
-        public IActionResult Index(int page=1,int pageSize=5)
+        public IActionResult Index(int page=1,string searchText="")
         {
-            var posts = pm.PostList().ToPagedList(page,pageSize);
-            return View(posts);
+            //var posts = pm.PostList().ToPagedList(page,pageSize);
+            //return View(posts);
+
+            int pageSize = 2;
+            Context c = new Context();
+            Pager pager;
+            List<Post> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Posts.Where(post => post.Creator.NickName.Contains(searchText) || post.PostContent.Contains(searchText) ||
+                post.Description.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Posts.Where(post => post.Creator.NickName.Contains(searchText) || post.PostContent.Contains(searchText) ||
+                post.Description.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Posts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Posts.ToList().Count;
+            }
+
+            pager = new Pager(itemCounts, pageSize, page);
+            ViewBag.pager = pager;
+            ViewBag.searchText = searchText;
+            ViewBag.contrName = "Post";
+            ViewBag.actionName = "PostList";
+            return View(data);
         }
         [HttpGet]
         public IActionResult Add()
