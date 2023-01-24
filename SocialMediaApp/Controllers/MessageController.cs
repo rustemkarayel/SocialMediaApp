@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using SocialMediaApp.PagedList;
 using X.PagedList;
 
 namespace SocialMediaApp.Controllers
@@ -12,10 +14,38 @@ namespace SocialMediaApp.Controllers
     {
         MessageManager mm = new MessageManager(new EfMessageRepository());
         UserManager um=new UserManager(new EfUserRepository());
-        public IActionResult Index(int page = 1,int pageSize=5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var messages = mm.MessageList().ToPagedList(page,pageSize);
-            return View(messages);
+            //var messages = mm.MessageList().ToPagedList(page,pageSize);
+            //return View(messages);
+
+            int pageSize = 2;
+            Context c = new Context();
+            Pager pager;
+            List<Message> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Messages.Where(message => message.Sender.NickName.Contains(searchText) || message.Receiver.NickName.Contains(searchText) ||
+                message.MessageContent.Contains(searchText) || message.SendDate.ToString().Contains(searchText) || message.SendTime.ToString().Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Messages.Where(message => message.Sender.NickName.Contains(searchText) || message.Receiver.NickName.Contains(searchText) ||
+                message.MessageContent.Contains(searchText) || message.SendDate.ToString().Contains(searchText) || message.SendTime.ToString().Contains(searchText)
+                ).ToList().Count;
+            }
+            else
+            {
+                data = c.Messages.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Messages.ToList().Count;
+            }
+
+            pager = new Pager(itemCounts, pageSize, page);
+            ViewBag.pager = pager;
+            ViewBag.searchText = searchText;
+            ViewBag.contrName = "Message";
+            ViewBag.actionName = "MessageList";
+            return View(data);
         }
 
         [HttpGet]

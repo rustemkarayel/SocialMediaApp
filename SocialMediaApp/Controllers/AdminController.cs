@@ -16,6 +16,7 @@ using SocialMediaApp.Models;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json.Linq;
 using SocialMediaApp.PagedList;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SocialMediaApp.Controllers
 {
@@ -56,7 +57,9 @@ namespace SocialMediaApp.Controllers
             var result = c.Admins.Where(x => x.AdminMail == admin.AdminMail && x.AdminPassword == admin.AdminPassword).SingleOrDefault();
             if (result != null)
             {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.AdminMail), new Claim(ClaimTypes.Name,result.AdminFirstName)};
+                var isim = result.AdminFirstName + " " + result.AdminLastName;
+                var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.AdminMail), new Claim(ClaimTypes.Name,isim),
+                new Claim(ClaimTypes.Actor,result.AdminType)};
 
                 var userIdentify = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
