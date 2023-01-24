@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using SocialMediaApp.PagedList;
 using X.PagedList;
 
 namespace SocialMediaApp.Controllers
@@ -13,15 +15,41 @@ namespace SocialMediaApp.Controllers
         CommentLikeManager clm = new CommentLikeManager(new EfCommentLikeRepository());
         CommentManager cm = new CommentManager(new EfCommentRepository());
         UserManager um = new UserManager(new EfUserRepository());
-        public IActionResult Index(int page=1,int pageSize=10)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            var commentlikes = clm.CommentLikeList().ToPagedList(page,pageSize);
-            return View(commentlikes);
+            //var commentlikes = clm.CommentLikeList().ToPagedList(page,pageSize);
+            //return View(commentlikes);
+
+            int pageSize = 2;
+            Context c = new Context();
+            Pager pager;
+            List<CommentLike> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.CommentLikes.Where(commentLike => commentLike.CommentLiker.NickName.Contains(searchText) || commentLike.Comment.CommentContent.Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.CommentLikes.Where(commentLike => commentLike.CommentLiker.NickName.Contains(searchText) || commentLike.Comment.CommentContent.Contains(searchText)
+                ).ToList().Count;
+            }
+            else
+            {
+                data = c.CommentLikes.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.CommentLikes.ToList().Count;
+            }
+
+            pager = new Pager(itemCounts, pageSize, page);
+            ViewBag.pager = pager;
+            ViewBag.searchText = searchText;
+            ViewBag.contrName = "CommentLike";
+            ViewBag.actionName = "CommentLikeList";
+            return View(data);
         }
         [HttpGet]
         public IActionResult Add()
         {
-            CommentLikeUserCommentModel cucm=new CommentLikeUserCommentModel();
+            CommentLikeUserCommentModel cucm = new CommentLikeUserCommentModel();
             cucm.CommentLikeModel = new CommentLike();
             cucm.CommentModel = cm.CommentList();
             cucm.UserModel = um.UserList();
@@ -30,8 +58,8 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Add(CommentLike commentLike)
         {
-            CommentLikeValidator commentLikeValidator=new CommentLikeValidator();
-            var result=commentLikeValidator.Validate(commentLike);
+            CommentLikeValidator commentLikeValidator = new CommentLikeValidator();
+            var result = commentLikeValidator.Validate(commentLike);
             if (result.IsValid)
             {
                 clm.CommentLikeInsert(commentLike);
@@ -41,7 +69,7 @@ namespace SocialMediaApp.Controllers
             {
                 CommentLikeUserCommentModel cucm = new CommentLikeUserCommentModel();
                 cucm.CommentLikeModel = commentLike;
-                cucm.CommentModel=cm.CommentList();
+                cucm.CommentModel = cm.CommentList();
                 cucm.UserModel = um.UserList();
                 foreach (var item in result.Errors)
                 {
@@ -53,7 +81,7 @@ namespace SocialMediaApp.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            CommentLike commentLike=clm.GetCommentLikeById(id);
+            CommentLike commentLike = clm.GetCommentLikeById(id);
             CommentLikeUserCommentModel cucm = new CommentLikeUserCommentModel();
             cucm.CommentLikeModel = commentLike;
             cucm.CommentModel = cm.CommentList();
@@ -63,8 +91,8 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Update(CommentLike commentLike)
         {
-            CommentLikeValidator commentLikeValidator=new CommentLikeValidator();
-            var result=commentLikeValidator.Validate(commentLike);
+            CommentLikeValidator commentLikeValidator = new CommentLikeValidator();
+            var result = commentLikeValidator.Validate(commentLike);
             if (result.IsValid)
             {
                 clm.CommmentLikeUpdate(commentLike);
@@ -85,8 +113,8 @@ namespace SocialMediaApp.Controllers
         }
         public IActionResult Delete(int id)
         {
-            CommentLike commentLike=clm.GetCommentLikeById(id);
-            commentLike.IsActive= false;
+            CommentLike commentLike = clm.GetCommentLikeById(id);
+            commentLike.IsActive = false;
             clm.CommmentLikeUpdate(commentLike);
             return RedirectToAction("CommentLikeList");
         }
