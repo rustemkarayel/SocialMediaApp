@@ -1,562 +1,569 @@
 ﻿@using System.Security.Claims;
 @{
-    Layout = null;
+	Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Purple Admin</title>
 
-    <link rel="stylesheet" href="~/admin_dashboard/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="~/admin_dashboard/assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="~/admin_dashboard/assets/css/style.css">
-    <link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
+	<link rel="stylesheet" href="~/admin_dashboard/assets/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="~/admin_dashboard/assets/vendors/css/vendor.bundle.base.css">
+	<link rel="stylesheet" href="~/admin_dashboard/assets/css/style.css">
+	<link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
 
-    
-    <!-- Bootstrap Css Import-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Jquery Import -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<!-- Specified admin font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+                
+	<!-- Bootstrap Css Import-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
+	<!-- Jquery Import -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+                
+	<style>
 
-        * {
-            box-sizing: border-box;
-        }
 
-        i {
-            font-size: 20px;
-        }
+		* {
+			box-sizing: border-box;
+		}
 
-        button .navbar-toggler-right {
-            transition: 1s;
-        }
+		i {
+			font-size: 20px;
+		}
 
-        .content-wrapper {
-            background-color: #EEEEEE;
-            border-radius: 10px;
-        }
+		button .navbar-toggler-right {
+			transition: 1s;
+		}
 
-        .card {
-            display: inline-block;
-            position: relative;
-            width: 100%;
-            margin: 25px 0;
-            box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
-            border-radius: 3px;
-            color: rgba(0,0,0, 0.87);
-            background: #FEFCF3;
-            border-radius: 20px;
-        }
-        .card-body{
-            overflow:auto;
-        }
+		.content-wrapper {
+			background-color: #EEEEEE;
+			border-radius: 10px;
+		}
 
-        .card-header {
-            border-radius: 1vh !important;
-            box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
-            margin: auto;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 1;
-            position: relative;
-            background: #251749;
-            color: white;
-            margin-top: -30px;
-            width: 60%;
-            height: 20%;
-        }
+		.card {
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			margin: 25px 0;
+			box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+			border-radius: 3px;
+			color: rgba(0,0,0, 0.87);
+			background: #FEFCF3;
+			border-radius: 20px;
+		}
 
-        .table {
-            font-family: Tahoma, !important;
-            text-align: center;
-        }
+		.card-body {
+			overflow: auto;
+		}
 
-            .table thead {
-                background: #251749;
-                color: white;
-            }
+		.card-header {
+			border-radius: 1vh !important;
+			box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+			margin: auto;
+			padding: 15px;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			opacity: 1;
+			position: relative;
+			background: #251749;
+			color: white;
+			margin-top: -30px;
+			width: 60%;
+			height: 20%;
+		}
 
-            .table th {
-                font-size: 2vh;
-                line-height: 3rem !important;
-            }
+		.table {
+			font-family: Tahoma, !important;
+			text-align: center;
+		}
 
-            .table td {
-                font-size: 1.7vh;
-            }
+			.table thead {
+				background: #251749;
+				color: white;
+			}
 
-        .btn-primary {
-            width: 20% !important;
-            position: absolute;
-            left: 40%;
-        }
+			.table th {
+				font-size: 2vh;
+				line-height: 3rem !important;
+			}
 
-        .cardinho {
-            margin-top: -3vh;
-            border-radius: 2vh !important;
-            overflow: hidden;
-        }
+			.table td {
+				font-size: 1.7vh;
+			}
 
-        .cardinho-body {
-            background: #FEFCF3;
-        }
+		.btn-primary {
+			width: 20% !important;
+			position: absolute;
+			left: 40%;
+		}
 
-        .gradient-custom-2 {
-            background: #251749;
-        }
+		.cardinho {
+			margin-top: -3vh;
+			border-radius: 2vh !important;
+			overflow: hidden;
+		}
 
-    </style>
+		.cardinho-body {
+			background: #FEFCF3;
+		}
+
+		.gradient-custom-2 {
+			background: #251749;
+		}
+
+		.input-group {
+			display: flex;
+			align-items: center;
+		}
+
+		.input-group-text {
+			height: 6vh;
+		}
+
+		.name-style{
+			font-family: 'Dancing Script', cursive;
+			font-size: 20px;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="container-scroller">
+	<div class="container-scroller">
 
-        <!-- Top Navbar Start -->
-        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
-            </div>
-            <div class="navbar-menu-wrapper d-flex align-items-stretch">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="mdi mdi-menu"></span>
-                </button>
+		<!-- Top Navbar Start -->
+		<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+				<a class="navbar-brand brand-logo" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
+				<a class="navbar-brand brand-logo-mini" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
+			</div>
+			<div class="navbar-menu-wrapper d-flex align-items-stretch">
+				<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+					<span class="mdi mdi-menu"></span>
+				</button>
 
-                @*SEARCHBAR*@
-                @RenderSection("searchbar",false)
+				@*SEARCHBAR*@
+				@RenderSection("searchbar",false)
+				<ul class="navbar-nav navbar-nav-right">
+					<li class="nav-item nav-profile">
+						<div class="nav-link" id="profileDropdown" href="#" aria-expanded="false">
+							<div class="nav-profile-text">
+								@{
+									var firstName = (User.FindFirst(ClaimTypes.Name)?.Value).Split(" ")[0];
+								}
+								<p class="mb-1 text-black name-style">Hoşgeldiniz, sn. @firstName</p>
+								
+							</div>
+						</div>
+					</li>
+					<li class="nav-item nav-logout d-none d-lg-block">
+						<a class="nav-link" href="#">
+							<i class="mdi mdi-cached me-2 text-success"></i> Log
+						</a>
+					</li>
+					<li class="nav-item d-none d-lg-block full-screen-link">
+						<a class="nav-link" style="cursor:pointer">
+							<i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="mdi mdi-email-outline"></i>
+							<span class="count-symbol bg-warning"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+							<h6 class="p-3 mb-0">Messages</h6>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+								</div>
+								<div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+									<h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
+									<p class="text-gray mb-0"> 1 Minutes ago </p>
+								</div>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+								</div>
+								<div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+									<h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
+									<p class="text-gray mb-0"> 15 Minutes ago </p>
+								</div>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<img src="assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+								</div>
+								<div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+									<h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
+									<p class="text-gray mb-0"> 18 Minutes ago </p>
+								</div>
+							</a>
+							<div class="dropdown-divider"></div>
+							<h6 class="p-3 mb-0 text-center">4 new messages</h6>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+							<i class="mdi mdi-bell-outline"></i>
+							<span class="count-symbol bg-danger"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+							<h6 class="p-3 mb-0">Notifications</h6>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<div class="preview-icon bg-success">
+										<i class="mdi mdi-calendar"></i>
+									</div>
+								</div>
+								<div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+									<h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+									<p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
+								</div>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<div class="preview-icon bg-warning">
+										<i class="mdi mdi-settings"></i>
+									</div>
+								</div>
+								<div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+									<h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
+									<p class="text-gray ellipsis mb-0"> Update dashboard </p>
+								</div>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+									<div class="preview-icon bg-info">
+										<i class="mdi mdi-link-variant"></i>
+									</div>
+								</div>
+								<div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+									<h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
+									<p class="text-gray ellipsis mb-0"> New admin wow! </p>
+								</div>
+							</a>
+							<div class="dropdown-divider"></div>
+							<h6 class="p-3 mb-0 text-center">See all notifications</h6>
+						</div>
+					</li>
+					<li class="nav-item nav-logout d-none d-lg-block">
+						<a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#decisionPopup2">
+							<i class="mdi mdi-power"></i>
+						</a>
+					</li>
+					<li class="nav-item nav-settings d-none d-lg-block">
+						<a class="nav-link" href="#">
+							<i class="mdi mdi-format-line-spacing"></i>
+						</a>
+					</li>
+				</ul>
+				<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+					<span class="mdi mdi-menu"></span>
+				</button>
+			</div>
+		</nav>
+		</nav>
+		<!-- Top Navbar End -->
 
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link" id="profileDropdown" href="#" aria-expanded="false">
-                            <div class="nav-profile-text">
-                                <p class="mb-1 text-black">Hoşgeldiniz @User.FindFirst(ClaimTypes.Name)?.Value Bey</p>
-                            </div>
-                        </a>
-                    <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-cached me-2 text-success"></i> Log
-                        </a>
-                    </li>
-                    <li class="nav-item d-none d-lg-block full-screen-link">
-                        <a class="nav-link" style="cursor:pointer">
-                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-email-outline"></i>
-                            <span class="count-symbol bg-warning"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                            <h6 class="p-3 mb-0">Messages</h6>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
-                                    <p class="text-gray mb-0"> 1 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                                    <p class="text-gray mb-0"> 15 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="assets/images/faces/face3.jpg" alt="image" class="profile-pic">
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                                    <p class="text-gray mb-0"> 18 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="p-3 mb-0 text-center">4 new messages</h6>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="mdi mdi-bell-outline"></i>
-                            <span class="count-symbol bg-danger"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                            <h6 class="p-3 mb-0">Notifications</h6>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="mdi mdi-calendar"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="mdi mdi-settings"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                                    <p class="text-gray ellipsis mb-0"> Update dashboard </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="mdi mdi-link-variant"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="p-3 mb-0 text-center">See all notifications</h6>
-                        </div>
-                    </li>
-                    <li class="nav-item nav-logout d-none d-lg-block">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#decisionPopup2">
-                            <i class="mdi mdi-power"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item nav-settings d-none d-lg-block">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-format-line-spacing"></i>
-                        </a>
-                    </li>
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="mdi mdi-menu"></span>
-                </button>
-            </div>
-        </nav>
-        </nav>
-        <!-- Top Navbar End -->
-        
-        <div class="container-fluid page-body-wrapper">
+		<div class="container-fluid page-body-wrapper">
 
-            <!-- Side Bar Start -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+			<!-- Side Bar Start -->
+			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 
-                <ul class="nav">
+				<ul class="nav">
 
-                    <!-- Admin Profile Start -->
-                    <li class="nav-item nav-profile">
-                        <a href="~/Admin/AdminProfile" class="nav-link">
-                            <div class="nav-profile-image">
-                                <img src="#" alt="profile">
-                                <span class="login-status online"></span>
-                            </div>
-                            <div class="nav-profile-text d-flex flex-column">
-                                <span class="font-weight-bold mb-2">@User.FindFirst(ClaimTypes.Name)?.Value </span>
-                                <span class="text-secondary text-small">@User.FindFirst(ClaimTypes.Actor)?.Value</span>
-                            </div>
-                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-                        </a>
-                    </li>
-                    <!-- Admin Profile End -->
+					<!-- Admin Profile Start -->
+					<li class="nav-item nav-profile">
+						<a href="~/Admin/AdminProfile" class="nav-link">
+							<div class="nav-profile-image">
+								<img src="#" alt="profile">
+								<span class="login-status online"></span>
+							</div>
+							<div class="nav-profile-text d-flex flex-column">
+								<span class="font-weight-bold mb-2">@User.FindFirst(ClaimTypes.Name)?.Value </span>
+								<span class="text-secondary text-small">@User.FindFirst(ClaimTypes.Actor)?.Value</span>
+							</div>
+							<i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+						</a>
+					</li>
+					<!-- Admin Profile End -->
+					<!-- Admin Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" href="#admin" aria-controls="admin">
+							<span class="menu-title">Admin</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-home"></i>
+						</a>
+						<div class="collapse" id="admin">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"><a class="nav-link" href="/Admin/AdminList">Index</a></li>
+								<li class="nav-item"><a class="nav-link" href="/Admin/AdminInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Admin Toggle End -->
+					<!-- User Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
+							<span class="menu-title">User</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-account"></i>
+						</a>
+						<div class="collapse" id="user">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/User/UserList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/User/UserInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- User Toggle End -->
+					<!-- Request Toogle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
+							<span class="menu-title">Request</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-human-greeting"></i>
+						</a>
+						<div class="collapse" id="request">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Request/RequestList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Request/RequestInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!--  Request Toogle End -->
+					<!-- Post Toogle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
+							<span class="menu-title">Post</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-email"></i>
+						</a>
+						<div class="collapse" id="post">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Post/PostList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Post/PostInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Post Toogle End -->
+					<!-- Message Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#message" aria-expanded="false" aria-controls="message">
+							<span class="menu-title">Message</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-message-processing"></i>
+						</a>
+						<div class="collapse" id="message">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Message/MessageList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Message/MessageInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Message Toggle End -->
+					<!-- Comment Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment">
+							<span class="menu-title">Comment</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-comment"></i>
+						</a>
+						<div class="collapse" id="comment">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Comment/comment-list">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Comment/comment-insert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Comment Toggle End -->
+					<!-- Saved Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#saved" aria-expanded="false" aria-controls="saved">
+							<span class="menu-title">Saved</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-content-save"></i>
+						</a>
+						<div class="collapse" id="saved">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Saved/SavedList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Saved/SavedInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Saved Toggle End -->
+					<!-- Collection Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
+							<span class="menu-title">Collection</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-bookmark-check"></i>
+						</a>
+						<div class="collapse" id="collection">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Collection/collection-list">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Collection/collection-insert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Collection Toggle End -->
+					<!-- SavedCollection Toggle Start-->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#savedCollection" aria-expanded="false" aria-controls="savedCollection">
+							<span class="menu-title">Saved Collection</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-content-save-all"></i>
+						</a>
+						<div class="collapse" id="savedCollection">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/SavedCollection/SavedCollectionList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/SavedCollection/SavedCollectionInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- SavedCollection Toggle End -->
+					<!-- Start PostLike Toogle -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
+							<span class="menu-title">PostLike</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-checkbox-marked-circle"></i>
+						</a>
+						<div class="collapse" id="postLike">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- PostLike Toogle End -->
+					<!-- CommentLike Toogle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#commentLike" aria-expanded="false" aria-controls="commentLike">
+							<span class="menu-title">CommentLike</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-comment-check"></i>
+						</a>
+						<div class="collapse" id="commentLike">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeList">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeInsert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- CommentLike Toogle End -->
+					<!-- Tag Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#tag" aria-expanded="false" aria-controls="tag">
+							<span class="menu-title">Tag</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-account-box"></i>
+						</a>
+						<div class="collapse" id="tag">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Tag/tag-list">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Tag/tag-insert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Tag Toggle End -->
+					<!-- Location Toggle Start -->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#location" aria-expanded="false" aria-controls="location">
+							<span class="menu-title">Location</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-compass"></i>
+						</a>
+						<div class="collapse" id="location">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Location/location-list">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Location/location-insert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Location Toggle End -->
+					<!-- Type Toggle Start-->
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="collapse" href="#genre" aria-expanded="false" aria-controls="genre">
+							<span class="menu-title">Type</span>
+							<i class="menu-arrow"></i>
+							<i class="mdi mdi-plus-circle"></i>
+						</a>
+						<div class="collapse" id="genre">
+							<ul class="nav flex-column sub-menu">
+								<li class="nav-item"> <a class="nav-link" href="/Genre/genre-list">Index</a></li>
+								<li class="nav-item"> <a class="nav-link" href="/Genre/genre-insert">Add</a></li>
+							</ul>
+						</div>
+					</li>
+					<!-- Type Toogle End -->
+				</ul>
+			</nav>
+			<!-- Side Bar End -->
+			<!-- Main Content Start -->
+			<div class="main-panel">
+				<div class="content-wrapper">
+					@RenderBody()
+				</div>
+				<!-- RenderBody End-->
+			</div>
+		</div>
+		<!--Body Container End-->
+	</div>
+	<!--Main Body Container End-->
 
-                    <!-- Admin Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" href="#admin" aria-controls="admin">
-                            <span class="menu-title">Admin</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-home"></i>
-                        </a>
-                        <div class="collapse" id="admin">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link" href="/Admin/AdminList">Index</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/Admin/AdminInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Admin Toggle End -->
+	@*#decisionPopup2 Model =LOGOUT MODAL = Scripti zaten delete ile aynı*@
+	<div class="modal fade" id="decisionPopup2" tabindex="=-1" aria-labelledby="askLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" id="askLabel">Ready to Leave?</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Select "Yes" below if you are ready to end your current session.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+					<a href="/Admin/Logout" class="btn btn-success">Yes</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                    <!-- User Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
-                            <span class="menu-title">User</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-account"></i>
-                        </a>
-                        <div class="collapse" id="user">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/User/UserList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/User/UserInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- User Toggle End -->
+	<script src="~/admin_dashboard/assets/vendors/js/vendor.bundle.base.js"></script>
+	<script src="~/admin_dashboard/assets/vendors/chart.js/Chart.min.js"></script>
+	<script src="~/admin_dashboard/assets/js/jquery.cookie.js" type="text/javascript"></script>
+	<script src="~/admin_dashboard/assets/js/off-canvas.js"></script>
+	<script src="~/admin_dashboard/assets/js/hoverable-collapse.js"></script>
+	<script src="~/admin_dashboard/assets/js/misc.js"></script>
+	<script src="~/admin_dashboard/assets/js/dashboard.js"></script>
+	<script src="~/admin_dashboard/assets/js/todolist.js"></script>
 
-                    <!-- Request Toogle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#request" aria-expanded="false" aria-controls="request">
-                            <span class="menu-title">Request</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-human-greeting"></i>
-                        </a>
-                        <div class="collapse" id="request">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Request/RequestInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!--  Request Toogle End -->
+	<!-- Custom js for this page -->
+	<script src="~/admin_dashboard/assets/js/dashboard.js"></script>
+	<!-- End custom js for this page -->
+	@*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>*@
 
-                    <!-- Post Toogle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
-                            <span class="menu-title">Post</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-email"></i>
-                        </a>
-                        <div class="collapse" id="post">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Post/PostList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Post/PostInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Post Toogle End -->
-
-                    <!-- Message Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#message" aria-expanded="false" aria-controls="message">
-                            <span class="menu-title">Message</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-message-processing"></i>
-                        </a>
-                        <div class="collapse" id="message">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Message/MessageList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Message/MessageInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Message Toggle End -->
-
-                    <!-- Comment Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#comment" aria-expanded="false" aria-controls="comment">
-                            <span class="menu-title">Comment</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-comment"></i>
-                        </a>
-                        <div class="collapse" id="comment">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Comment/comment-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Comment/comment-insert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Comment Toggle End -->
-
-                    <!-- Saved Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#saved" aria-expanded="false" aria-controls="saved">
-                            <span class="menu-title">Saved</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-content-save"></i>
-                        </a>
-                        <div class="collapse" id="saved">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Saved/SavedList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Saved/SavedInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Saved Toggle End -->
-
-                    <!-- Collection Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#collection" aria-expanded="false" aria-controls="collection">
-                            <span class="menu-title">Collection</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-bookmark-check"></i>
-                        </a>
-                        <div class="collapse" id="collection">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Collection/collection-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Collection/collection-insert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Collection Toggle End -->
-
-                    <!-- SavedCollection Toggle Start-->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#savedCollection" aria-expanded="false" aria-controls="savedCollection">
-                            <span class="menu-title">Saved Collection</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-content-save-all"></i>
-                        </a>
-                        <div class="collapse" id="savedCollection">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/SavedCollection/SavedCollectionList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/SavedCollection/SavedCollectionInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- SavedCollection Toggle End -->
-
-                    <!-- Start PostLike Toogle -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#postLike" aria-expanded="false" aria-controls="postLike">
-                            <span class="menu-title">PostLike</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-checkbox-marked-circle"></i>
-                        </a>
-                        <div class="collapse" id="postLike">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/PostLike/PostLikeInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- PostLike Toogle End -->
-
-                    <!-- CommentLike Toogle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#commentLike" aria-expanded="false" aria-controls="commentLike">
-                            <span class="menu-title">CommentLike</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-comment-check"></i>
-                        </a>
-                        <div class="collapse" id="commentLike">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeList">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/CommentLike/CommentLikeInsert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- CommentLike Toogle End -->
-
-                    <!-- Tag Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#tag" aria-expanded="false" aria-controls="tag">
-                            <span class="menu-title">Tag</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-account-box"></i>
-                        </a>
-                        <div class="collapse" id="tag">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Tag/tag-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Tag/tag-insert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Tag Toggle End -->
-
-                    <!-- Location Toggle Start -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#location" aria-expanded="false" aria-controls="location">
-                            <span class="menu-title">Location</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-compass"></i>
-                        </a>
-                        <div class="collapse" id="location">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Location/location-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Location/location-insert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Location Toggle End -->
-
-                    <!-- Type Toggle Start-->
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#genre" aria-expanded="false" aria-controls="genre">
-                            <span class="menu-title">Type</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-plus-circle"></i>
-                        </a>
-                        <div class="collapse" id="genre">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/Genre/genre-list">Index</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/Genre/genre-insert">Add</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- Type Toogle End -->
-                </ul>
-            </nav>
-            <!-- Side Bar End -->
-
-            <!-- Main Content Start -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    @RenderBody()
-                </div>
-                <!-- RenderBody End-->
-            </div>          
-        </div>
-        <!--Body Container End-->
-    </div>
-    <!--Main Body Container End-->
-
-    @*#decisionPopup2 Model =LOGOUT MODAL = Scripti zaten delete ile aynı*@
-    <div class="modal fade" id="decisionPopup2" tabindex="=-1" aria-labelledby="askLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title" id="askLabel">Ready to Leave?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Select "Yes" below if you are ready to end your current session.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <a href="/Admin/Logout" class="btn btn-success">Yes</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="~/admin_dashboard/assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="~/admin_dashboard/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="~/admin_dashboard/assets/js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="~/admin_dashboard/assets/js/off-canvas.js"></script>
-    <script src="~/admin_dashboard/assets/js/hoverable-collapse.js"></script>
-    <script src="~/admin_dashboard/assets/js/misc.js"></script>
-    <script src="~/admin_dashboard/assets/js/dashboard.js"></script>
-    <script src="~/admin_dashboard/assets/js/todolist.js"></script>
-
-    <!-- Custom js for this page -->
-    <script src="~/admin_dashboard/assets/js/dashboard.js"></script>
-    <!-- End custom js for this page -->
-
-    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>*@
-
-    <!-- Custom icon scripts -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<!-- Custom icon scripts -->
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 </html>
