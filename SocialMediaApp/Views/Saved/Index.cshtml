@@ -14,10 +14,10 @@
     <div class="search-field d-none d-md-block">
         <form asp-controller="Saved" asp-action="SavedList" class="d-flex align-items-center h-100">
             <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
                 <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Saved Search">
+                <button class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </button>
             </div>
         </form>
     </div>
@@ -29,37 +29,37 @@
     <div class="card-body">
         <table class="table table-hover">
             <thead class="table-head ">
-        <tr>
-            <th>User</th>
-            <th>Post</th>
-            <th>IsActive</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.User.NickName</td>
-                <td>@item.Post.PostContent</td>
-                @if (item.IsActive)
+                <tr>
+                    <th>User</th>
+                    <th>Post</th>
+                    <th>IsActive</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <td>Aktif</td>
+                    <tr>
+                        <td>@item.User.NickName</td>
+                        <td>@item.Post.PostContent</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.SavedId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
+                        </td>
+                        <td><a href="/Saved/Update/@item.SavedId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
                 }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.SavedId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/Saved/Update/@item.SavedId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
-</div>
+            </tbody>
+        </table>
+    </div>
 </div>
 @*ADD BUTON*@
 <div class="text-center d-flex justify-content-start p-2">
@@ -68,9 +68,9 @@
 
 @*SAYFALAMA*@
 <div style="position:relative;">
-<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
         <partial name="PartialCustomPagerView" model="@pager" />
-</div>
+    </div>
 </div>
 
 <!-- Modal -->

@@ -82,7 +82,6 @@ namespace SocialMediaApp.Controllers
         }
         //sifreleme ekle!
 
-        [HttpGet]
         public IActionResult Index(int page = 1, string searchText = "")
         {
             //var admins=adminManager.AdminList().ToPagedList(page, pageSize);

@@ -14,10 +14,10 @@
     <div class="search-field d-none d-md-block">
         <form asp-controller="SavedCollection" asp-action="SavedCollectionList" class="d-flex align-items-center h-100">
             <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
                 <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Saved Collection Search">
+                <button class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </button>
             </div>
         </form>
     </div>
