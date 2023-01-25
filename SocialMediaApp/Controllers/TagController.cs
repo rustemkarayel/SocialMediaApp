@@ -1,10 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
-using X.PagedList;
+using SocialMediaApp.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -14,9 +15,41 @@ namespace SocialMediaApp.Controllers
         UserManager userManager = new UserManager(new EfUserRepository());
         PostManager postManager = new PostManager(new EfPostRepository());
         
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            return View(tagManager.TagList().ToPagedList(page, pageSize));
+            //return View(tagManager.TagList().ToPagedList(page, pageSize));
+            int pageSize = 5;
+
+            Context c = new Context();
+            Pager pager;
+            List<Tag> data;
+
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Tags.Where(
+                    tag=>tag.TaggedUser.NickName.Contains(searchText) ||
+                    tag.Post.PostContent.Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Tags.Where(
+                        tag => tag.TaggedUser.FirstName.Contains(searchText)
+                ).ToList().Count;
+            }
+            else
+            {
+                data = c.Tags.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Tags.ToList().Count;
+            }
+
+            pager = new Pager(itemCounts, pageSize, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "tag-list";
+            ViewBag.contrName = "Tag";
+            ViewBag.searchText = searchText;
+
+            return View(data);
         }
         
         public IActionResult Delete(int id)

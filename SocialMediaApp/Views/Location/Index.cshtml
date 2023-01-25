@@ -1,10 +1,27 @@
 ﻿@using EntityLayer;
-@using X.PagedList;
-@model PagedList<Location>;
+@using SocialMediaApp.PagedList;
+@model List<Location>;
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Pager and Search
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
+}
+
+@section searchbar{
+    <!-- Topbar Search -->
+    <div class="search-field d-none d-md-block">
+        <form class="d-flex align-items-center h-100" asp-controller="Location" asp-action="location-list">
+            <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Location Search">
+            </div>
+        </form>
+    </div>
 }
 
 <div class="card">
@@ -56,8 +73,8 @@
 
 @*SAYFALAMA*@
 <div style="position:relative;">
-    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PartialCustomPagerView" model="@pager" />
     </div>
 </div>
 

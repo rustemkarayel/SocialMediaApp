@@ -6,7 +6,6 @@ using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
-using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -51,11 +50,11 @@ namespace SocialMediaApp.Controllers
                 itemCounts = c.Comments.ToList().Count;
             }
 
-            pager = new Pager(pageSize, itemCounts, page);
+            pager = new Pager(itemCounts, pageSize, page);
 
             ViewBag.pager = pager;
-            ViewBag.actionName = "collection-list";
-            ViewBag.contrName = "Collection";
+            ViewBag.actionName = "comment-list";
+            ViewBag.contrName = "Comment";
             ViewBag.searchText = searchText;
 
             return View(data);

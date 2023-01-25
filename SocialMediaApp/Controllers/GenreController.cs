@@ -1,10 +1,10 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.Validations;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
-using System.Drawing.Printing;
-using X.PagedList;
+using SocialMediaApp.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
@@ -12,9 +12,41 @@ namespace SocialMediaApp.Controllers
     {
         GenreManager genreManager = new GenreManager(new EfGenreRepository());
 
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText = "")
         {
-            return View(genreManager.GenreList().ToPagedList(page, pageSize));
+            //return View(genreManager.GenreList().ToPagedList(page, pageSize));
+
+            int pageSize = 5;
+
+            Context c = new Context();
+            Pager pager;
+            List<Genre> data;
+
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Genres.Where(
+                        genre=>genre.GenreName.Contains(searchText)
+                ).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Genres.Where(
+						genre => genre.GenreName.Contains(searchText)
+				).ToList().Count;
+            }
+            else
+            {
+                data = c.Genres.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Genres.ToList().Count;
+            }
+
+            pager = new Pager(itemCounts, pageSize, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "genre-list";
+            ViewBag.contrName = "Genre";
+            ViewBag.searchText = searchText;
+
+            return View(data);
         }
         
         public IActionResult Delete(int id)
