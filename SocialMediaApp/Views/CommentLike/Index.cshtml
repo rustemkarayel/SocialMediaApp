@@ -11,17 +11,16 @@
 @section searchbar{
     <!-- Topbar Search -->
     <div class="search-field d-none d-md-block">
-        <form class="d-flex align-items-center h-100" asp-controller="CommentLike" asp-action="CommentLikeList">
+        <form asp-controller="CommentLike" asp-action="CommentLikeList" class="d-flex align-items-center h-100">
             <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
+                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="CommentLike search...">
+                <button class="input-group-prepend bg-transparent">
                     <i class="input-group-text border-0 mdi mdi-magnify"></i>
-                </div>
-                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="CommentLike Search">
+                </button>
             </div>
         </form>
     </div>
 }
-
 <div class="card">
     <div class="card-header">
         <h2>COMMENTLİKE</h2>
