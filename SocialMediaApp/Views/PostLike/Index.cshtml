@@ -1,26 +1,44 @@
 ﻿@using EntityLayer;
-@using X.PagedList;
-@model PagedList<PostLike>;
+@using SocialMediaApp.PagedList;
+@model List<PostLike>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Pager and Search
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
-<div class="card">
-    <div class="card-header">
-        <h2>POSTLİKE</h2>
+@section searchbar{
+    <!-- Topbar Search -->
+    <div class="search-field d-none d-md-block">
+        <form class="d-flex align-items-center h-100" asp-controller="PostLike" asp-action="PostLikeList">
+            <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="PostLike Search">
+            </div>
+        </form>
     </div>
-    <div class="card-body">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>PostLiker</th>
-                    <th>Post Creator</th>
-                    <th>Like Time</th>
-                    <th>IsActive</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
+}
+    <div class="card">
+        <div class="card-header">
+            <h2>POSTLIKE</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>PostLiker</th>
+                        <th>Post Creator</th>
+                        <th>Like Time</th>
+                        <th>IsActive</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                 {
                     <tr>
                         <td>@item.PostLiker.NickName</td>
@@ -42,15 +60,17 @@
                 }
             </tbody>
         </table>
-        <div class="text-center d-flex justify-content-start p-2">
-            <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
-        </div>
+
     </div>
+</div>
+
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/PostLike/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 @*SAYFALAMA*@
 <div style="position:relative;">
-    <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PagingPartialView" model="@Model" />
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        <partial name="PartialCustomPagerView" model="@pager" />
     </div>
 </div>
 <!-- Modal -->
