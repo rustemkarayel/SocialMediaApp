@@ -8,6 +8,20 @@
     var pager = (Pager)ViewBag.pager;
     var searchText = ViewBag.searchText;
 }
+@section searchbar{
+    <!-- Topbar Search -->
+    <div class="search-field d-none d-md-block">
+        <form class="d-flex align-items-center h-100" asp-controller="Post" asp-action="PostList">
+            <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Post Search">
+            </div>
+        </form>
+    </div>
+}
+
 <div class="card">
     <div class="card-header">
         <h2>POST</h2>
