@@ -110,6 +110,7 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Update(Post post)
         {
+            post.PostContent = FileUpload(post);
             PostValidator postValidator = new PostValidator();
             var result = postValidator.Validate(post);
             if (result.IsValid)
