@@ -13,7 +13,12 @@ namespace SocialMediaApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+		public IActionResult Login()
+		{
+			return View();
+		}
+
+		public IActionResult Index()
         {
             return View();
         }
