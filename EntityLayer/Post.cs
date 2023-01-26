@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -47,6 +48,10 @@ namespace EntityLayer
 
         //Saved ile ilişkilendirilecek.
         public virtual ICollection<Saved> Saveds { get; set; }
+
+        //Img Dosya Path'i
+        [NotMapped]
+        public IFormFile imgFile { get; set; }
 
     }
 }
