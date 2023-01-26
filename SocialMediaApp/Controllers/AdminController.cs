@@ -67,7 +67,7 @@ namespace SocialMediaApp.Controllers
                 await HttpContext
                     .SignInAsync(
                     principal,
-                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(5) });
+                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(30) });
 
                 return RedirectToAction("AdminProfile", "Admin");
             }
