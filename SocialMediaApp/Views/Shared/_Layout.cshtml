@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Social Media App</title>
@@ -6,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="~/user_interface/assets/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="~/user_interface/style.css" />
+    <link rel="stylesheet" href="~/user_interface/user_profile/userProfile.css" />
     <script src="~/user_interface/script.js" defer></script>
 </head>
 
@@ -212,25 +216,27 @@
                 @RenderBody()
             </div>
 
-            <!-- Side Menu -->
+@*            <!-- Side Menu -->           
             <section class="side-menu">
 
                 <!-- Current User Profile -->
                 <div class="side-menu__user-profile">
-                    <a href="https://github.com/leocosta1"
+                    <a href="/Home/UserProfile"
                        target="_blank"
                        class="side-menu__user-avatar">
                         <img src="~/user_interface/assets/default-user.png" alt="User Picture" />
                     </a>
                     <div class="side-menu__user-info">
-                        <a href="https://github.com/leocosta1" target="_blank">leocosta1</a>
+                        <a href="#" target="_blank">leocosta1</a>
                         <span>Leonardo Costa</span>
                     </div>
                     <button class="side-menu__user-button">Switch</button>
                 </div>
 
-            </section>
+            </section>*@
         </section>
     </main>
+
+     <script src="~/user_interface/user_profile/userProfile.js"></script>
 </body>
 </html>
