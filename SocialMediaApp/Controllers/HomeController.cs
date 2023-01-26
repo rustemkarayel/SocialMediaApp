@@ -27,6 +27,10 @@ namespace SocialMediaApp.Controllers
         {
             return View();
         }
+        public IActionResult Notification()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
