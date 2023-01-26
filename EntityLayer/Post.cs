@@ -16,7 +16,12 @@ namespace EntityLayer
         [StringLength(300)]
         public string PostContent { get; set; }
         [StringLength(300)]
-        public string Description { get; set; }
+        public string PostContent2 { get; set; }
+        [StringLength(300)]
+        public string PostContent3 { get; set; }
+
+        [StringLength(300)]
+        public string? Description { get; set; }
         public bool IsActive { get; set; }
 
         //Location ile ilişkilendirilecek.
