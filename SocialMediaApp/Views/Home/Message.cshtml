@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="~/user_interface/message/message.css" />
+</head>
+<body>
+    <main>
+
+        <div class="preview">
+
+            <!-- Message User Name-->
+            <div id="user-name">__fibo_freak <i class='fas fa-angle-down'></i></div>
+
+            <!-- Left Side Start-->
+            <div>
+                <span id="pic-div">
+                    <img id="pic" src="https://i.pinimg.com/564x/af/d1/12/afd1126225d818c7c5058e11b4b260c3.jpg">
+                </span>
+                <div id="chat-username">
+                    <span id="name">chloe</span>
+                    <span id="msg">I picked up some kambucha..</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="chats">
+            <div class="chat-banner">
+                <div>
+                    <span id="chat-pic">
+                        <img id="pic" src="https://i.pinimg.com/564x/10/8b/0a/108b0a398d44292efb2fa4b755fdbf33.jpg" />
+                    </span>
+                </div>
+                <div><i class='fas fa-info'></i></div>
+            </div>
+            <div class="sender" onclick="like()">hello! how are you?</div><div id="heart">❤️</div>
+            <div class="receiver">heyy! much better</div>
+            <div class="sender" onclick="like()">Thats great!🥰</div><div id="heart">❤️</div>
+            <div class="receiver">How did the interview go? was it good?</div>
+            <div class="sender" onclick="like()">Yeah. I think I did good🙈</div><div id="heart">❤️</div>
+            <div class="receiver">Wow I'm soo happy for you</div>
+            <div class="sender" onclick="like()">Thanks for always supporting me. Means a lot💖</div><div id="heart">❤️</div>
+            <div class="receiver">your most welcome</div>
+            <div class="user-input"></div>
+            <div class="input-msg">
+                <input type="text" id="send-input" placeholder="type something" onfocus="this.value=''" />
+                <i onclick="send()" class='far fa-paper-plane'></i>
+            </div>
+        </div>
+    </main>
+
+    <script src="~/user_interface/message/message.js"></script>
+</body>
+</html>
+
+
