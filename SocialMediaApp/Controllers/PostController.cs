@@ -3,9 +3,13 @@ using BusinessLayer.Validations;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
+using System;
+using System.IO;
 using SocialMediaApp.PagedList;
 using X.PagedList;
 
@@ -14,6 +18,12 @@ namespace SocialMediaApp.Controllers
   
     public class PostController : Controller
     {
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public PostController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
         PostManager pm = new PostManager(new EfPostRepository());
         GenreManager gm= new GenreManager(new EfGenreRepository());
         LocationManager lm=new LocationManager(new EfLocationRepository());
@@ -62,6 +72,7 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Add(Post post)
         {
+            post.PostContent = FileUpload(post);
             PostValidator postValidator = new PostValidator();
             var result=postValidator.Validate(post);
             if (result.IsValid)
@@ -127,6 +138,26 @@ namespace SocialMediaApp.Controllers
             post.IsActive = false;
             pm.PostUpdate(post);
             return RedirectToAction("PostList");
+        }
+
+        //Dosya yüklemek için metod oluşturuldu
+
+        private string FileUpload(Post post)
+        {
+            string uniquefileName = "";
+            if (post.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + post.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    post.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
         }
 
     }
