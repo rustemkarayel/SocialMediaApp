@@ -19,6 +19,26 @@ body {
   background-color: var(--white);
 }
 
+<<<<<<< HEAD
+=======
+header {
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--header-color);
+  border-bottom: 1px solid var(--medium-grey);
+}
+
+#logo {
+  height: 90%;
+  width: 130px;
+  padding: 5px;
+}
+
+>>>>>>> master
 input {
   width: 130px;
   height: 80%;
@@ -29,6 +49,25 @@ input {
   background-color: var(--white);
 }
 
+<<<<<<< HEAD
+=======
+nav {
+  display: inline-flex;
+}
+
+  nav i {
+    margin: 5px 10px;
+    font-size: 20px;
+    color: var(--strong-grey);
+  }
+
+#user {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+>>>>>>> master
   #user img, #profile-pic img {
     height: 100%;
     width: 100%;

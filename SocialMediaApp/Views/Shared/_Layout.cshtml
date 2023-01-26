@@ -55,6 +55,7 @@
 
             </div>
 
+            <!-- Top Navbar Search Bar Start -->
             <div class="header__search">
                 <input type="text" placeholder="Search" />
                 <svg width="24"
@@ -71,7 +72,9 @@
                           stroke-linejoin="round" />
                 </svg>
             </div>
+            <!-- Top Navbar Search Bar End -->
 
+            <!-- Top Navbar Mobile Start -->
             <div class="header__buttons header__buttons--mobile">
                 <a href="#">
                     <svg width="24"
@@ -129,8 +132,12 @@
                     </svg>
                 </a>
             </div>
+            <!-- Top Navbar Mobile End -->
 
+            <!-- Top Navbar Desktop Start -->
             <div class="header__buttons header__buttons--desktop">
+
+                <!-- Home Start -->
                 <a href="#">
                     <svg width="24"
                          height="24"
@@ -142,7 +149,10 @@
                               stroke-width="2" />
                     </svg>
                 </a>
-                <a href="#">
+                <!-- Home End -->
+
+                <!-- Message Start -->
+                <a href="/Home/Message">
                     <svg width="24"
                          height="24"
                          viewBox="0 0 24 24"
@@ -156,6 +166,9 @@
                               fill="var(--text-dark)" />
                     </svg>
                 </a>
+                <!-- Message End -->
+
+                <!-- Shorts Start -->
                 <a href="#">
                     <svg width="24"
                          height="24"
@@ -182,6 +195,9 @@
                               fill="var(--text-dark)" />
                     </svg>
                 </a>
+                <!-- Shorts End -->
+
+                <!-- Notification Start -->
                 <a href="#">
                     <svg width="24"
                          height="24"
@@ -194,13 +210,20 @@
                               stroke-width="0.6" />
                     </svg>
                 </a>
+                <!-- Notification End -->
+
+                <!-- Profie Start -->
                 <button class="profile-button">
                     <div class="profile-button__border"></div>
                     <div class="profile-button__picture">
                         <img src="assets/default-user.png" alt="User Picture" />
                     </div>
                 </button>
+                <!-- Profie End -->
+
             </div>
+            <!-- Top Navbar Desktop End -->
+
         </nav>
     </header>
 
@@ -212,24 +235,6 @@
                 @RenderBody()
             </div>
 
-            <!-- Side Menu -->
-            <section class="side-menu">
-
-                <!-- Current User Profile -->
-                <div class="side-menu__user-profile">
-                    <a href="https://github.com/leocosta1"
-                       target="_blank"
-                       class="side-menu__user-avatar">
-                        <img src="~/user_interface/assets/default-user.png" alt="User Picture" />
-                    </a>
-                    <div class="side-menu__user-info">
-                        <a href="https://github.com/leocosta1" target="_blank">leocosta1</a>
-                        <span>Leonardo Costa</span>
-                    </div>
-                    <button class="side-menu__user-button">Switch</button>
-                </div>
-
-            </section>
         </section>
     </main>
 </body>
