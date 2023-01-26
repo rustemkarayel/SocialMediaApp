@@ -19,6 +19,11 @@ body {
   background-color: var(--white);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> mhusna-workspace
 header {
   position: fixed;
   width: 100vw;
@@ -36,6 +41,10 @@ header {
   padding: 5px;
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> mhusna-workspace
 input {
   width: 130px;
   height: 80%;
@@ -46,6 +55,11 @@ input {
   background-color: var(--white);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> mhusna-workspace
 nav {
   display: inline-flex;
 }
@@ -62,6 +76,10 @@ nav {
   border-radius: 50%;
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> mhusna-workspace
   #user img, #profile-pic img {
     height: 100%;
     width: 100%;
