@@ -33,19 +33,14 @@ namespace SocialMediaApp.Controllers
         {
             return View();
         }
-
-
-
-
-
+        public IActionResult Notification()
+        {
+            return View();
+        }
 
 
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-        public IActionResult Notification()
         {
             return View();
         }
