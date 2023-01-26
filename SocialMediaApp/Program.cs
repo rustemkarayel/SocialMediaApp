@@ -156,6 +156,12 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "Request", pattern: "Request/RequestInsert", defaults: new { controller = "Request", action = "Add" }
                 );
+            
+            app.MapControllerRoute(
+                name: "Home", pattern: "AnaSayfa", defaults: new { controller = "Home", action = "Index" }
+                );
+
+
             app.Run();
         }
     }
