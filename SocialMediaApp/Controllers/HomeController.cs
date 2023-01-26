@@ -23,6 +23,24 @@ namespace SocialMediaApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Message()
+        {
+            return View();
+        }
+
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
         public IActionResult Privacy()
         {
             return View();
@@ -37,5 +55,7 @@ namespace SocialMediaApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
+
     }
 }
