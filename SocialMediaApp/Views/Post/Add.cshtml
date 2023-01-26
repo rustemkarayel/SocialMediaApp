@@ -5,55 +5,59 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="card">
-<div class="card-header">
-<h2>Post Add</h2>
-</div>
-<div class="card-body">
-@using (Html.BeginForm("Add", "Post", FormMethod.Post, new { @class = "form-group" }))
-{
-    @Html.Label("Creator NickName")
-    <select class="form-control" name="UserId">
-        @foreach(var item in Model.UserModel)
+    <div class="card-header">
+        <h2>Post Add</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Post", FormMethod.Post, new { @class = "form-group", @enctype = "multipart/form-data" }))
         {
-            <option value="@item.UserId">@item.NickName</option>
+            @Html.Label("Creator NickName")
+            <select class="form-control" name="UserId">
+                @foreach (var item in Model.UserModel)
+                {
+                    <option value="@item.UserId">@item.NickName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("Generate Date")
+            @Html.TextBox("GenerateDate","",new { @class = "form-control",@type="date"})
+            @Html.ValidationMessage("GenerateDate","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Post Content")
+            @Html.TextBox("PostContent","",new { @class = "form-control"})
+            @Html.ValidationMessage("PostContent","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Post ImgFile")
+            @Html.TextBox("imgFile","",new { @type="file", @class = "form-control"})
+            @Html.ValidationMessage("imgFile","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Description")
+            @Html.TextBox("Description","",new { @class = "form-control"})
+            @Html.ValidationMessage("Description","",new{@class="text-danger"})
+            <br />
+            @Html.Label("Location Name")
+            <select class="form-control" name="LocationId">
+                @foreach (var item in Model.LocationModel)
+                {
+                    <option value="@item.LocationId">@item.LocationName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("Genre Name")
+            <select class="form-control" name="GenreId">
+                @foreach (var item in Model.GenreModel)
+                {
+                    <option value="@item.GenreId">@item.GenreName</option>
+                }
+            </select>
+            <br />
+            @Html.Label("IsActive")
+            <select class="form-control" name="IsActive">
+                <option value="True">Aktif</option>
+                <option value="False">Pasif</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Post Add" />
         }
-    </select>
-    <br />
-    @Html.Label("Generate Date")
-    @Html.TextBox("GenerateDate","",new { @class = "form-control",@type="date"})
-    @Html.ValidationMessage("GenerateDate","",new{@class="text-danger"})
-    <br />
-    @Html.Label("Post Content")
-    @Html.TextBox("PostContent","",new { @class = "form-control"})
-    @Html.ValidationMessage("PostContent","",new{@class="text-danger"})
-    <br />
-    @Html.Label("Description")
-    @Html.TextBox("Description","",new { @class = "form-control"})
-    @Html.ValidationMessage("Description","",new{@class="text-danger"})
-    <br />
-    @Html.Label("Location Name")
-    <select class="form-control" name="LocationId">
-        @foreach(var item in Model.LocationModel)
-        {
-            <option value="@item.LocationId">@item.LocationName</option>
-        }
-    </select>
-    <br />
-    @Html.Label("Genre Name")
-    <select class="form-control" name="GenreId">
-        @foreach(var item in Model.GenreModel)
-        {
-            <option value="@item.GenreId">@item.GenreName</option>
-        }
-    </select>
-    <br />
-    @Html.Label("IsActive")
-    <select class="form-control" name="IsActive">
-        <option value="True">Aktif</option>
-        <option value="False">Pasif</option>
-    </select>
-    <br />
-    <input class="form-control btn btn-primary" type="submit" value="Post Add" />
-}
-</div>
+    </div>
 </div>
