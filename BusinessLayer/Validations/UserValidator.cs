@@ -32,10 +32,6 @@ namespace BusinessLayer.Validations
             //Rule for Birthday
             RuleFor(user => user.Birthday).NotEmpty().WithMessage("Birthday boş bırakılamaz!");
 
-            //Rule for PhotoUrl
-            RuleFor(user => user.PhotoUrl).NotEmpty().WithMessage("PhotoUrl boş bırakılamaz!");
-            RuleFor(user => user.PhotoUrl).MaximumLength(50).WithMessage("Maximum 50 karakter girilmelidir!");
-
             //Rule for Mail
             RuleFor(user => user.Mail).NotEmpty().WithMessage("Mail boş bırakılamaz!");
             RuleFor(user => user.Mail).MaximumLength(50).WithMessage("Maximum 50 karakter girilmelidir!");

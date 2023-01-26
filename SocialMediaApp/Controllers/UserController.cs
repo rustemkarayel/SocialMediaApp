@@ -3,14 +3,21 @@ using BusinessLayer.Validations;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.PagedList;
-using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {
     public class UserController : Controller
     {
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public UserController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
+
         UserManager um = new UserManager(new EfUserRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
@@ -61,6 +68,7 @@ namespace SocialMediaApp.Controllers
             var result=userValidator.Validate(user);
             if(result.IsValid)
             {
+                user.PhotoUrl = FileUpload(user);
                 um.UserInsert(user);
                 return RedirectToAction("UserList");
             }
@@ -96,6 +104,7 @@ namespace SocialMediaApp.Controllers
             var result = userValidator.Validate(user);
             if (result.IsValid)
             {
+                user.PhotoUrl = FileUpload(user);
                 um.UserUpdate(user);
                 return RedirectToAction("UserList");
             }
@@ -107,7 +116,24 @@ namespace SocialMediaApp.Controllers
                 }
                 return View(user);
             }
-
         }
+
+        private string FileUpload(User user)
+        {
+            string uniquefileName = "";
+            if (user.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + user.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "user_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    user.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
+        }
+
     }
 }
