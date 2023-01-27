@@ -50,13 +50,5 @@
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
-	
-	  <ItemGroup>
-    <Folder Include="wwwroot\user_images\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\post_images\" />
-  </ItemGroup>
 
 </Project>
