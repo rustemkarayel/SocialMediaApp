@@ -2,6 +2,7 @@
 using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
 
@@ -41,8 +42,10 @@ namespace SocialMediaApp.Controllers
         {
             return View();
         }
-
-
+		public IActionResult PostCreate()
+		{
+			return View();
+		}
 
         public IActionResult Privacy()
         {
@@ -131,5 +134,7 @@ namespace SocialMediaApp.Controllers
 			}
 			return null;
 		}
-	}
+
+
+    }
 }
