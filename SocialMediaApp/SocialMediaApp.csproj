@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\admin-dashboard\**" />
+    <Compile Remove="wwwroot\sliderimages\**" />
     <Content Remove="wwwroot\admin-dashboard\**" />
+    <Content Remove="wwwroot\sliderimages\**" />
     <EmbeddedResource Remove="wwwroot\admin-dashboard\**" />
+    <EmbeddedResource Remove="wwwroot\sliderimages\**" />
     <None Remove="wwwroot\admin-dashboard\**" />
+    <None Remove="wwwroot\sliderimages\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +49,14 @@
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
+  </ItemGroup>
+	
+	  <ItemGroup>
+    <Folder Include="wwwroot\user_images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\post_images\" />
   </ItemGroup>
 
 </Project>

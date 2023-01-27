@@ -10,7 +10,7 @@
         <h2>User Update</h2>
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "form-group" }))
+        @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "form-group", @enctype = "multipart/form-data" }))
         {
             @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId",@type="hidden"})
             @Html.Label("First Name")
@@ -37,9 +37,16 @@
             @Html.TextBox("Birthday",Model.Birthday.ToString().Split(" ")[0],new { @class = "form-control" ,@type="text" })
             @Html.ValidationMessageFor(user=>user.Birthday,"",new { @class ="text-danger" })
             <br />
-            @Html.Label("PhotoUrl")
-            @Html.TextBoxFor(user=>user.PhotoUrl,new { @class = "form-control",@name="PhotoUrl",@value="@Model.PhotoUrl" } )
-            @Html.ValidationMessageFor(user=>user.PhotoUrl,"",new { @class ="text-danger" })
+            @Html.Label("Update Photo")
+            @*@Html.TextBoxFor(user=>user.imgFile,new { @class = "form-control",@name="PhotoUrl",@value="@Model.PhotoUrl" ,type="file"} )*@
+            <input id="image_file" type="file" name="imgFile" class="form-control" accept="image/*" onchange="changeContent();" />
+            @Html.ValidationMessageFor(user=>user.imgFile,"",new { @class ="text-danger" })
+            <br />
+            <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                <img id="imageDisplay" src="~/user_images/@Model.PhotoUrl" width="100%" height="250px" /><br>
+                <label id="imageName"></label><br>
+                <label id="imageSize"></label>
+            </div>
             <br />
             @Html.Label("Phone")
             @Html.TextBoxFor(user=>user.Phone,new { @class = "form-control",@name="Phone",@value="@Model.Phone" } )
@@ -76,8 +83,42 @@
                 }
             </select>
             <br />
-            <input class="form-control btn btn-primary" type="submit" value="User Update" />
+            <input id="updateBtn" class="form-control btn btn-primary" type="submit" value="User Update" />
         }
     </div>
 </div>
+
+<!--File Upload -->
+<script>
+    function changeContent() {
+        var file = document.getElementById('image_file').files[0];
+        //file.name == "photo.png"
+        //file.type == "image/png"
+        //file.size == 300821
+        document.getElementById('imageDisplay').src = window.URL.createObjectURL(file);
+        document.getElementById('imageName').innerHTML = file.name;
+        var btn = document.getElementById('updateBtn');
+        var sizeLabel = document.getElementById('imageSize');
+
+        if (file.size > 819200) {
+            sizeLabel.innerHTML = "Cannot be more than 800 kilobytes";
+            sizeLabel.style.color = "red";
+            btn.disabled = true;
+        } else {
+            sizeLabel.innerHTML = returnFileSize(file.size);
+            sizeLabel.style.color = "white";
+            btn.disabled = false;
+        }
+    }
+    //File Size 
+    function returnFileSize(number) {
+        if (number < 1024) {
+            return `${number} bytes`;
+        } else if (number >= 1024 && number < 1048576) {
+            return `${(number / 1024).toFixed(1)} KB`;
+        } else if (number >= 1048576) {
+            return `${(number / 1048576).toFixed(1)} MB`;
+        }
+    }
+</script>
 
