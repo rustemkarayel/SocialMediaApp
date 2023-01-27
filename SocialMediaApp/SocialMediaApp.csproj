@@ -50,23 +50,5 @@
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-	  <ItemGroup>
-    <Folder Include="wwwroot\images\admin_images\" />
-    <Folder Include="wwwroot\user_images\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\post_images\" />
-  </ItemGroup>
-=======
->>>>>>> master
-=======
->>>>>>> master
-=======
->>>>>>> master
 
 </Project>

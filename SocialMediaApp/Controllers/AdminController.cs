@@ -29,13 +29,9 @@ namespace SocialMediaApp.Controllers
         private readonly IWebHostEnvironment webHostEnvironment;
 
         //logger ekle!
-        public AdminController(IToastNotification toastNotification)
+        public AdminController(IToastNotification toastNotification, IWebHostEnvironment webHostEnvironment)
         {
             _toastNotification = toastNotification;
-        }
-
-        public AdminController(IWebHostEnvironment webHostEnvironment)
-        {
             this.webHostEnvironment = webHostEnvironment;
         }
 
