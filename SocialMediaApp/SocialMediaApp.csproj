@@ -52,6 +52,7 @@
   </ItemGroup>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	  <ItemGroup>
     <Folder Include="wwwroot\images\admin_images\" />
@@ -61,6 +62,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\post_images\" />
   </ItemGroup>
+=======
+>>>>>>> master
 =======
 >>>>>>> master
 =======
