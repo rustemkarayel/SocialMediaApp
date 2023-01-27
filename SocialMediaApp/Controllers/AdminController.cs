@@ -17,6 +17,7 @@ using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json.Linq;
 using SocialMediaApp.PagedList;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SocialMediaApp.Controllers
 {
@@ -25,12 +26,17 @@ namespace SocialMediaApp.Controllers
     {
         AdminManager adminManager = new AdminManager(new EfAdminRepository());
         private readonly IToastNotification _toastNotification;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-
-		//logger ekle!
-		public AdminController(IToastNotification toastNotification)
+        //logger ekle!
+        public AdminController(IToastNotification toastNotification)
         {
             _toastNotification = toastNotification;
+        }
+
+        public AdminController(IWebHostEnvironment webHostEnvironment)
+        {
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         [AllowAnonymous]
@@ -129,6 +135,7 @@ namespace SocialMediaApp.Controllers
             var result=adminValidator.Validate(admin);
             if (result.IsValid)
             {
+                admin.imgUrl = FileUpload(admin);
                 adminManager.AdminInsert(admin);
                 return RedirectToAction("AdminList");
             }
@@ -169,6 +176,7 @@ namespace SocialMediaApp.Controllers
 
             if (result.IsValid)
             {
+                admin.imgUrl = FileUpload(admin);
                 adminManager.AdminUpdate(admin);
                 return RedirectToAction("AdminList");
             }
@@ -181,6 +189,23 @@ namespace SocialMediaApp.Controllers
 
                 return View(admin);
             }
+        }
+
+        private string FileUpload(Admin user)
+        {
+            string uniquefileName = "";
+            if (user.imgFile != null)
+            {
+                uniquefileName = Guid.NewGuid().ToString() + "_" + user.imgFile.FileName;
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "user_images");
+                string filePath = Path.Combine(uploadfolder, uniquefileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    user.imgFile.CopyTo(stream);
+                }
+            }
+            return uniquefileName;
         }
     }
 }

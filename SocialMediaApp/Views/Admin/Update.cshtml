@@ -36,9 +36,15 @@
             @Html.TextBoxFor(admin=>admin.AdminType,new { @class = "form-control"})
             @Html.ValidationMessageFor(admin=>admin.AdminType,"",new{@class="text-danger"})
             <br />
-            @Html.Label("Image Url")
-            @Html.TextBoxFor(admin=>admin.imgUrl,new { @class = "form-control"})
-            @Html.ValidationMessageFor(admin=>admin.imgUrl,"",new{@class="text-danger"})
+            @Html.Label("Update Photo")
+            <input id="image_file" type="file" name="imgFile" class="form-control" accept="image/*" onchange="changeContent();" />
+            @Html.ValidationMessageFor(user=>user.imgFile,"",new { @class ="text-danger" })
+            <br />
+            <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                <img id="imageDisplay" src="~/user_images/@Model.imgUrl" width="100%" height="250px" /><br>
+                <label id="imageName"></label><br>
+                <label id="imageSize"></label>
+            </div>
             <br />
             @Html.Label("IsActive")
             <select class="form-control" name="IsActive">

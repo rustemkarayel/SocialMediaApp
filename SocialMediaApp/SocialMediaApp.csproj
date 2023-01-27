@@ -52,6 +52,7 @@
   </ItemGroup>
 	
 	  <ItemGroup>
+    <Folder Include="wwwroot\images\admin_images\" />
     <Folder Include="wwwroot\user_images\" />
   </ItemGroup>
 

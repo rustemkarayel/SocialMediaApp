@@ -32,9 +32,17 @@
             @Html.TextBoxFor(admin=>admin.AdminType,new { @class = "form-control"})
             @Html.ValidationMessageFor(admin=>admin.AdminType,"",new{@class="text-danger"})
             <br />
-            @Html.Label("Image Url")
-            @Html.TextBoxFor(admin=>admin.imgUrl,new { @class = "form-control"})
-            @Html.ValidationMessageFor(admin=>admin.imgUrl,"",new{@class="text-danger"})
+
+            @Html.Label("Upload Photo")
+            <input id="image_file" type="file" name="imgFile" class="form-control" accept="image/*" onchange="changeContent();" />
+            @Html.ValidationMessageFor(admin=>admin.imgFile,"",new{@class="text-danger"})
+            <br />
+
+            <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                <img id="imageDisplay" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="250px" /><br>
+                <label id="imageName"></label><br>
+                <label id="imageSize"></label>
+            </div>
             <br />
 
             @Html.Label("IsActive")
@@ -48,3 +56,37 @@
     </div>
 </div>
 
+<!--File Upload -->
+<script>
+
+    function changeContent() {
+
+        var file = document.getElementById('image_file').files[0];
+
+        document.getElementById('imageDisplay').src = window.URL.createObjectURL(file);
+        document.getElementById('imageName').innerHTML = file.name;
+        var btn = document.getElementById('addBtn');
+        var sizeLabel = document.getElementById('imageSize');
+
+        if (file.size > 819200) {
+            sizeLabel.innerHTML = "Cannot be more than 800 kilobytes";
+            sizeLabel.style.color = "red";
+            btn.disabled = true;
+        } else {
+            sizeLabel.innerHTML = returnFileSize(file.size);
+            sizeLabel.style.color = "white";
+            btn.disabled = false;
+        }
+    }
+
+    //File Size
+    function returnFileSize(number) {
+        if (number < 1024) {
+            return `${number} bytes`;
+        } else if (number >= 1024 && number < 1048576) {
+            return `${(number / 1024).toFixed(1)} KB`;
+        } else if (number >= 1048576) {
+            return `${(number / 1048576).toFixed(1)} MB`;
+        }
+    }
+</script>
