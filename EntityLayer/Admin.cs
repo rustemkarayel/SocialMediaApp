@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace EntityLayer
 {
@@ -28,6 +30,9 @@ namespace EntityLayer
         public string AdminType { get; set; }
         [StringLength(100)]
         public string imgUrl { get; set; }
+
+        [NotMapped]
+        public IFormFile imgFile { get; set; }
         public bool IsActive { get; set; }
 
     }

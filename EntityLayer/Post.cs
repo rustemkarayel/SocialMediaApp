@@ -23,6 +23,7 @@ namespace EntityLayer
 
         [StringLength(300)]
         public string? Description { get; set; }
+        public bool isSeen { get; set; }
         public bool IsActive { get; set; }
 
         //Location ile ilişkilendirilecek.
