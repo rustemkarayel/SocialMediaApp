@@ -237,9 +237,9 @@ img {
   background-color: var(--primary);
   padding: 16px 0;
   flex-shrink: 0;
-
   position: relative;
   overflow: hidden;
+  height: 122px;
 }
 .stories::after {
   content: '';
