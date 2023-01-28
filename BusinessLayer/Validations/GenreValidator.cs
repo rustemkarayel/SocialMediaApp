@@ -12,9 +12,9 @@ namespace BusinessLayer.Validations
     {
         public GenreValidator()
         {
-            //Name
-            RuleFor(genre=>genre.GenreName).NotEmpty().WithMessage("Name alanı boş geçilemez !");
-            RuleFor(genre=>genre.GenreName).MaximumLength(25).WithMessage("Name alanı maksimum 25 karakter olmalı !");
+            ////Name
+            //RuleFor(genre=>genre.GenreName).NotEmpty().WithMessage("Name alanı boş geçilemez !");
+            //RuleFor(genre=>genre.GenreName).MaximumLength(25).WithMessage("Name alanı maksimum 25 karakter olmalı !");
         }
     }
 }
