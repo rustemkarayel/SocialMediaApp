@@ -27,7 +27,7 @@ namespace EntityLayer
         public bool IsActive { get; set; }
 
         //Location ile ilişkilendirilecek.
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
         public virtual Location Location { get; set; }
 
         //Genre ile ilişkilendirilecek.
