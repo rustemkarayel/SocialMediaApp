@@ -10,7 +10,7 @@
         <h2>Admin Insert</h2>
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { @class = "form-group" }))
+        @using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { @class = "form-group", @enctype = "multipart/form-data"} ))
         {
             @Html.Label("First Name")
             @Html.TextBoxFor(admin=>admin.AdminFirstName,new { @class = "form-control"})
@@ -51,7 +51,7 @@
                 <option value="False">Pasif</option>
             </select>
             <br />
-            <input class="form-control btn btn-primary" type="submit" value="Admin Add" />
+            <input id="addBtn" class="form-control btn btn-primary" type="submit" value="Admin Add" />
         }
     </div>
 </div>

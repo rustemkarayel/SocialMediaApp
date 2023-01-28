@@ -13,7 +13,7 @@
 
     <div class="card-body">
 
-        @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group" }))
+        @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group", @enctype = "multipart/form-data"  }))
         {
             @Html.TextBoxFor(admin=>admin.AdminId,new { @class = "form-control",@name="AdminId",@value="@Model.AdminId",@type="hidden"})
             @Html.Label("First Name")
@@ -52,8 +52,42 @@
                 <option value="False">Pasif</option>
             </select>
             <br />
-            <input class="form-control btn btn-primary" type="submit" value="Update" />
+            <input id="updateBtn" class="form-control btn btn-primary" type="submit" value="Update" />
         }
     </div>
 </div>
 
+<!--File Upload -->
+<script>
+
+    function changeContent() {
+
+        var file = document.getElementById('image_file').files[0];
+
+        document.getElementById('imageDisplay').src = window.URL.createObjectURL(file);
+        document.getElementById('imageName').innerHTML = file.name;
+        var btn = document.getElementById('updateBtn');
+        var sizeLabel = document.getElementById('imageSize');
+
+        if (file.size > 819200) {
+            sizeLabel.innerHTML = "Cannot be more than 800 kilobytes";
+            sizeLabel.style.color = "red";
+            btn.disabled = true;
+        } else {
+            sizeLabel.innerHTML = returnFileSize(file.size);
+            sizeLabel.style.color = "white";
+            btn.disabled = false;
+        }
+    }
+
+    //File Size
+    function returnFileSize(number) {
+        if (number < 1024) {
+            return `${number} bytes`;
+        } else if (number >= 1024 && number < 1048576) {
+            return `${(number / 1024).toFixed(1)} KB`;
+        } else if (number >= 1048576) {
+            return `${(number / 1048576).toFixed(1)} MB`;
+        }
+    }
+</script>

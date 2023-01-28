@@ -51,4 +51,8 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\admin_images\" />
+  </ItemGroup>
+
 </Project>

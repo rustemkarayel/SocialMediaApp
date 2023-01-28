@@ -32,10 +32,6 @@ namespace BusinessLayer.Validations
             //Rule for AdminType
             RuleFor(admin => admin.AdminType).NotEmpty().WithMessage("AdminType boş bırakılamaz!");
             RuleFor(admin => admin.AdminType).MaximumLength(15).WithMessage("Maximum 15 karakter girilmelidir!");
-
-            //Rule for imgUrl
-            RuleFor(admin => admin.imgUrl).NotEmpty().WithMessage("Img Url boş bırakılamaz!");
-            RuleFor(admin => admin.imgUrl).MaximumLength(100).WithMessage("Maximum 100 karakter girilmelidir!");
         }
     }
 }

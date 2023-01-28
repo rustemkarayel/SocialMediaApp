@@ -193,7 +193,7 @@ namespace SocialMediaApp.Controllers
             if (user.imgFile != null)
             {
                 uniquefileName = Guid.NewGuid().ToString() + "_" + user.imgFile.FileName;
-                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "user_images");
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "admin_images");
                 string filePath = Path.Combine(uploadfolder, uniquefileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
