@@ -51,9 +51,7 @@ namespace SocialMediaApp.Controllers
 		}
 		[HttpPost]
 		public IActionResult PostCreate(Post post)
-		{
-			
-
+		{			
 			postManager.PostInsert(post);
 			return RedirectToAction("Anasayfa");
 
@@ -67,6 +65,12 @@ namespace SocialMediaApp.Controllers
 		public IActionResult Comment(Comment comment)
 		{
 			return View();
+		}
+		[HttpGet]
+		public IActionResult Story()
+		{
+			return View();
+
 		}
 
         public IActionResult Privacy()
