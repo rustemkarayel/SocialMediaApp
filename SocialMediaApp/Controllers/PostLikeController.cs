@@ -7,7 +7,6 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
-using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {

@@ -3,16 +3,9 @@ using BusinessLayer.Validations;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
-using System;
-using System.IO;
 using SocialMediaApp.PagedList;
-using X.PagedList;
-
 namespace SocialMediaApp.Controllers
 {
   

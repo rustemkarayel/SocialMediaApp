@@ -8,16 +8,8 @@ using System.Security.Claims;
 using NToastNotify;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
-using X.PagedList;
 using BusinessLayer.Validations;
-using Azure;
-using Microsoft.AspNetCore.Identity;
-using SocialMediaApp.Models;
-using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json.Linq;
 using SocialMediaApp.PagedList;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Hosting;
 
 namespace SocialMediaApp.Controllers
 {

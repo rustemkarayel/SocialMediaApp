@@ -4,11 +4,8 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
 using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
-using System.ComponentModel;
-using X.PagedList;
 
 namespace SocialMediaApp.Controllers
 {

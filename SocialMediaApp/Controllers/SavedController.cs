@@ -6,9 +6,6 @@ using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
-using System.Drawing.Printing;
-using X.PagedList;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SocialMediaApp.Controllers
 {

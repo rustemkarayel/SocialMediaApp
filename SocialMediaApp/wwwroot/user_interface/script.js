@@ -64,12 +64,9 @@ if (window.matchMedia('(min-width: 1024px)').matches) {
   );
 
   // Calling the observer with the first and last stories
-  if ((document.getElementsByClassName(".story:first-child")).length > 0) {
-    storiesObserver.observe(document.querySelector('.story:first-child'));
-  }
-  if ((document.getElementsByClassName(".story:last-child")).length > 0) {
-    storiesObserver.observe(document.querySelector('.story:last-child'));
-  }
+  storiesObserver.observe(document.querySelector('.story:first-child'));
+
+  storiesObserver.observe(document.querySelector('.story:last-child'));
 }
 
 // ===================================
