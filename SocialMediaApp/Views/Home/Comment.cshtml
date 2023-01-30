@@ -1,0 +1,28 @@
+﻿@using EntityLayer;
+@model Post;
+@{
+    ViewData["Title"] = "Comment";
+    Layout = null;
+}
+
+@Model.PostId
+<br />
+@Model.GenerateDate
+<br />
+@Model.PostContent
+<br />
+@Model.Description
+<br />
+@Model.IsActive.ToString();
+<br />
+@*@Model.Location.LocationName*@
+<br />
+@*@Model.Genre.GenreName*@
+<br />
+@*@Model.Creator.NickName*@
+<br />
+@Model.PostContent2
+<br />
+@Model.PostContent3
+<br />
+@Model.isSeen.ToString();
