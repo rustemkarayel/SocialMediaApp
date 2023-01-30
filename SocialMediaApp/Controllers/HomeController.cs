@@ -57,9 +57,9 @@ namespace SocialMediaApp.Controllers
 
        }
 		[HttpGet]
-		public IActionResult Comment()
+		public IActionResult Comment(Post post)
 		{
-			return View();
+			return View(post);
 		}
 		[HttpPost]
 		public IActionResult Comment(Comment comment)
