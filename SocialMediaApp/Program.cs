@@ -55,6 +55,9 @@ namespace SocialMediaApp
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
+            name: "Home", pattern: "Home/Anasayfa", defaults: new { controller = "Home", action = "Index" }
+            );
+            app.MapControllerRoute(
                 name: "Admin", pattern: "Admin/AdminList", defaults: new { controller = "Admin", action = "Index" }
                 );
             app.MapControllerRoute(

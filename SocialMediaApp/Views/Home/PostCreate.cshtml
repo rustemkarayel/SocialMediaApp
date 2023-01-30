@@ -31,17 +31,16 @@
                         <span class="drop-title">Drop files here</span>
                         or
 
-                        <input id="image_file" type="file" name="imgFile" class="form-control" accept="image/*" onchange="changeContent();" />
-                        @Html.ValidationMessageFor(post=>post.imgFile,"",new{@class="text-danger"})
+                        <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent();" />
+                        @Html.ValidationMessageFor(post=>post.imgFiles,"",new{@class="text-danger"})
                         <br />
                     </label>
 
                     <br />
-                    <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                    <div style="border:1px dashed black;padding:5px;width:30%;">
 
-                        <img id="imageDisplay" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="250px" /><br><br>
-
-                        <label id="imageSize"></label>
+                        <img id="imageDisplay" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="200px" /><br><br>
+                         <label id="imageSize"></label>
                     </div>
                     <br />
                 }
