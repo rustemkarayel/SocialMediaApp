@@ -207,10 +207,10 @@
                 <!-- Post Info -->
                 <div class="post__infos">
                     <div class="post__likes">
+                        @if(post.PostLikes.Count > 0 ){
                         <a href="#" class="post__likes-avatar">
                             <img src="~/user_images/@post.PostLikes.ElementAt(0).PostLiker.PhotoUrl" alt="User Picture" />
                         </a>
-
                         <span>
                             Liked by
                             <a class="post__name--underline" href="#">@post.PostLikes.ElementAt(0).PostLiker.NickName.ToLower()</a>
@@ -222,6 +222,7 @@
                                 </a>
                             }                       
                         </span>
+                        }
                     </div>
 
                     <div class="post__description">
