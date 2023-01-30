@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
 namespace SocialMediaApp.Controllers
@@ -65,11 +66,17 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Add(Post post)
         {
-            post.PostContent = FileUpload(post);
             PostValidator postValidator = new PostValidator();
             var result=postValidator.Validate(post);
             if (result.IsValid)
             {
+                var dizi = FileUpload(post);
+                if (dizi.IsNullOrEmpty())
+                {
+                    post.PostContent = dizi[0];
+                    post.PostContent2 = dizi[1];
+                    post.PostContent3 = dizi[2];
+                }
                 pm.PostInsert(post);
                 return RedirectToAction("PostList");
             }
@@ -103,11 +110,17 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public IActionResult Update(Post post)
         {
-            post.PostContent = FileUpload(post);
             PostValidator postValidator = new PostValidator();
             var result = postValidator.Validate(post);
             if (result.IsValid)
             {
+                var dizi = FileUpload(post);
+                if (dizi.IsNullOrEmpty())
+                {
+                    post.PostContent = dizi[0];
+                    post.PostContent2 = dizi[1];
+                    post.PostContent3 = dizi[2];
+                }
                 pm.PostUpdate(post);
                 return RedirectToAction("PostList");
             }
@@ -136,20 +149,28 @@ namespace SocialMediaApp.Controllers
 
         //Dosya yüklemek için metod oluşturuldu
 
-        private string FileUpload(Post post)
+        private string[] FileUpload(Post post)
         {
-            string uniquefileName = "";
-            if (post.imgFile != null)
+            string[] uniquefileName = new string[3];
+            if (post.imgFiles.Count > 0)
             {
-                uniquefileName = Guid.NewGuid().ToString() + "_" + post.imgFile.FileName;
-                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
-                string filePath = Path.Combine(uploadfolder, uniquefileName);
+                var i = 0;               
+                foreach (var file in post.imgFiles)
+                {                   
+                    if (post.imgFiles != null)
+                    {
+                        uniquefileName[i] = Guid.NewGuid().ToString() + "_" + file.FileName;
+                        i++;
+                        string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
+                        string filePath = Path.Combine(uploadfolder, uniquefileName[i]);
 
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    post.imgFile.CopyTo(stream);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                    }                 
                 }
+                return uniquefileName;
             }
             return uniquefileName;
         }

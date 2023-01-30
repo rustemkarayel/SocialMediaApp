@@ -52,7 +52,7 @@ namespace EntityLayer
 
         //Img Dosya Path'i
         [NotMapped]
-        public IFormFile imgFile { get; set; }
+        public List<IFormFile> imgFiles { get; set; }
 
     }
 }

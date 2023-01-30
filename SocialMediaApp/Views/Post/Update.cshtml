@@ -31,8 +31,8 @@
             @Html.Label("GenerateDate")
             @Html.TextBox("GenerateDate","",new{@class="form-control",@type="date"})
             <br />
-            <input id="image_file" type="file" name="imgFile" class="form-control" accept="image/*" onchange="changeContent();" />
-            @Html.ValidationMessageFor(post=>post.PostModel.imgFile,"",new { @class ="text-danger" })
+            <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent();" />
+            @Html.ValidationMessageFor(post=>post.PostModel.imgFiles,"",new { @class ="text-danger" })
             <br />
             <div style="border:1px dashed white;padding:5px;width:30%;padding:10px;">
                 <img id="imageDisplay" src="~/sliderimages/@Model.PostModel.PostContent" width="100%" height="250px" />
