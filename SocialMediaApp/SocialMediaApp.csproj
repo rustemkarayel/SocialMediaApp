@@ -8,13 +8,9 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\admin-dashboard\**" />
-    <Compile Remove="wwwroot\sliderimages\**" />
     <Content Remove="wwwroot\admin-dashboard\**" />
-    <Content Remove="wwwroot\sliderimages\**" />
     <EmbeddedResource Remove="wwwroot\admin-dashboard\**" />
-    <EmbeddedResource Remove="wwwroot\sliderimages\**" />
     <None Remove="wwwroot\admin-dashboard\**" />
-    <None Remove="wwwroot\sliderimages\**" />
   </ItemGroup>
 
   <ItemGroup>

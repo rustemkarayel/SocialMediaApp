@@ -12,9 +12,11 @@ namespace SocialMediaApp.Controllers
     {
         PostManager postManager = new PostManager(new EfPostRepository());
         private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController( ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment)
         {
+            this.webHostEnvironment = webHostEnvironment;
             _logger = logger;
         }
 
@@ -42,7 +44,27 @@ namespace SocialMediaApp.Controllers
         {
             return View();
         }
+		[HttpGet]
 		public IActionResult PostCreate()
+		{		
+			return View();
+		}
+		[HttpPost]
+		public IActionResult PostCreate(Post post)
+		{
+			
+
+			postManager.PostInsert(post);
+			return RedirectToAction("Anasayfa");
+
+       }
+		[HttpGet]
+		public IActionResult Comment()
+		{
+			return View();
+		}
+		[HttpPost]
+		public IActionResult Comment(Comment comment)
 		{
 			return View();
 		}
