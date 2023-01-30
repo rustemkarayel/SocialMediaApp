@@ -163,6 +163,9 @@ namespace SocialMediaApp
             app.MapControllerRoute(
                 name: "Home", pattern: "AnaSayfa", defaults: new { controller = "Home", action = "Index" }
                 );
+            app.MapControllerRoute(
+                name: "Home", pattern: "Yorumlar", defaults: new { controller = "Home", action = "Comment" }
+                );
 
 
             app.Run();
