@@ -16,11 +16,8 @@
         @using (Html.BeginForm("Add", "Genre", FormMethod.Post, new { @class = "form-group" }))
         {
             @Html.Label("Genre Name")
-            <select class="form-control" name="GenreName">
-                <option>Post</option>
-                <option>Story</option>
-                <option>Reels</option>
-            </select>
+            @Html.TextBoxFor(genre=>genre.GenreName,new { @class = "form-control"})
+            @Html.ValidationMessageFor(genre=>genre.GenreName,"",new{@class="text-danger"})
             <br />
             @Html.Label("IsActive")
             <select class="form-control" name="IsActive">

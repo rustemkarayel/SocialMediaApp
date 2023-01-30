@@ -16,26 +16,8 @@
         {
             @Html.TextBox("GenreId",Model.GenreId,new { @class = "form-control" ,@type="hidden"})
             @Html.Label("Genre Name")
-            <select class="form-control" name="GenreName">
-                @if (Model.GenreName == "Post")
-                {
-                    <option selected>Post</option>
-                    <option>Story</option>
-                    <option>Reels</option>
-                }
-                else if (Model.GenreName == "Story")
-                {
-                    <option>Post</option>
-                    <option selected>Story</option>
-                    <option>Reels</option>
-                }
-                else
-                {
-                    <option>Post</option>
-                    <option>Story</option>
-                    <option selected>Reels</option>
-                }
-            </select>
+            @Html.TextBoxFor(genre=>genre.GenreName,new {@class = "form-control"})
+            @Html.ValidationMessageFor(genre=>genre.GenreName,"",new {@class = "text-danger"})
             <br />
             @Html.Label("IsActive")
             <select class="form-control" name="IsActive">
