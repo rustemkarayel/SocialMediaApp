@@ -21,33 +21,47 @@
         <div class="card col-sm-6">
 
             <div class="card-header">
-                <div>Create New Post</div>
+                <div>Create New Post</div> 
             </div>
-
+            <a href="/Home/Index" style="position:absolute;margin-left:93%;font-size:27px; color:black;"><ion-icon name="close-circle-outline"></ion-icon></a>
             <div class="card-body">
                 @using (Html.BeginForm("Add", "Post", FormMethod.Post, new { @class = "form-group", @enctype = "multipart/form-data" }))
                 {
                     <label for="image_file" class="drop-container">
                         <span class="drop-title">Drop files here</span>
                         or
-
                         <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent();" />
                         @Html.ValidationMessageFor(post=>post.imgFiles,"",new{@class="text-danger"})
                         <br />
                     </label>
-
                     <br />
-                    <div style="border:1px dashed black;padding:5px;width:30%;">
-
-                        <img id="imageDisplay" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="200px" /><br><br>
-                         <label id="imageSize"></label>
+                    <div style="display:flex;justify-content:space-around;">
+                        <div style="border:1px dashed black;padding:5px;width:30%;padding:5px;">
+                            <img id="imageDisplay1" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="250px" /><br>
+                            <label id="imageName1"></label><br>
+                            <label id="imageSize1"></label>
+                        </div>
+                        <div style="border:1px dashed black;padding:5px;width:30%;padding:5px;">
+                            <img id="imageDisplay2" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="250px" /><br>
+                            <label id="imageName2"></label><br>
+                            <label id="imageSize2"></label>
+                        </div>
+                        <div style="border:1px dashed black;padding:5px;width:30%;padding:5px;">
+                            <img id="imageDisplay3" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="250px" /><br>
+                            <label id="imageName3"></label><br>
+                            <label id="imageSize3"></label>
+                        </div>
                     </div>
-                    <br />
                 }
             </div>
         </div>
     </div>
 
     <script src="~/user_interface/post_create/postCreate.js"></script>
+
+    <!-- Custom icon scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
