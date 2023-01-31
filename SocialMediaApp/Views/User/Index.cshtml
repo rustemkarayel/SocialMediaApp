@@ -56,7 +56,9 @@
                         <td>*************</td>
                         <td>@item.Mail</td>
                         <td>@item.Birthday.ToString().Split(" ")[0]</td>
-                        <td>@item.PhotoUrl</td>
+                        <td>
+                            <img src="~/user_images/@item.PhotoUrl" style="width:50px;height:40px;border-radius:5px;" />
+                        </td>
                         <td>@item.Phone</td>
                         <td>@item.Country</td>
                         @if (item.Gender)
@@ -91,10 +93,8 @@
 </div>
 
 @*SAYFALAMA*@
-<div style="position:relative;">
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+<div id="Pager" class=" d-flex justify-content-center">
         <partial name="PartialCustomPagerView" model="@pager" />
-    </div>
 </div>
 
 <!-- Modal -->

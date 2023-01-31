@@ -31,13 +31,26 @@
             @Html.Label("GenerateDate")
             @Html.TextBox("GenerateDate","",new{@class="form-control",@type="date"})
             <br />
-            <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent();" />
-            @Html.ValidationMessageFor(post=>post.PostModel.imgFiles,"",new { @class ="text-danger" })
+            @Html.Label("Post ImgFile")
+            <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent()" multiple />
+            @Html.ValidationMessage("imgFiles","",new{@class="text-danger"})
             <br />
-            <div style="border:1px dashed white;padding:5px;width:30%;padding:10px;">
-                <img id="imageDisplay" src="~/sliderimages/@Model.PostModel.PostContent" width="100%" height="250px" />
-                <label id="imageName"></label>
-                <label id="imageSize"></label>
+            <div style="display:flex;justify-content:space-around;">
+                <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                    <img id="imageDisplay1" src="~/post_images/@Model.PostModel.PostContent" width="100%" height="250px" /><br>
+                    <label id="imageName1">@Model.PostModel.PostContent.Split("_")[1]</label><br>
+                    <label id="imageSize1"></label>
+                </div>
+                <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                    <img id="imageDisplay2" src="~/post_images/@Model.PostModel.PostContent2" width="100%" height="250px" /><br>
+                    <label id="imageName2">@Model.PostModel.PostContent2.Split("_")[1]</label><br>
+                    <label id="imageSize2"></label>
+                </div>
+                <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
+                    <img id="imageDisplay3" src="~/post_images/@Model.PostModel.PostContent3" width="100%" height="250px" /><br>
+                    <label id="imageName3">@Model.PostModel.PostContent3.Split("_")[1]</label><br>
+                    <label id="imageSize3"></label>
+                </div>
             </div>
             <br />
             @Html.Label("Post Content")
@@ -95,37 +108,118 @@
     </div>
 </div>
 
-<!-- Script Start -->
+<!--File Upload -->
 <script>
     function changeContent() {
-        var file = document.getElementById('image_file').files[0];
-        //file.name == "photo.png"
-        //file.type == "image/png"
-        //file.size == 300821
-        document.getElementById('imageDisplay').src = window.URL.createObjectURL(file);
-        document.getElementById('imageName').innerHTML = file.name;
         var btn = document.getElementById('updateBtn');
-        var sizeLabel = document.getElementById('imageSize');
-        if (file.size > 809600) {
-            sizeLabel.innerHTML = "400 kilobayttan fazla olamaz";
-            sizeLabel.style.color = "red";
-            btn.disabled = true;
-        } else {
-            sizeLabel.innerHTML = returnFileSize(file.size);
-            sizeLabel.style.color = "white";
-            btn.disabled = false;
-        }
+        var selectedImgCounts = document.getElementById('image_file').files.length;
+        console.log(selectedImgCounts);
 
-    }
-    function returnFileSize(number) {
-        if (number < 1024) {
-            return `${number} bytes`;
-        } else if (number >= 1024 && number < 1048576) {
-            return `${(number / 1024).toFixed(1)} KB`;
-        } else if (number >= 1048576) {
-            return `${(number / 1048576).toFixed(1)} MB`;
+        switch (selectedImgCounts) {
+            case 1:
+
+                var file1 = document.getElementById('image_file').files[0];
+                var sizeLabel1 = document.getElementById('imageSize1');
+                document.getElementById('imageDisplay1').src = window.URL.createObjectURL(file1);
+                document.getElementById('imageName1').innerHTML = file1.name;
+
+                if (file1.size > 819200) {
+                    sizeLabel1.innerHTML = "Cannot be more than 800 kilobytes";
+                    sizeLabel1.style.color = "red";
+                    btn.disabled = true;
+                } else {
+                    sizeLabel1.innerHTML = returnFileSize(file1.size);
+                    sizeLabel1.style.color = "black";
+                    btn.disabled = false;
+                }
+
+                break;
+            case 2:
+                var file1 = document.getElementById('image_file').files[0];
+                var sizeLabel1 = document.getElementById('imageSize1');
+                document.getElementById('imageDisplay1').src = window.URL.createObjectURL(file1);
+                document.getElementById('imageName1').innerHTML = file1.name;
+
+                var file2 = document.getElementById('image_file').files[1];
+                var sizeLabel2 = document.getElementById('imageSize2');
+                document.getElementById('imageDisplay2').src = window.URL.createObjectURL(file2);
+                document.getElementById('imageName2').innerHTML = file2.name;
+
+                if (file1.size > 819200) {
+                    sizeLabel1.innerHTML = "Cannot be more than 800 kilobytes";
+                    sizeLabel1.style.color = "red";
+                    btn.disabled = true;
+                } else {
+                    sizeLabel1.innerHTML = returnFileSize(file1.size);
+                    sizeLabel1.style.color = "black";
+                    btn.disabled = false;
+                }
+                if (file2.size > 819200) {
+                    sizeLabel2.innerHTML = "Cannot be more than 800 kilobytes";
+                    sizeLabel2.style.color = "red";
+                    btn.disabled = true;
+                } else {
+                    sizeLabel2.innerHTML = returnFileSize(file2.size);
+                    sizeLabel2.style.color = "black";
+                    btn.disabled = false;
+                }
+                break;
+            case 3:
+                var file1 = document.getElementById('image_file').files[0];
+                var sizeLabel1 = document.getElementById('imageSize1');
+                document.getElementById('imageDisplay1').src = window.URL.createObjectURL(file1);
+                document.getElementById('imageName1').innerHTML = file1.name;
+
+                var file2 = document.getElementById('image_file').files[1];
+                var sizeLabel2 = document.getElementById('imageSize2');
+                document.getElementById('imageDisplay2').src = window.URL.createObjectURL(file2);
+                document.getElementById('imageName2').innerHTML = file2.name;
+
+                var file3 = document.getElementById('image_file').files[2];
+                var sizeLabel3 = document.getElementById('imageSize3');
+                document.getElementById('imageDisplay3').src = window.URL.createObjectURL(file3);
+                document.getElementById('imageName3').innerHTML = file3.name;
+
+                if (file1.size > 819200) {
+                    sizeLabel1.innerHTML = "Cannot be more than 800 kilobytes";
+                    sizeLabel1.style.color = "red";
+                    btn.disabled = true;
+                } else {
+                    sizeLabel1.innerHTML = returnFileSize(file1.size);
+                    sizeLabel1.style.color = "black";
+                    btn.disabled = false;
+                }
+                if (file2.size > 819200) {
+                    sizeLabel2.innerHTML = "Cannot be more than 800 kilobytes";
+                    sizeLabel2.style.color = "red";
+                    btn.disabled = true;
+                } else {
+                    sizeLabel2.innerHTML = returnFileSize(file2.size);
+                    sizeLabel2.style.color = "black";
+                    btn.disabled = false;
+                }
+                if (file3.size > 819200) {
+                    sizeLabel3.innerHTML = "Cannot be more than 800 kilobytes";
+                    sizeLabel3.style.color = "red";
+                    btn.disabled = true;
+                } else {
+                    sizeLabel3.innerHTML = returnFileSize(file3.size);
+                    sizeLabel3.style.color = "black";
+                    btn.disabled = false;
+                }
+                break;
         }
     }
-    
+
+       // File Size
+        function returnFileSize(number) {
+            if (number < 1024) {
+                return `${number} bytes`;
+            } else if (number >= 1024 && number < 1048576) {
+                return `${(number / 1024).toFixed(1)} KB`;
+            } else if (number >= 1048576) {
+                return `${(number / 1048576).toFixed(1)} MB`;
+            }
+        }
 </script>
 

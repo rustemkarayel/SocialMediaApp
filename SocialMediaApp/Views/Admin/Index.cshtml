@@ -55,7 +55,9 @@
                         <td>@item.AdminMail</td>
                         <td>*************</td>
                         <td>@item.AdminType</td>
-                        <td>@item.imgUrl</td>
+                        <td>
+                            <img src="~/admin_images/@item.imgUrl" style="width:50px;height:40px;border-radius:5px;" />
+                        </td>
                         @if (item.IsActive)
                         {
                             <td>Aktif</td>
@@ -88,10 +90,8 @@
 </div>
 
 @*SAYFALAMA*@
-<div style="position:relative;">
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+<div id="Pager" class=" d-flex justify-content-center">
         <partial name="PartialCustomPagerView" model="@pager" />
-    </div>
 </div>
 
 <!-- Modal -->

@@ -9,7 +9,7 @@ using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
 namespace SocialMediaApp.Controllers
 {
-  
+
     public class PostController : Controller
     {
         private readonly IWebHostEnvironment webHostEnvironment;
@@ -19,10 +19,10 @@ namespace SocialMediaApp.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
         PostManager pm = new PostManager(new EfPostRepository());
-        GenreManager gm= new GenreManager(new EfGenreRepository());
-        LocationManager lm=new LocationManager(new EfLocationRepository());
-        UserManager um=new UserManager(new EfUserRepository());   
-        public IActionResult Index(int page=1,string searchText="")
+        GenreManager gm = new GenreManager(new EfGenreRepository());
+        LocationManager lm = new LocationManager(new EfLocationRepository());
+        UserManager um = new UserManager(new EfUserRepository());
+        public IActionResult Index(int page = 1, string searchText = "")
         {
             //var posts = pm.PostList().ToPagedList(page,pageSize);
             //return View(posts);
@@ -56,10 +56,10 @@ namespace SocialMediaApp.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            PostGenreLocationUserModel pglum= new PostGenreLocationUserModel();
+            PostGenreLocationUserModel pglum = new PostGenreLocationUserModel();
             pglum.PostModel = new Post();
             pglum.GenreModel = gm.GenreList();
-            pglum.LocationModel=lm.LocationList();
+            pglum.LocationModel = lm.LocationList();
             pglum.UserModel = um.UserList();
             return View(pglum);
         }
@@ -67,11 +67,11 @@ namespace SocialMediaApp.Controllers
         public IActionResult Add(Post post)
         {
             PostValidator postValidator = new PostValidator();
-            var result=postValidator.Validate(post);
+            var result = postValidator.Validate(post);
             if (result.IsValid)
             {
                 var dizi = FileUpload(post);
-                if (dizi.IsNullOrEmpty())
+                if (dizi != null && dizi.Length > 0)
                 {
                     post.PostContent = dizi[0];
                     post.PostContent2 = dizi[1];
@@ -89,11 +89,11 @@ namespace SocialMediaApp.Controllers
                 pglum.UserModel = um.UserList();
                 foreach (var item in result.Errors)
                 {
-                    ModelState.AddModelError(item.PropertyName,item.ErrorMessage);
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
                 return View(pglum);
             }
-            
+
         }
         [HttpGet]
         public IActionResult Update(int id)
@@ -115,7 +115,7 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 var dizi = FileUpload(post);
-                if (dizi.IsNullOrEmpty())
+                if (dizi != null && dizi.Length > 0)
                 {
                     post.PostContent = dizi[0];
                     post.PostContent2 = dizi[1];
@@ -129,9 +129,9 @@ namespace SocialMediaApp.Controllers
                 PostGenreLocationUserModel pglum = new PostGenreLocationUserModel();
                 pglum.PostModel = post;
                 pglum.LocationModel = lm.LocationList();
-                pglum.GenreModel=gm.GenreList();
+                pglum.GenreModel = gm.GenreList();
                 pglum.UserModel = um.UserList();
-                
+
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -148,32 +148,27 @@ namespace SocialMediaApp.Controllers
         }
 
         //Dosya yüklemek için metod oluşturuldu
-
         private string[] FileUpload(Post post)
         {
             string[] uniquefileName = new string[3];
-            if (post.imgFiles.Count > 0)
+            if (post.imgFiles != null && post.imgFiles.Count > 0)
             {
-                var i = 0;               
-                foreach (var file in post.imgFiles)
-                {                   
-                    if (post.imgFiles != null)
-                    {
-                        uniquefileName[i] = Guid.NewGuid().ToString() + "_" + file.FileName;
-                        i++;
-                        string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
-                        string filePath = Path.Combine(uploadfolder, uniquefileName[i]);
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
 
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            file.CopyTo(stream);
-                        }
-                    }                 
+                var i = 0;
+                foreach (var file in post.imgFiles)
+                {
+                    uniquefileName[i] = Guid.NewGuid().ToString() + "_" + file.FileName;
+
+                    string filePath = Path.Combine(uploadfolder, uniquefileName[i]);
+                    i++;
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
                 }
-                return uniquefileName;
             }
             return uniquefileName;
         }
-
     }
 }

@@ -44,7 +44,7 @@
             <br />
             <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
                 <img id="imageDisplay" src="~/user_images/@Model.PhotoUrl" width="100%" height="250px" /><br>
-                <label id="imageName"></label><br>
+                <label id="imageName">@Model.PhotoUrl.Split("_")[1]</label><br>
                 <label id="imageSize"></label>
             </div>
             <br />
@@ -106,7 +106,7 @@
             btn.disabled = true;
         } else {
             sizeLabel.innerHTML = returnFileSize(file.size);
-            sizeLabel.style.color = "white";
+            sizeLabel.style.color = "black";
             btn.disabled = false;
         }
     }
