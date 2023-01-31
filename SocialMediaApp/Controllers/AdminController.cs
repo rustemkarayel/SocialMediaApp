@@ -80,7 +80,8 @@ namespace SocialMediaApp.Controllers
         {
             //var admins=adminManager.AdminList().ToPagedList(page, pageSize);
             //return View(admins);
-           
+
+            TempData["page"] = page;
             int pageSize = 2;
             Context c = new Context();
             Pager pager;
@@ -142,7 +143,8 @@ namespace SocialMediaApp.Controllers
             Admin admin=adminManager.AdminGetById(id);
             admin.IsActive = false;
             adminManager.AdminUpdate(admin);
-            return RedirectToAction("AdminList");
+            int page = (int)TempData["page"];
+            return RedirectToAction("AdminList", new { page, searchText = "" });
         }
 
         [HttpGet]
@@ -166,7 +168,8 @@ namespace SocialMediaApp.Controllers
             {
                 admin.imgUrl = FileUpload(admin);
                 adminManager.AdminUpdate(admin);
-                return RedirectToAction("AdminList");
+                int page = (int)TempData["page"];
+                return RedirectToAction("AdminList", new { page, searchText = "" });
             }
             else
             {
