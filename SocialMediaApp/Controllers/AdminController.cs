@@ -53,7 +53,7 @@ namespace SocialMediaApp.Controllers
             {
                 var isim = result.AdminFirstName + " " + result.AdminLastName;
                 var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.AdminMail), new Claim(ClaimTypes.Name,isim),
-                new Claim(ClaimTypes.Actor,result.AdminType)};
+                new Claim(ClaimTypes.Actor,result.AdminType),new Claim(ClaimTypes.UserData,result.imgUrl)};
 
                 var userIdentify = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
