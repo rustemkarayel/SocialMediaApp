@@ -209,7 +209,7 @@ namespace SocialMediaApp.Controllers
             else {
                
                 uniquefileNames[0] = post.PostContent;
-                
+
                 //if(post.PostContent2 == "boş")
                 //{
                 //    uniquefileNames[1] = null;
@@ -226,8 +226,8 @@ namespace SocialMediaApp.Controllers
                 //{
                 //    uniquefileNames[2] = post.PostContent3;
                 //}
-                //uniquefileNames[1] = post.PostContent2;
-                //uniquefileNames[2] = post.PostContent3;
+                uniquefileNames[1] = post.PostContent2;
+                uniquefileNames[2] = post.PostContent3;
             }
 
             return uniquefileNames;
