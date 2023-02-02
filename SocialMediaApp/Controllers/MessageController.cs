@@ -18,6 +18,7 @@ namespace SocialMediaApp.Controllers
             //var messages = mm.MessageList().ToPagedList(page,pageSize);
             //return View(messages);
 
+            TempData["page"] = page;
             int pageSize = 2;
             Context c = new Context();
             Pager pager;
@@ -82,8 +83,9 @@ namespace SocialMediaApp.Controllers
         {
             Message message=mm.MessageGetById(id);
             message.IsActive= false;
-            mm.MessageUpdate(message);  
-            return RedirectToAction("MessageList");
+            mm.MessageUpdate(message);
+            int page = (int)TempData["page"];
+            return RedirectToAction("MessageList", new { page, searchText = "" });
         }
 
         [HttpGet]
@@ -104,7 +106,8 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 mm.MessageUpdate(message);
-                return RedirectToAction("MessageList");
+                int page = (int)TempData["page"];
+                return RedirectToAction("MessageList", new { page, searchText = "" });
             }
             else
             {

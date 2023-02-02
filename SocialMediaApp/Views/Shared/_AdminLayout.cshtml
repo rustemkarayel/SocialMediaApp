@@ -133,6 +133,12 @@
 			font-family: 'Dancing Script', cursive;
 			font-size: 20px;
 		}
+		.carpi{		 
+			 font-size:33px;
+			 position:absolute;
+			 color:red;
+			 cursor:pointer;"
+		}
 	</style>
 </head>
 
@@ -292,7 +298,7 @@
 					<li class="nav-item nav-profile">
 						<a href="~/Admin/AdminProfile" class="nav-link">
 							<div class="nav-profile-image">
-								<img src="#" alt="profile">
+								<img src="~/admin_images/@User.FindFirst(ClaimTypes.UserData)?.Value"  alt="profile">
 								<span class="login-status online"></span>
 							</div>
 							<div class="nav-profile-text d-flex flex-column">

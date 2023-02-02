@@ -150,25 +150,89 @@ namespace SocialMediaApp.Controllers
         //Dosya yüklemek için metod oluşturuldu
         private string[] FileUpload(Post post)
         {
-            string[] uniquefileName = new string[3];
-            if (post.imgFiles != null && post.imgFiles.Count > 0)
+          
+            string[] uniquefileNames = new string[3];
+            if (post.imgFiles != null)
             {
+               
                 string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
-
-                var i = 0;
-                foreach (var file in post.imgFiles)
+                switch (post.imgFiles.Count)
                 {
-                    uniquefileName[i] = Guid.NewGuid().ToString() + "_" + file.FileName;
+                    case 1:
+                        uniquefileNames[0] = Guid.NewGuid().ToString() + "_" + post.imgFiles[0].FileName;
+                        string filePath = Path.Combine(uploadfolder, uniquefileNames[0]);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            post.imgFiles[0].CopyTo(stream);
+                        }
+                        uniquefileNames[1] = post.PostContent2;
+                        uniquefileNames[2] = post.PostContent3;
 
-                    string filePath = Path.Combine(uploadfolder, uniquefileName[i]);
-                    i++;
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
+                        break;
+                    case 2:
+                        uniquefileNames[0] = Guid.NewGuid().ToString() + "_" + post.imgFiles[0].FileName;
+                        filePath = Path.Combine(uploadfolder, uniquefileNames[0]);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            post.imgFiles[0].CopyTo(stream);
+                        }
+                        uniquefileNames[1] = Guid.NewGuid().ToString() + "_" + post.imgFiles[1].FileName;
+                        filePath = Path.Combine(uploadfolder, uniquefileNames[1]);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            post.imgFiles[1].CopyTo(stream);
+                        }
+                        uniquefileNames[2] = post.PostContent3;
+                        break;
+                    case 3:
+                        uniquefileNames[0] = Guid.NewGuid().ToString() + "_" + post.imgFiles[0].FileName;
+                        filePath = Path.Combine(uploadfolder, uniquefileNames[0]);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            post.imgFiles[0].CopyTo(stream);
+                        }
+                        uniquefileNames[1] = Guid.NewGuid().ToString() + "_" + post.imgFiles[1].FileName;
+                        filePath = Path.Combine(uploadfolder, uniquefileNames[1]);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            post.imgFiles[1].CopyTo(stream);
+                        }
+                        uniquefileNames[2] = Guid.NewGuid().ToString() + "_" + post.imgFiles[2].FileName;
+                        filePath = Path.Combine(uploadfolder, uniquefileNames[2]);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            post.imgFiles[2].CopyTo(stream);
+                        }
+                        break;
                 }
             }
-            return uniquefileName;
+            else {
+               
+                uniquefileNames[0] = post.PostContent;
+                
+                //if(post.PostContent2 == "boş")
+                //{
+                //    uniquefileNames[1] = null;
+                //}
+                //else
+                //{
+                //    uniquefileNames[1] = post.PostContent2;
+                //}
+                //if (post.PostContent3 == "boş")
+                //{
+                //    uniquefileNames[2] = null;
+                //}
+                //else
+                //{
+                //    uniquefileNames[2] = post.PostContent3;
+                //}
+                //uniquefileNames[1] = post.PostContent2;
+                //uniquefileNames[2] = post.PostContent3;
+            }
+
+            return uniquefileNames;
+            
+           
         }
     }
 }

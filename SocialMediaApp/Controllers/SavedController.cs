@@ -19,7 +19,7 @@ namespace SocialMediaApp.Controllers
         {
             //var saveds=sm.SavedList().ToPagedList(page,pageSize);
             //return View(saveds);
-
+            TempData["page"] = page;
             int pageSize = 2;
             Context c = new Context();
             Pager pager;
@@ -85,7 +85,8 @@ namespace SocialMediaApp.Controllers
             Saved saved = sm.SavedGetById(id);
             saved.IsActive = false;
             sm.SavedUpdate(saved);
-            return RedirectToAction("SavedList");
+            int page = (int)TempData["page"];
+            return RedirectToAction("SavedList", new {page, searchText = ""});
         }
 
         [HttpGet]
@@ -106,7 +107,8 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 sm.SavedUpdate(saved);
-                return RedirectToAction("SavedList");
+                int page = (int)TempData["page"];
+                return RedirectToAction("SavedList", new { page, searchText = "" });
             }
             else
             {

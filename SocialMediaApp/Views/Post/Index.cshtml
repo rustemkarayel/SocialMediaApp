@@ -26,45 +26,63 @@
     <div class="card-header">
         <h2>POST</h2>
     </div>
-<div class="card-body">
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Creator NickName</th>
-            <th>Generate Date</th>
-            <th>Content</th>
-            <th>Description</th>      
-            <th>IsActive</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Creator.NickName</td>
-                <td>@item.GenerateDate.ToString().Split(" ")[0]</td>
-                        <td style="word-break:break-all;">
-                            @item.PostContent
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Creator NickName</th>
+                    <th>Type</th>
+                    <th>Generate Date</th>
+                    <th>Content</th>
+                    <th>Content2</th>
+                    <th>Content3</th>
+                    <th>Description</th>
+                    <th>IsActive</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Creator.NickName</td>
+                        <td>@item.Genre.GenreName</td>
+                        <td>@item.GenerateDate.ToString().Split(" ")[0]</td>
+                        <td><img src="~/post_images/@item.PostContent" style="width:50px;height:40px;border-radius:5px;" /></td>
+                        @if(item.PostContent2 != null)
+                        {
+                            <td><img src="~/post_images/@item.PostContent2" style="width:50px;height:40px;border-radius:5px;" /></td>
+                        }
+                        else
+                        {
+                            <td>No Photo</td>
+                        }
+                        @if(item.PostContent3 != null)
+                        {
+                            <td><img src="~/post_images/@item.PostContent3" style="width:50px;height:40px;border-radius:5px;" /></td>
+                        }
+                        else
+                        {
+                            <td>No Photo</td>
+                        }
+                        <td>@item.Description</td>
+                        @if (item.IsActive)
+                        {
+                            <td>Aktif</td>
+                        }
+                        else
+                        {
+                            <td>Pasif</td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
                         </td>
-                <td>@item.Description</td>                
-                @if (item.IsActive)
-                {
-                    <td>Aktif</td>
+                        <td><a href="/Post/Update/@item.PostId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
+                    </tr>
                 }
-                else
-                {
-                    <td>Pasif</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-outline-danger  text-center" data-bs-whatever="@item.PostId" data-bs-toggle="modal" data-bs-target="#decisionPopup"><ion-icon name="trash-outline"></ion-icon></button>
-                </td>
-                <td><a href="/Post/Update/@item.PostId" type="button" class="btn btn-outline-primary p-2">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </tbody>
+        </table>
 
     </div>
 </div>
@@ -72,10 +90,9 @@
     <a href="/Post/Add" class="btn btn-success"><ion-icon name="add" style="font-size:30px"></ion-icon></a>
 </div>
 @*SAYFALAMA*@
-<div style="position:relative;">
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-        <partial name="PartialCustomPagerView" model="@pager" />
-    </div>
+<div id="Pager" class=" d-flex justify-content-center">
+    <partial name="PartialCustomPagerView" model="@pager" />
+</div>
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@

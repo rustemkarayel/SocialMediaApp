@@ -13,6 +13,7 @@ namespace SocialMediaApp.Controllers
     {
         private readonly IWebHostEnvironment webHostEnvironment;
 
+        //For Fileupload
         public UserController(IWebHostEnvironment webHostEnvironment)
         {
             this.webHostEnvironment = webHostEnvironment;
@@ -24,6 +25,7 @@ namespace SocialMediaApp.Controllers
             //var users = um.UserList().ToPagedList(page,pageSize);
             //return View(users);
 
+            TempData["page"] = page;
             int pageSize = 2;
             Context c = new Context();
             Pager pager;
@@ -87,7 +89,8 @@ namespace SocialMediaApp.Controllers
             User user = um.UserGetById(id);
             user.IsActive = false;
             um.UserUpdate(user);
-            return RedirectToAction("UserList");
+            int page = (int)TempData["page"];
+            return RedirectToAction("UserList", new { page, searchText = "" });
         }
 
         [HttpGet]
@@ -106,7 +109,8 @@ namespace SocialMediaApp.Controllers
             {
                 user.PhotoUrl = FileUpload(user);
                 um.UserUpdate(user);
-                return RedirectToAction("UserList");
+                int page = (int)TempData["page"];
+                return RedirectToAction("UserList", new { page, searchText = "" });
             }
             else
             {

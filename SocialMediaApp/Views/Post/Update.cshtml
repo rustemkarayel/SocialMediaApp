@@ -28,36 +28,67 @@
                 }
             </select>
             <br />
+            @Html.Label("Type")
+            <select class="form-control" name="GenreId">
+                @foreach (var item in Model.GenreModel)
+                {
+                    if (item.GenreId == Model.PostModel.GenreId)
+                    {
+                        <option value=" @item.GenreId" selected>@item.GenreName</option>
+                    }
+                    else
+                    {
+                        <option value=" @item.GenreId">@item.GenreName</option>
+                    }
+                }
+            </select>
+            <br />
             @Html.Label("GenerateDate")
-            @Html.TextBox("GenerateDate","",new{@class="form-control",@type="date"})
+            @Html.TextBox("GenerateDate",Model.PostModel.GenerateDate,new{@class="form-control"})
             <br />
             @Html.Label("Post ImgFile")
             <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent()" multiple />
             @Html.ValidationMessage("imgFiles","",new{@class="text-danger"})
             <br />
+            //style="object-fit:contain; = orijinal fotoyu getirir...."
             <div style="display:flex;justify-content:space-around;">
-                <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
-                    <img id="imageDisplay1" src="~/post_images/@Model.PostModel.PostContent" width="100%" height="250px" /><br>
+                <div style="border:1px dashed black;padding:5px;width:25%;height:150px;padding:10px;">
+                    <ion-icon name="close-circle-outline" class="carpi" onclick="photoRemove('PostContent','imageSize1','imageDisplay1','imageName1')"></ion-icon>
+                    <img id="imageDisplay1" src="~/post_images/@Model.PostModel.PostContent" width="100%" height="90%" /><br>
                     <label id="imageName1">@Model.PostModel.PostContent.Split("_")[1]</label><br>
                     <label id="imageSize1"></label>
                 </div>
-                <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
-                    <img id="imageDisplay2" src="~/post_images/@Model.PostModel.PostContent2" width="100%" height="250px" /><br>
-                    <label id="imageName2">@Model.PostModel.PostContent2.Split("_")[1]</label><br>
+                <div style="border:1px dashed black;padding:5px;width:25%;height:150px;padding:10px;">
+                    <ion-icon name="close-circle-outline" class="carpi" onclick="photoRemove('PostContent2','imageSize2','imageDisplay2','imageName2')"></ion-icon>
+                    <img id="imageDisplay2" src="~/post_images/@Model.PostModel.PostContent2" width="100%" height="90%" /><br>
+                    <label id="imageName2">
+                        @if (@Model.PostModel.PostContent2 != null)
+                        {
+                            @Model.PostModel.PostContent2.Split("_")[1]
+                        }
+                    </label><br>
                     <label id="imageSize2"></label>
                 </div>
-                <div style="border:1px dashed black;padding:5px;width:30%;padding:10px;">
-                    <img id="imageDisplay3" src="~/post_images/@Model.PostModel.PostContent3" width="100%" height="250px" /><br>
-                    <label id="imageName3">@Model.PostModel.PostContent3.Split("_")[1]</label><br>
+                <div style="border:1px dashed black;padding:5px;width:25%;height:150px;padding:10px;">
+                    <ion-icon name="close-circle-outline" class="carpi" onclick="photoRemove('PostContent3','imageSize3','imageDisplay3','imageName3')"></ion-icon>
+                    <img id="imageDisplay3" src="~/post_images/@Model.PostModel.PostContent3" width="100%" height="90%" /><br>
+                    <label id="imageName3">
+                        @if (@Model.PostModel.PostContent3 != null)
+                        {
+                            @Model.PostModel.PostContent3.Split("_")[1]
+                        }
+                    </label><br>
                     <label id="imageSize3"></label>
                 </div>
             </div>
             <br />
-            @Html.Label("Post Content")
-            @Html.TextBox("PostContent","",new{@class="form-control"})
-            <br />
+
+            @Html.TextBox("PostContent",Model.PostModel.PostContent,new{@class="form-control",@type="hidden", @id="PostContent"})
+            @Html.TextBox("PostContent2",Model.PostModel.PostContent2,new{@class="form-control",@type="hidden",@id="PostContent2"})
+            @Html.TextBox("PostContent3",Model.PostModel.PostContent3,new{@class="form-control",@type="hidden",@id="PostContent3"})
+
             @Html.Label("Description")
-            @Html.TextBox("Description","",new{@class="form-control"})
+            @Html.TextBox("Description",Model.PostModel.Description,new{@class="form-control"})
             <br />
             @Html.Label("Location Name")
             <select class="form-control" name="LocationId">
@@ -74,21 +105,7 @@
                 }
             </select>
             <br />
-            @Html.Label("Genre Name")
-            <select class="form-control" name="GenreId">
-                @foreach (var item in Model.GenreModel)
-                {
-                    if (item.GenreId == Model.PostModel.GenreId)
-                    {
-                        <option value=" @item.GenreId" selected>@item.GenreName</option>
-                    }
-                    else
-                    {
-                        <option value=" @item.GenreId">@item.GenreName</option>
-                    }
-                }
-            </select>
-            <br />
+
             @Html.Label("IsActive")
             <select class="form-control" name="IsActive">
                 @if (Model.PostModel.IsActive)
@@ -108,8 +125,9 @@
     </div>
 </div>
 
-<!--File Upload -->
+
 <script>
+    //File Upload
     function changeContent() {
         var btn = document.getElementById('updateBtn');
         var selectedImgCounts = document.getElementById('image_file').files.length;
@@ -211,15 +229,25 @@
         }
     }
 
-       // File Size
-        function returnFileSize(number) {
-            if (number < 1024) {
-                return `${number} bytes`;
-            } else if (number >= 1024 && number < 1048576) {
-                return `${(number / 1024).toFixed(1)} KB`;
-            } else if (number >= 1048576) {
-                return `${(number / 1048576).toFixed(1)} MB`;
-            }
+    // File Size
+    function returnFileSize(number) {
+        if (number < 1024) {
+            return `${number} bytes`;
+        } else if (number >= 1024 && number < 1048576) {
+            return `${(number / 1024).toFixed(1)} KB`;
+        } else if (number >= 1048576) {
+            return `${(number / 1048576).toFixed(1)} MB`;
         }
+    }
+
+    //Photo Remove
+    function photoRemove(content,bir,iki,uc){
+        document.getElementById(content).innerText = null;
+        document.getElementById(bir).innerHTML = null;
+        document.getElementById(iki).src = null;
+        document.getElementById(uc).innerHTML = null;
+    }
+
+
 </script>
 

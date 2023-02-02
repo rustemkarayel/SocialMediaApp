@@ -20,6 +20,7 @@ namespace SocialMediaApp.Controllers
             //var savedCollections = scm.SavedCollectionList().ToPagedList(page, pageSize);
             //return View(savedCollections);
 
+            TempData["page"] = page;
             int pageSize = 2;
             Context c = new Context();
             Pager pager;
@@ -87,7 +88,8 @@ namespace SocialMediaApp.Controllers
             SavedCollection savedCollection = scm.SavedCollectionGetById(id);
             savedCollection.IsActive = false;
             scm.SavedCollectionUpdate(savedCollection);
-            return RedirectToAction("SavedCollectionList");
+            int page = (int)TempData["page"];
+            return RedirectToAction("SavedCollectionList", new {page, searchText = ""});
         }
 
         [HttpGet]
@@ -108,7 +110,8 @@ namespace SocialMediaApp.Controllers
             if (result.IsValid)
             {
                 scm.SavedCollectionUpdate(savedCollection);
-                return RedirectToAction("SavedCollectionList");
+                int page = (int)TempData["page"];
+                return RedirectToAction("SavedCollectionList", new { page, searchText = "" });
             }
             else
             {
