@@ -9,12 +9,12 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Purple Admin</title>
+	<title>Social Media App</title>
 
 	<link rel="stylesheet" href="~/admin_dashboard/assets/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="~/admin_dashboard/assets/vendors/css/vendor.bundle.base.css">
 	<link rel="stylesheet" href="~/admin_dashboard/assets/css/style.css">
-	<link rel="shortcut icon" href="~/admin_dashboard/assets/images/favicon.ico" />
+	<link rel="shortcut icon" href="~/admin_dashboard/assets/images/Rüstegram.png" />
 
 	<!-- Specified admin font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,8 +138,47 @@
 			 color:red;
 			 cursor:pointer;
 		}
+		.icon-text{
+		display:flex;
+		justify-content:space-between;
+		align-items:end; 
+		height:12%;
+		
+		}
 		.cardImage-bottomSide{
-		display:flex;justify-content:space-between;align-items:end;border:1px solid red; height:32px; padding:4px;
+		padding:5px;
+		}
+		.pickPhoto{
+		cursor:pointer;
+		border:1px dashed black;
+		width:30%;
+		height:250px;
+		padding:0px;
+		position:relative;
+		}
+		.pickPhoto:hover{
+			 border:2px solid black;
+    
+		}
+
+		.file_upload {
+			cursor: pointer;
+			opacity: 0.0;
+			/* IE 8 */
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+			/* IE 5-7 */
+			filter: alpha(opacity=0);
+			/* Netscape or and older firefox browsers */
+			-moz-opacity: 0.0;
+			/* older Safari browsers */
+			-khtml-opacity: 0.0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
 		}
 	</style>
 </head>
@@ -150,8 +189,8 @@
 		<!-- Top Navbar Start -->
 		<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-				<a class="navbar-brand brand-logo" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
-				<a class="navbar-brand brand-logo-mini" href="Home/Index"><img src="~/admin_dashboard/logo.jpg" alt="logo" /></a>
+				<a class="navbar-brand brand-logo" href="Home/Index"><img src="~/admin_dashboard/assets/images/Rüstegram.png" alt="logo" /></a>
+				<a class="navbar-brand brand-logo-mini" href="Home/Index"><img src="~/admin_dashboard/assets/images/Rüstegram.png" alt="logo" /></a>
 			</div>
 			<div class="navbar-menu-wrapper d-flex align-items-stretch">
 				<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
