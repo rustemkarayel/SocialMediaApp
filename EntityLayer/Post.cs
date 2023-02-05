@@ -14,8 +14,9 @@ namespace EntityLayer
         [Key]
         public int PostId { get; set; }        
         public DateTime GenerateDate { get; set; }
+        public DateTime GenerateTime { get; set; }
         [StringLength(300)]
-        public string PostContent { get; set; }
+        public string? PostContent { get; set; }
         [StringLength(300)]
         public string? PostContent2 { get; set; }
         [StringLength(300)]
