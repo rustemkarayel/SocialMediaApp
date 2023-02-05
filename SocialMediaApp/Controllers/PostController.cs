@@ -25,10 +25,11 @@ namespace SocialMediaApp.Controllers
         UserManager um = new UserManager(new EfUserRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
-            //var posts = pm.PostList().ToPagedList(page,pageSize);
-            //return View(posts);
+			//var posts = pm.PostList().ToPagedList(page,pageSize);
+			//return View(posts);
 
-            int pageSize = 2;
+			TempData["page"] = page;
+			int pageSize = 2;
             Context c = new Context();
             Pager pager;
             List<Post> data;
@@ -123,7 +124,8 @@ namespace SocialMediaApp.Controllers
                     post.PostContent3 = dizi[2];
                 }
                 pm.PostUpdate(post);
-                return RedirectToAction("PostList");
+				int page = (int)TempData["page"];
+				return RedirectToAction("PostList", new { page, searchText = "" });
             }
             else
             {
@@ -145,7 +147,8 @@ namespace SocialMediaApp.Controllers
             Post post = pm.GetPostById(id);
             post.IsActive = false;
             pm.PostUpdate(post);
-            return RedirectToAction("PostList");
+			int page = (int)TempData["page"];
+			return RedirectToAction("PostList", new { page, searchText = "" });
         }
 
         //Dosya yüklemek için metod oluşturuldu
