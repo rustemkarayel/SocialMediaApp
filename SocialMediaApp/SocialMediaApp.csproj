@@ -48,6 +48,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\admin_images\" />
+    <Folder Include="wwwroot\user_images\" />
+    <Folder Include="wwwroot\post_images\" />
   </ItemGroup>
 
 </Project>
