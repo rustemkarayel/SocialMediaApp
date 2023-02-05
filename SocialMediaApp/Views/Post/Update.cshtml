@@ -1,11 +1,11 @@
-﻿@using EntityLayer;
+﻿using EntityLayer;
 @model PostGenreLocationUserModel;
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var postcontent = @Model.PostModel.PostContent== null ? "/user_interface/assets/default.png" : "/post_images/"+@Model.PostModel.PostContent;
-    var postcontent2 = @Model.PostModel.PostContent2 == null ? "/user_interface/assets/default.png" : "/post_images/"+@Model.PostModel.PostContent2;
-    var postcontent3 = @Model.PostModel.PostContent3 == null ? "/user_interface/assets/default.png" :"/post_images/"+@Model.PostModel.PostContent3;
+    var postcontent = @Model.PostModel.PostContent == null ? "/user_interface/assets/default.png" : "/post_images/" + @Model.PostModel.PostContent;
+    var postcontent2 = @Model.PostModel.PostContent2 == null ? "/user_interface/assets/default.png" : "/post_images/" + @Model.PostModel.PostContent2;
+    var postcontent3 = @Model.PostModel.PostContent3 == null ? "/user_interface/assets/default.png" : "/post_images/" + @Model.PostModel.PostContent3;
 }
 
 <div class="card">
@@ -47,16 +47,19 @@
             </select>
             <br />
             @Html.Label("GenerateDate")
-            @Html.TextBox("GenerateDate",Model.PostModel.GenerateDate,new{@class="form-control"})
+            @Html.TextBox("GenerateDate",Model.PostModel.GenerateDate.ToString().Split(" ")[0],new{@class="form-control"})
+            @Html.ValidationMessage("GenerateDate","",new{@class="text-danger"})
             <br />
+            @Html.Label("GenerateTime")
+            @Html.TextBox("GenerateTime",Model.PostModel.GenerateTime.ToString().Split(" ")[1],new{@class="form-control"})
+            @Html.ValidationMessage("GenerateTime","",new{@class="text-danger"})
+            <br />
+
             @Html.Label("Post ImgFile")
-      
             <br />
             //style="object-fit:contain; = orijinal fotoyu getirir...."
             <div style="display:flex;justify-content:space-around;">
-
                 <div class="pickPhoto">
-
                     <input class="file_upload" type="file" name="imgFile1" class="form-control" accept="image/*" onchange="clickImagePicker('imageDisplay1','imageName1','imageSize1',0)" />
                     <img class="imageDisplay" id="imageDisplay1" src="@postcontent" width="100%" height="80%" /><br>
                     <div class="cardImage-bottomSide">
@@ -68,14 +71,11 @@
                                 }
                             </label><br>
                             <ion-icon name="trash-outline" class="carpi" onclick="photoRemove('PostContent','imageSize1','imageDisplay1','imageName1',0)"></ion-icon>
-
                         </div>
                         <label id="imageSize1"></label>
-                       </div>
+                    </div>
                 </div>
-
                 <div class="pickPhoto">
-
                     <input class="file_upload" type="file" name="imgFile2" class="form-control" accept="image/*" onchange="clickImagePicker('imageDisplay2','imageName2','imageSize2',1)" />
                     <img class="imageDisplay" id="imageDisplay2" src="@postcontent2" width="100%" height="80%" /><br>
                     <div class="cardImage-bottomSide">
@@ -87,13 +87,11 @@
                                 }
                             </label><br>
                             <ion-icon name="trash-outline" class="carpi" onclick="photoRemove('PostContent2','imageSize2','imageDisplay2','imageName2',1)"></ion-icon>
-
                         </div>
                         <label id="imageSize2"></label>
                     </div>
                 </div>
                 <div class="pickPhoto">
-
                     <input class="file_upload" type="file" name="imgFile3" class="form-control" accept="image/*" onchange="clickImagePicker('imageDisplay3','imageName3','imageSize3',2)" />
                     <img class="imageDisplay" id="imageDisplay3" src="@postcontent3" width="100%" height="80%" /><br>
                     <div class="cardImage-bottomSide">
@@ -105,7 +103,6 @@
                                 }
                             </label><br>
                             <ion-icon name="trash-outline" class="carpi" onclick="photoRemove('PostContent3','imageSize3','imageDisplay3','imageName3',2)"></ion-icon>
-
                         </div>
                         <label id="imageSize3"></label>
                     </div>
@@ -135,7 +132,6 @@
                 }
             </select>
             <br />
-
             @Html.Label("IsActive")
             <select class="form-control" name="IsActive">
                 @if (Model.PostModel.IsActive)
@@ -158,26 +154,30 @@
 
 <script>
     checkForDeleteBtnVisibility();
-    function checkForDeleteBtnVisibility(){
+    checkForNull();
+
+    function checkForNull() {
+        if (document.getElementsByClassName("imageDisplay")[0].src.includes("/user_interface/assets/default.png")
+            && document.getElementsByClassName("imageDisplay")[1].src.includes("/user_interface/assets/default.png")
+            && document.getElementsByClassName("imageDisplay")[2].src.includes("/user_interface/assets/default.png")) {
+            document.getElementById("updateBtn").disabled = true;
+        }
+    }
+
+    function checkForDeleteBtnVisibility() {
         //display delete icon is none as loading
         var carpiList = document.getElementsByTagName("ion-icon");
-
         var imageList = document.getElementsByClassName("imageDisplay");
-
         for (var i = 0; i < 3; i++) {
- 
             var src = imageList[i].src;
-           
             if (src.includes("/user_interface/assets/default.png")) {
                 carpiList[i].style.display = "none";
             }
-            else{
+            else {
                 carpiList[i].style.display = "block";
             }
-
         }
     }
-  
 
     // File Size
     function returnFileSize(number) {
@@ -191,47 +191,50 @@
     }
 
     //Photo Remove
-    function photoRemove(imgInput,sizeLabel,imgSrc,nameLabel,i){
-       
+    function photoRemove(imgInput, sizeLabel, imgSrc, nameLabel, i) {
+
         var carpi = document.getElementsByClassName("carpi")[i];
         carpi.style.display = "none";
         document.getElementById(imgInput).value = "";
-        document.getElementById(sizeLabel).innerHTML =  "";
+        document.getElementById(sizeLabel).innerHTML = "";
         document.getElementById(imgSrc).src = "/user_interface/assets/default.png";
-        document.getElementById(nameLabel).innerHTML = "Photo removed!"; 
-        document.getElementById(nameLabel).style.textAlign="center";
+        document.getElementById(nameLabel).innerHTML = "Photo removed!";
+        document.getElementById(nameLabel).style.color = "red";
+        document.getElementById(nameLabel).style.textAlign = "center";
+        checkForNull();
     }
-   
-   
-    function clickImagePicker(imageDisplay,imageName,imageSize,i) {
+
+
+    function clickImagePicker(imageDisplay, imageName, imageSize, i) {
 
         var imgFile = document.getElementsByClassName("file_upload")[i].files[0];
         var sizeLabel = document.getElementById(imageSize);
-        var img=document.getElementById(imageDisplay);
-        var imgName=document.getElementById(imageName);
+        var img = document.getElementById(imageDisplay);
+        var imgName = document.getElementById(imageName);
         var deleteIcon = document.getElementsByTagName("ion-icon")[i];
-        if(img!=null){
+        var btn = document.getElementById("updateBtn");
+        if (img != null) {
             img.src = window.URL.createObjectURL(imgFile);
             imgName.innerHTML = imgFile.name;
-        deleteIcon.style.display = "block";
-        if (imgFile.size > 819200) {
-            sizeLabel.innerHTML = "Cannot be more than 800 kilobytes";
-            sizeLabel.style.color = "red";
-           
-        } 
-        else {
+            deleteIcon.style.display = "block";
+            if (imgFile.size > 819200) {
+                sizeLabel.innerHTML = "Cannot be more than 800 kilobytes";
+                sizeLabel.style.color = "red";
+                btn.disabled = true;
+            }
+            else {
                 sizeLabel.innerHTML = returnFileSize(imgFile.size);
-            sizeLabel.style.color = "black";
-          
+                sizeLabel.style.color = "black";
+                btn.disabled = false;
+            }
         }
-        }
-        else{
+        else {
             sizeLabel.innerHTML = "";
-            imgName.innerHTML="No Phhoto!";
+            imgName.innerHTML = "No Photo!";
             img.src = "/user_interface/assets/default.png";
             deleteIcon.style.display = "none";
+            checkForNull();
         }
-        
     }
 </script>
 
@@ -248,12 +251,12 @@
         //var reversed = fileBuffer.reverse();
         reversed.splice(index, 1);
         const dT = new ClipboardEvent('').clipboardData || new DataTransfer();
-     
+
         for (let file of reversed) { dT.items.add(file); }
         filelistall = $('#image_file').prop("files", dT.files);
-       
+
     }*@
-    @*  //File Upload
+@*  //File Upload
     function changeContent() {
         var btn = document.getElementById('updateBtn');
         var selectedImgCounts = document.getElementById('image_file').files.length;

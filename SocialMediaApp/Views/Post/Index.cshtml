@@ -33,10 +33,12 @@
                     <th>Creator NickName</th>
                     <th>Type</th>
                     <th>Generate Date</th>
+                    <th>Generate Time</th>
                     <th>Content</th>
                     <th>Content2</th>
                     <th>Content3</th>
                     <th>Description</th>
+                    <th>Location</th>
                     <th>IsActive</th>
                     <th></th>
                     <th></th>
@@ -49,7 +51,15 @@
                         <td>@item.Creator.NickName</td>
                         <td>@item.Genre.GenreName</td>
                         <td>@item.GenerateDate.ToString().Split(" ")[0]</td>
-                        <td><img src="~/post_images/@item.PostContent" style="width:50px;height:40px;border-radius:5px;" /></td>
+                        <td>@item.GenerateTime.ToString().Split(" ")[1]</td>
+                        @if (item.PostContent != null)
+                        {
+                            <td><img src="~/post_images/@item.PostContent" style="width:50px;height:40px;border-radius:5px;" /></td>
+                        }
+                        else
+                        {
+                            <td>No Photo</td>
+                        }
                         @if(item.PostContent2 != null)
                         {
                             <td><img src="~/post_images/@item.PostContent2" style="width:50px;height:40px;border-radius:5px;" /></td>
@@ -66,7 +76,22 @@
                         {
                             <td>No Photo</td>
                         }
-                        <td>@item.Description</td>
+                         @if (item.Description !=null)
+                        {
+                            <td>@item.Description</td>
+                        }
+                        else
+                        {
+                            <td>No Description</td>
+                        }
+                        @if(item.Location?.LocationName != null)
+                        {
+                            <td>@item.Location?.LocationName</td>
+                        }
+                        else
+                        {
+                            <td>No Location</td>
+                        }                                       
                         @if (item.IsActive)
                         {
                             <td>Aktif</td>
@@ -92,7 +117,6 @@
 @*SAYFALAMA*@
 <div id="Pager" class=" d-flex justify-content-center">
     <partial name="PartialCustomPagerView" model="@pager" />
-</div>
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@
