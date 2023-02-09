@@ -2,6 +2,10 @@
 @model Post;
 @{
     Layout = null;
+    var postcontent = @Model.PostContent == null ? "/user_interface/assets/default.png" : "/post_images/" + @Model.PostContent;
+    var postcontent2 = @Model.PostContent2 == null ? "/user_interface/assets/default.png" : "/post_images/" + @Model.PostContent2;
+    var postcontent3 = @Model.PostContent3 == null ? "/user_interface/assets/default.png" : "/post_images/" + @Model.PostContent3;
+
 }
 <!DOCTYPE html>
 <html>
@@ -27,31 +31,61 @@
             <div class="card-body">
                 @using (Html.BeginForm("Add", "Post", FormMethod.Post, new { @class = "form-group", @enctype = "multipart/form-data" }))
                 {
-                    <label for="image_file" class="drop-container">
-                        <span class="drop-title">Drop files here</span>
-                        or
-                        <input id="image_file" type="file" name="imgFiles" class="form-control" accept="image/*" onchange="changeContent();" />
-                        @Html.ValidationMessageFor(post=>post.imgFiles,"",new{@class="text-danger"})
-                        <br />
-                    </label>
-                    <br />
+                  
                     <div style="display:flex;justify-content:space-around;">
-                        <div style="border:1px dashed black;padding:5px;width:30%;height:150px;padding:5px;">
-                            <img id="imageDisplay1" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="90%" /><br>
-                            <label id="imageName1"></label><br>
-                            <label id="imageSize1"></label>
+                        <div class="pickPhoto">
+                            <input class="file_upload" type="file" name="imgFile1" class="form-control" accept="image/*" onchange="clickImagePicker('imageDisplay1','imageName1','imageSize1',0)" />
+                            <img class="imageDisplay" id="imageDisplay1" src="@postcontent" width="100%" height="80%" /><br>
+                            <div class="cardImage-bottomSide">
+                                <div class="icon-text">
+                                    <label style="margin:0px!important;" id="imageName1">
+                                        @if (@Model.PostContent != null)
+                                        {
+                                            @Model.PostContent.Split("_")[1]
+                                        }
+                                    </label><br>
+                                    <ion-icon name="trash-outline" class="carpi" onclick="photoRemove('PostContent','imageSize1','imageDisplay1','imageName1',0)"></ion-icon>
+                                </div>
+                                <label id="imageSize1"></label>
+                            </div>
                         </div>
-                        <div style="border:1px dashed black;padding:5px;width:30%;height:150px;padding:5px;">
-                            <img id="imageDisplay2" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="90%" /><br>
-                            <label id="imageName2"></label><br>
-                            <label id="imageSize2"></label>
+                        <div class="pickPhoto">
+                            <input class="file_upload" type="file" name="imgFile2" class="form-control" accept="image/*" onchange="clickImagePicker('imageDisplay2','imageName2','imageSize2',1)" />
+                            <img class="imageDisplay" id="imageDisplay2" src="@postcontent2" width="100%" height="80%" /><br>
+                            <div class="cardImage-bottomSide">
+                                <div class="icon-text">
+                                    <label style="margin:0px!important;" id="imageName2">
+                                        @if (@Model.PostContent2 != null)
+                                        {
+                                            @Model.PostContent2.Split("_")[1]
+                                        }
+                                    </label><br>
+                                    <ion-icon name="trash-outline" class="carpi" onclick="photoRemove('PostContent2','imageSize2','imageDisplay2','imageName2',1)"></ion-icon>
+                                </div>
+                                <label id="imageSize2"></label>
+                            </div>
                         </div>
-                        <div style="border:1px dashed black;padding:5px;width:30%;height:150px;padding:5px;">
-                            <img id="imageDisplay3" src="https://flashresim.com/blog/wp-content/uploads/2019/03/resim-yukleme-sitesi-280x227.png" width="100%" height="90%" /><br>
-                            <label id="imageName3"></label><br>
-                            <label id="imageSize3"></label>
+                        <div class="pickPhoto">
+                            <input class="file_upload" type="file" name="imgFile3" class="form-control" accept="image/*" onchange="clickImagePicker('imageDisplay3','imageName3','imageSize3',2)" />
+                            <img class="imageDisplay" id="imageDisplay3" src="@postcontent3" width="100%" height="80%" /><br>
+                            <div class="cardImage-bottomSide">
+                                <div class="icon-text">
+                                    <label style="margin:0px!important;" id="imageName3">
+                                        @if (@Model.PostContent3 != null)
+                                        {
+                                            @Model.PostContent3.Split("_")[1]
+                                        }
+                                    </label><br>
+                                    <ion-icon name="trash-outline" class="carpi" onclick="photoRemove('PostContent3','imageSize3','imageDisplay3','imageName3',2)"></ion-icon>
+                                </div>
+                                <label id="imageSize3"></label>
+                            </div>
                         </div>
                     </div>
+                    <br />
+                    @Html.TextBox("PostContent","",new{@class="form-control",@type="hidden", @id="PostContent"})
+                    @Html.TextBox("PostContent2","",new{@class="form-control",@type="hidden",@id="PostContent2"})
+                    @Html.TextBox("PostContent3","",new{@class="form-control",@type="hidden",@id="PostContent3"})
                 }
             </div>
         </div>

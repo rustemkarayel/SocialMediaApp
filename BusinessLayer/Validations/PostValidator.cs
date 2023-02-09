@@ -14,6 +14,8 @@ namespace BusinessLayer.Validations
         {
             //Rule for GenerateDate
             RuleFor(post=>post.GenerateDate).NotEmpty().WithMessage("GenerateDate boş bırakılamaz.");
+            //Rule for GenerateTime
+            RuleFor(post=>post.GenerateTime).NotEmpty().WithMessage("GenerateTime boş bırakılamaz.");
 
             ////Rule for Content
             //RuleFor(post=>post.PostContent).NotEmpty().WithMessage("Content boş bırakılamaz.");
@@ -21,12 +23,14 @@ namespace BusinessLayer.Validations
             //RuleFor(post => post.PostContent).MinimumLength(2).WithMessage("Minimum 2 karakter girilmelidir!");
 
             //Rule for Description
-            RuleFor(post=>post.Description).NotEmpty().WithMessage("Description boş geçilemez.");
             RuleFor(post=>post.Description).MaximumLength(300).WithMessage("Maximum 300 karakter girilmelidir!");
-            RuleFor(post=>post.Description).MinimumLength(2).WithMessage("Minimum 2 karakter girilmelidir!");
 
-            //Rule for IsActive
-            RuleFor(post=>post.IsActive).NotEmpty().WithMessage("IsActive boş bırakılamaz.");
+            //Rule for CreatorUser
+            //RuleFor(post => post.Creator.NickName).NotNull().WithMessage("User seçiniz!");
+            //RuleFor(post => post.Genre).NotNull().WithMessage("Type seçiniz!");
+            //RuleFor(post => post.Creator.NickName).NotNull().WithMessage("User seçiniz!");
+            //RuleFor(post => post.Creator.NickName).Null().WithMessage("User seçiniz!");
+
         }
     }
 }

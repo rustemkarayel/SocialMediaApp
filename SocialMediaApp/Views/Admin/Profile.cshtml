@@ -8,38 +8,31 @@
 
 <div class="cardinho">
 
-	@*Top Background Start*@
-	<div class="text-white d-flex mt-0" style="background-color: #000; height:200px;">
-
-		@*Admin Image Start*@
-		<div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-			<img src="@Model.imgUrl" 
-				class="img-fluid img-thumbnail mt-4 mb-2"
-				 style="width: 150px; z-index: 1">
-			
-			<a href="~/Admin/Update" class="btn btn-outline-dark" style="z-index: 1">Edit profile</a>
-		</div>
-		@*Admin Image End*@
-
-		@*Admin Name Start*@
-		<div class="ms-3" style="margin-top: 130px;">
-			<h5>@User.FindFirst(ClaimTypes.Name)?.Value </h5>
-			<p>@User.FindFirst(ClaimTypes.Actor)?.Value</p>
+	@*Admin Name Start*@
+	<div style="background-color: #000; height:600px;width:600px; border-radius:15px !important;">
+		<div style="text-align:center;color:white;padding:20px;">
+			<h3>@User.FindFirst(ClaimTypes.Name)?.Value </h3>
+			<h6>@User.FindFirst(ClaimTypes.Actor)?.Value</h6>
 		</div>
 		@*Admin Name End*@
 
-	</div>
-	@*Top Background End*@
-
-	@*Body Start*@
-	<div class="cardinho-body p-4 text-black">
-		<div class="mb-5 mt-5">
-			<p class="lead fw-bold mb-1">About</p>
-			<div class="p-4" style="background-color: #f8f9fa;">
-				<p class="font-italic mb-1">Web Developer</p>
-				<p class="font-italic mb-1">Lives in New York</p>
-				<p class="font-italic mb-0">Photographer</p>
-			</div>
+		@*Admin Image Start*@
+		<div style="width: 250px;margin:auto;margin-top:-10px !important;">
+			<img src="~/admin_images/@User.FindFirst(ClaimTypes.UserData)?.Value"
+				 class="img-fluid img-thumbnail mt-4 mb-2"
+				 style="width: 250px; z-index: 1;">			
 		</div>
+		@*Admin Image End*@
+
+			<div style="background-color: #f8f9fa;color:black;text-align:center;padding-top:7px;padding-bottom:2px;margin-top:35px;">
+				<p class="font-italic ">Web Developer</p>
+				<p class="font-italic ">Lives in Turkey</p>
+			</div>
+
+		<a href="~/Admin/Update" class="btn btn-dark text-white" style="z-index: 1;margin-left:150px;width:300px;margin-top:30px;">Edit profile</a>
+	</div>
+
+		
+
 	</div>
 </div>

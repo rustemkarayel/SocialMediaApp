@@ -98,3 +98,52 @@ input[type=file] {
       background: #084cdf;
     }
 }
+.carpi {
+  font-size: 22px;
+  color: red;
+  cursor: pointer;
+}
+
+.icon-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  height: 12%;
+}
+
+.cardImage-bottomSide {
+  padding: 5px;
+}
+
+.pickPhoto {
+  cursor: pointer;
+  border: 1px dashed black;
+  width: 30%;
+  height: 250px;
+  padding: 0px;
+  position: relative;
+}
+
+  .pickPhoto:hover {
+    border: 2px solid black;
+  }
+
+.file_upload {
+  cursor: pointer;
+  opacity: 0.0;
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  /* IE 5-7 */
+  filter: alpha(opacity=0);
+  /* Netscape or and older firefox browsers */
+  -moz-opacity: 0.0;
+  /* older Safari browsers */
+  -khtml-opacity: 0.0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}

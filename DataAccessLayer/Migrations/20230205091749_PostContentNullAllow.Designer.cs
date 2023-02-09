@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230128182819_locationNull")]
-    partial class locationNull
+    [Migration("20230205091749_PostContentNullAllow")]
+    partial class PostContentNullAllow
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -268,6 +268,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("GenerateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("GenerateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
@@ -278,7 +281,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PostContent")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 

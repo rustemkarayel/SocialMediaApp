@@ -115,21 +115,24 @@
             <!-- Post Content = PhotoUpload -->
             <div class="post__content">
                 <div class="post__medias">
-                    <img class="post__media"
+                    @if (post.PostContent != null)
+                    {
+                        <img class="post__media"
                      src="~/post_images/@post.PostContent"
                      alt="Post Content" />
+                    }
                     @if (post.PostContent2 != null)
                     {
                         <img class="post__media"
                      src="~/post_images/@post.PostContent2"
                      alt="Post Content" />
                     }
-                        @if (post.PostContent3 != null)
-                        {
-                            <img class="post__media"
+                    @if (post.PostContent3 != null)
+                    {
+                        <img class="post__media"
                      src="~/post_images/@post.PostContent3"
                      alt="Post Content" />
-                        }
+                    }
 
                 </div>
             </div>
@@ -207,21 +210,22 @@
                 <!-- Post Info -->
                 <div class="post__infos">
                     <div class="post__likes">
-                        @if(post.PostLikes.Count > 0 ){
-                        <a href="#" class="post__likes-avatar">
-                            <img src="~/user_images/@post.PostLikes.ElementAt(0).PostLiker.PhotoUrl" alt="User Picture" />
-                        </a>
-                        <span>
-                            Liked by
-                            <a class="post__name--underline" href="#">@post.PostLikes.ElementAt(0).PostLiker.NickName.ToLower()</a>
-                            @if (post.PostLikes.Count > 1)
-                            {
+                        @if (post.PostLikes.Count > 0)
+                        {
+                            <a href="#" class="post__likes-avatar">
+                                <img src="~/user_images/@post.PostLikes.ElementAt(0).PostLiker.PhotoUrl" alt="User Picture" />
+                            </a>
+                            <span>
+                                Liked by
+                                <a class="post__name--underline" href="#">@post.PostLikes.ElementAt(0).PostLiker.NickName.ToLower()</a>
+                                @if (post.PostLikes.Count > 1)
+                                {
                                     <span>and</span>
-                                <a href="#">
+                                    <a href="#">
                                         @(post.PostLikes.Count - 1) others
-                                </a>
-                            }                       
-                        </span>
+                                    </a>
+                                }
+                            </span>
                         }
                     </div>
 
@@ -233,8 +237,8 @@
                     </div>
 
                     <span class="post__date-time">
-                        @{
-                            @GetPrettyDate(@post.GenerateDate);                           
+                        @{   
+                                @GetPrettyDate(Convert.ToDateTime(@post.GenerateDate.ToString().Split(" ")[0] +" "+ post.GenerateTime.ToString().Split(" ")[1]));                           
                         }
                     </span>
                 </div>

@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using SocialMediaApp.Models;
 using SocialMediaApp.PagedList;
@@ -24,10 +25,11 @@ namespace SocialMediaApp.Controllers
         UserManager um = new UserManager(new EfUserRepository());
         public IActionResult Index(int page = 1, string searchText = "")
         {
-            //var posts = pm.PostList().ToPagedList(page,pageSize);
-            //return View(posts);
+			//var posts = pm.PostList().ToPagedList(page,pageSize);
+			//return View(posts);
 
-            int pageSize = 2;
+			TempData["page"] = page;
+			int pageSize = 2;
             Context c = new Context();
             Pager pager;
             List<Post> data;
@@ -122,7 +124,8 @@ namespace SocialMediaApp.Controllers
                     post.PostContent3 = dizi[2];
                 }
                 pm.PostUpdate(post);
-                return RedirectToAction("PostList");
+				int page = (int)TempData["page"];
+				return RedirectToAction("PostList", new { page, searchText = "" });
             }
             else
             {
@@ -144,88 +147,66 @@ namespace SocialMediaApp.Controllers
             Post post = pm.GetPostById(id);
             post.IsActive = false;
             pm.PostUpdate(post);
-            return RedirectToAction("PostList");
+			int page = (int)TempData["page"];
+			return RedirectToAction("PostList", new { page, searchText = "" });
         }
 
         //Dosya yüklemek için metod oluşturuldu
         private string[] FileUpload(Post post)
         {
-          
+            var count = 0;
             string[] uniquefileNames = new string[3];
-            if (post.imgFiles != null)
+            
+            List<IFormFile> fileList = new List<IFormFile>();
+            if (post.imgFile1 != null)
+            {
+                fileList.Add(post.imgFile1);
+                count++;
+            }
+            else {
+                fileList.Add(post.imgFile1);
+            }
+
+           
+           if (post.imgFile2 != null)
+            {
+                fileList.Add(post.imgFile2);
+                count++;
+            }
+            else
+            {
+                fileList.Add(post.imgFile2);
+            }
+            if (post.imgFile3 != null)
+            {
+                fileList.Add(post.imgFile3);
+                count++;
+            }
+            else
+            {
+                fileList.Add(post.imgFile3);
+            }
+
+            if (count>0)
             {
                
-                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
-                switch (post.imgFiles.Count)
+               
+                switch (count)
                 {
                     case 1:
-                        uniquefileNames[0] = Guid.NewGuid().ToString() + "_" + post.imgFiles[0].FileName;
-                        string filePath = Path.Combine(uploadfolder, uniquefileNames[0]);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            post.imgFiles[0].CopyTo(stream);
-                        }
-                        uniquefileNames[1] = post.PostContent2;
-                        uniquefileNames[2] = post.PostContent3;
-
+                        uniquefileNames=checkImageUpdated(fileList,post);
                         break;
                     case 2:
-                        uniquefileNames[0] = Guid.NewGuid().ToString() + "_" + post.imgFiles[0].FileName;
-                        filePath = Path.Combine(uploadfolder, uniquefileNames[0]);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            post.imgFiles[0].CopyTo(stream);
-                        }
-                        uniquefileNames[1] = Guid.NewGuid().ToString() + "_" + post.imgFiles[1].FileName;
-                        filePath = Path.Combine(uploadfolder, uniquefileNames[1]);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            post.imgFiles[1].CopyTo(stream);
-                        }
-                        uniquefileNames[2] = post.PostContent3;
+                        uniquefileNames=checkImageUpdated(fileList, post);
                         break;
                     case 3:
-                        uniquefileNames[0] = Guid.NewGuid().ToString() + "_" + post.imgFiles[0].FileName;
-                        filePath = Path.Combine(uploadfolder, uniquefileNames[0]);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            post.imgFiles[0].CopyTo(stream);
-                        }
-                        uniquefileNames[1] = Guid.NewGuid().ToString() + "_" + post.imgFiles[1].FileName;
-                        filePath = Path.Combine(uploadfolder, uniquefileNames[1]);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            post.imgFiles[1].CopyTo(stream);
-                        }
-                        uniquefileNames[2] = Guid.NewGuid().ToString() + "_" + post.imgFiles[2].FileName;
-                        filePath = Path.Combine(uploadfolder, uniquefileNames[2]);
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            post.imgFiles[2].CopyTo(stream);
-                        }
+                        uniquefileNames=checkImageUpdated(fileList, post);
                         break;
                 }
             }
             else {
                
                 uniquefileNames[0] = post.PostContent;
-
-                //if(post.PostContent2 == "boş")
-                //{
-                //    uniquefileNames[1] = null;
-                //}
-                //else
-                //{
-                //    uniquefileNames[1] = post.PostContent2;
-                //}
-                //if (post.PostContent3 == "boş")
-                //{
-                //    uniquefileNames[2] = null;
-                //}
-                //else
-                //{
-                //    uniquefileNames[2] = post.PostContent3;
-                //}
                 uniquefileNames[1] = post.PostContent2;
                 uniquefileNames[2] = post.PostContent3;
             }
@@ -233,6 +214,40 @@ namespace SocialMediaApp.Controllers
             return uniquefileNames;
             
            
+        }
+        private string[] checkImageUpdated(List<IFormFile> fileList,Post post) {
+            string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "post_images");
+            string filePath;
+            string[] uniquefileNames = new string[3];
+            for (var i = 0; i < fileList.Count; i++)
+            {
+                if (fileList[i] != null)
+                {
+                     uniquefileNames[i] = Guid.NewGuid().ToString() + "_" + fileList[i].FileName;
+                    filePath = Path.Combine(uploadfolder, uniquefileNames[i]);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        fileList[i].CopyTo(stream);
+                    }
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        uniquefileNames[i] = post.PostContent;
+                    }
+                    else if (i == 1)
+                    {
+                        uniquefileNames[i] = post.PostContent2;
+                    }
+                    else
+                    {
+                        uniquefileNames[i] = post.PostContent3;
+                    }
+
+                }
+            }
+            return uniquefileNames;
         }
     }
 }
