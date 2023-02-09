@@ -1,3 +1,370 @@
-body {
-    background-color: black;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,700&display=swap');
+
+/* ---------------------  SCROLL START --------------------- */
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+/* ############################################################# */
+
+
+/* ############################################################# */
+/* ############################### */
+/*     COMMON START     */
+/* ############################### */
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  height: 95vh;
+  position: relative;
+}
+
+a {
+  color: rgba(128, 128, 128, 0.3);
+}
+
+.custom-link {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.main-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 70%;
+  height: 90%;
+}
+
+.left-container {
+  display: flex;
+  width: 60%;
+  height: 100%;
+  position: relative;
+}
+
+.right-container {
+  width: 40%;
+  height: 100%;
+}
+
+svg {
+  display: block;
+}
+/* ############################################################# */
+
+.post__left-button,
+.post__right-button {
+  width: 24px;
+  height: 24px;
+  display: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.post__left-button {
+  left: 16px;
+  opacity: 0.7;
+}
+
+.post__right-button {
+  right: 16px;
+  opacity: 0.7;
+}
+
+.post {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.post__content {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.post__medias {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+  .post__medias::-webkit-scrollbar {
+    display: none;
+  }
+
+.post__media {
+  width: 100%;
+  flex: none;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.post__footer {
+  /*background-color: var(--primary);*/
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 4px;
+}
+
+.post__buttons {
+  display: flex;
+  position: relative;
+}
+
+.post__indicators {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.post__indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  /*background-color: var(--text-light);*/
+  background-color: blue;
+}
+
+.post__indicator--active {
+  /*background-color: var(--link);*/
+  background-color: red;
+}
+
+
+/* ############################################################# */
+/* ############################### */
+/*     RIGHT TOP START     */
+/* ############################### */
+
+.top-container {
+  border-bottom: 1px solid;
+  border-color: rgba(128, 128, 128, 0.3);
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.top-photo-container {
+  width: 15%;
+  height: 70%;
+  position: relative;
+}
+
+.top-profile-photo {
+  border: 1px solid;
+  border-color: rgba(128, 128, 128, 0.1);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 50px;
+  height: 50px;
+  object-fit: fill;
+}
+
+.top-nickname-container {
+  display: inline-block;
+}
+
+.nickname {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.top-follow-container {
+  position: absolute;
+  left: 95%;
+}
+
+.follow {
+  color: rgb(0, 149, 246);
+}
+/* ############################################################# */
+
+
+/* ############################################################# */
+/* ############################### */
+/*     RIGHT DESCRIPTION START     */
+/* ############################### */
+
+.description-container {
+  display: inline-flex;
+  width: 100%;
+  height: 15%;
+  align-items: center;
+}
+
+.description-content {
+  width: 70%;
+}
+
+.description-title {
+  display: inline;
+}
+
+.like {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-infos {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1% 0 0 1%;
+}
+
+.comment-info {
+  display: inline;
+  padding-right: 5%;
+  color: rgba(128, 128, 128, 0.3);
+  cursor: pointer;
+}
+/* ############################################################# */
+
+
+/* ############################################################# */
+/* ############################### */
+/*     RIGHT COMMENTS START     */
+/* ############################### */
+.comments {
+  border-bottom: 1px solid;
+  border-color: rgba(128, 128, 128, 0.3);
+  height: 65%;
+  overflow: hidden;
+}
+
+.comments:hover {
+    overflow-y: scroll;
+}
+
+.parent-comment {
+  padding: 1% 0 1% 0;
+}
+
+.child-comment{
+    margin-top:3%;
+    padding-left: 5%;
+}
+
+/* ############################################################# */
+
+
+/* ############################################################# */
+/* ############################### */
+/*     RIGHT BUTTONS START     */
+/* ############################### */
+.buttons {
+  border: 1px solid;
+  border-color: rgba(128, 128, 128, 0.3);
+  height: 5%;
+}
+
+.button {
+  display: inline;
+  padding: 1.5%;
+}
+
+.heart-button {
+  float: left;
+  margin-left: 1%;
+}
+
+.comment-button {
+  float: left;
+}
+
+.share-button {
+  float: left;
+}
+
+.save-button {
+  float: right;
+  margin-right: 3%;
+}
+/* ############################################################# */
+
+
+/* ############################################################# */
+/* ############################### */
+/*     RIGHT FOOTER START     */
+/* ############################### */
+.footer {
+  height: 5%;
+  padding-top: 1%;
+  padding-left: 2%;
+}
+
+.comment-entry {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  width: 85%;
+  height: 100%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.post-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  float: right;
+  margin-top: 1%;
+  margin-right: 3%;
+  color: rgb(0, 149, 246);
+  font-weight: 800;
+}
+/* ############################################################# */

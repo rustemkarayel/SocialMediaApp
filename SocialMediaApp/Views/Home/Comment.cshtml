@@ -1,28 +1,344 @@
 ﻿@using EntityLayer;
 @model Post;
+
 @{
-    ViewData["Title"] = "Comment";
+    ViewData["Title"] = Model.Description;
     Layout = null;
 }
 
-@Model.PostId
-<br />
-@Model.GenerateDate
-<br />
-@Model.PostContent
-<br />
-@Model.Description
-<br />
-@Model.IsActive.ToString();
-<br />
-@*@Model.Location.LocationName*@
-<br />
-@*@Model.Genre.GenreName*@
-<br />
-@*@Model.Creator.NickName*@
-<br />
-@Model.PostContent2
-<br />
-@Model.PostContent3
-<br />
-@Model.isSeen.ToString();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment</title>
+
+    <link href="~/user_interface/comment/Comment.css" rel="stylesheet">
+
+    <!-- Jquery Import-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="main-container">
+
+        <div class="left-container">
+            <article class="post">
+                <!-- Post Content -->
+                <div class="post__content">
+                    <div class="post__medias">
+                        <img class="post__media"
+                             src="~/user_images/@Model.PostContent"
+                             alt="Post Content" />
+                        @if (@Model.PostContent2 != null)
+                        {
+                            <img class="post__media"
+                             src="~/user_images/@Model.PostContent2"
+                             alt="Post Content" />
+                        }
+                        @if (@Model.PostContent3 != null)
+                        {
+                            <img class="post__media"
+                             src="~/user_images/@Model.PostContent3"
+                             alt="Post Content" />
+                        }
+
+                    </div>
+                </div>
+
+                <div class="post__footer">
+                    <div class="post__buttons">
+                        <div class="post__indicators"></div>
+                    </div>
+
+                </div>
+
+            </article>
+        </div>
+
+        <!-- RIGHT SIDE START -->
+        <div class="right-container">
+
+            <!-- TOP START -->
+            <div class="top-container">
+
+                <div class="top-photo-container">
+                    <img class="top-profile-photo" src="~/user_images/@Model.Creator.PhotoUrl">
+                </div>
+
+                <div class="top-nickname-container">
+                    <h3>
+                        <a class="nickname custom-link" href="#">@Model.Creator.NickName</a>
+                    </h3>
+                </div>
+
+                <div class="top-follow-container">
+                    <a class="follow custom-link" href="#">Follow</a>
+                </div>
+            </div>
+            <!-- TOP END -->
+            <!-- DESCRIPTION START -->
+            <div class="description-container">
+
+                <!-- Photo Start -->
+                <div class="top-photo-container">
+                    <img class="top-profile-photo" src="~/user_images/@Model.Creator.PhotoUrl">
+                </div>
+                <!-- Photo End -->
+                <!-- Description Content Start -->
+                <div class="description-content">
+                    <span>
+                        <h3 class="description-title">
+                            <a class="nickname custom-link" href="#">@Model.Creator.NickName</a>
+                        </h3>
+
+                        @Model.Description
+                    </span>
+
+                    <div class="comment-infos">
+                        <div class="comment-info">
+                            1 w
+                        </div>
+                    </div>
+                </div>
+                <!-- Description Content End -->
+                <!-- Like Start-->
+                <div class="like">
+                    <a href="#"><img src="~/user_interface/assets/icons/heart.svg"></a>
+                </div>
+                <!-- Like End-->
+
+            </div>
+            <!-- DESCRIPTION END -->
+            <!-- COMMENT START -->
+            <div class="comments">
+
+                @{
+                    if (Model.Comments.Count > 0)
+                    {
+                        foreach (var comment in Model.Comments)
+                        {
+                            @if (comment.ParentComment == null)
+                            {
+                                <ul class="parent-comment">
+
+                                    <div class="description-container">
+
+                                        <!-- Photo Start -->
+                                        <div class="top-photo-container">
+                                            <img class="top-profile-photo" src="~/user_images/@comment.Commentor.PhotoUrl">
+                                        </div>
+                                        <!-- Photo End -->
+                                        <!-- Description Content Start -->
+                                        <div class="description-content">
+                                            <span>
+                                                <h3 class="description-title">
+                                                    <a class="nickname custom-link" href="#">@comment.Commentor.NickName</a>
+                                                </h3>
+                                                @comment.CommentContent
+                                            </span>
+
+                                            <div class="comment-infos">
+                                                <div class="comment-info">
+                                                    @GetPrettyDate(comment.CommentDate)
+                                                </div>
+
+                                                <div class="comment-info">
+                                                    ****
+                                                </div>
+
+                                                <div class="comment-info">
+                                                    Reply
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Description Content End -->
+                                        <!-- Like Start-->
+                                        <div class="like">
+                                            <a href="#"><img src="~/user_interface/assets/icons/heart.svg"></a>
+                                        </div>
+                                        <!-- Like End-->
+
+                                    </div>
+
+                                    @if (comment.ChildComments.Count > 0)
+                                    {
+                                        @foreach (var childComment in comment.ChildComments)
+                                        {
+                                            <li class="child-comment">
+                                                <div class="description-container">
+
+                                                    <!-- Photo Start -->
+                                                    <div class="top-photo-container">
+                                                        <img class="top-profile-photo" src="~/user_images/@childComment.Commentor.PhotoUrl">
+                                                    </div>
+                                                    <!-- Photo End -->
+                                                    <!-- Description Content Start -->
+                                                    <div class="description-content">
+                                                        <span>
+                                                            <h3 class="description-title">
+                                                                <a class="nickname custom-link" href="#">@childComment.Commentor.NickName</a>
+                                                            </h3>
+                                                            @childComment.CommentContent
+                                                        </span>
+
+                                                        <div class="comment-infos">
+                                                            <div class="comment-info">
+                                                                @GetPrettyDate(childComment.CommentDate)
+                                                            </div>
+
+                                                            <div class="comment-info">
+                                                                ****
+                                                            </div>
+
+                                                            <div class="comment-info">
+                                                                Reply
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Description Content End -->
+                                                    <!-- Like Start-->
+                                                    <div class="like">
+                                                        <a href="#"><img src="~/user_interface/assets/icons/heart.svg"></a>
+                                                    </div>
+                                                    <!-- Like End-->
+
+                                                </div>
+                                            </li>
+                                        }
+
+                                    }
+                                </ul>
+                            }
+                        }
+                    }
+
+                }
+
+            </div>
+            <!-- COMMENT END -->
+            <!-- Button Start -->
+            <div class="buttons">
+
+                <div class="button heart-button">
+                    <a href="#">
+                        <img src="~/user_interface/assets/icons/heart.svg">
+                    </a>
+                </div>
+
+                <div class="button comment-button">
+                    <a href="#">
+                        <img src="~/user_interface/assets/icons/comment.svg">
+                    </a>
+                </div>
+
+                <div class="button share-button">
+                    <a href="#">
+                        <img src="~/user_interface/assets/icons/share.svg">
+                    </a>
+                </div>
+
+                <div class="button save-button">
+                    <a href="#">
+                        <img src="~/user_interface/assets/icons/bookmark.svg">
+                    </a>
+                </div>
+            </div>
+            <!-- Button End -->
+            <!-- Footer Start -->
+            <div class="footer">
+                <input class="comment-entry" type="input" placeholder="Add a comment...">
+
+                <input class="post-button" type="submit" value="Post">
+            </div>
+            <!-- Footer End -->
+
+        </div>
+    </div>
+
+
+    @{
+        string GetPrettyDate(DateTime d)
+        {
+            // 1.
+            // Get time span elapsed since the date.
+            TimeSpan s = DateTime.Now.Subtract(d);
+
+            // 2.
+            // Get total number of days elapsed.
+            int dayDiff = (int)s.TotalDays;
+
+            // 3.
+            // Get total number of seconds elapsed.
+            int secDiff = (int)s.TotalSeconds;
+
+            // 4.
+            // Don't allow out of range values.
+            if (dayDiff < 0 || dayDiff >= 31)
+            {
+                return null;
+            }
+
+            // 5.
+            // Handle same-day times.
+            if (dayDiff == 0)
+            {
+                // A.
+                // Less than one minute ago.
+                if (secDiff < 60)
+                {
+                    return "just now";
+                }
+                // B.
+                // Less than 2 minutes ago.
+                if (secDiff < 120)
+                {
+                    return "1 m";
+                }
+                // C.
+                // Less than one hour ago.
+                if (secDiff < 3600)
+                {
+                    return string.Format("{0} m",
+                    Math.Floor((double)secDiff / 60));
+                }
+                // D.
+                // Less than 2 hours ago.
+                if (secDiff < 7200)
+                {
+                    return "1 h";
+                }
+                // E.
+                // Less than one day ago.
+                if (secDiff < 86400)
+                {
+                    return string.Format("{0} h",
+                    Math.Floor((double)secDiff / 3600));
+                }
+            }
+            // 6.
+            // Handle previous days.
+            if (dayDiff == 1)
+            {
+                return "yesterday";
+            }
+            if (dayDiff < 7)
+            {
+                return string.Format("{0} d",
+                dayDiff);
+            }
+            if (dayDiff < 31)
+            {
+                return string.Format("{0} w",
+                Math.Ceiling((double)dayDiff / 7));
+            }
+            return null;
+        }
+    }
+
+    <!-- Comment Script-->
+    <script type="text/javascript" src="~/user_interface/comment/Comment.js"></script>
+
+</body>
+</html>
