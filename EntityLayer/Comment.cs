@@ -27,6 +27,9 @@ namespace EntityLayer
         public int UserId { get; set; }
         public virtual User Commentor { get; set; }
 
+        //CommentLike ilişkisi.
+        public virtual ICollection<CommentLike> CommentLikes { get; set; }
+
         //Kendiyle ilişkilenecek.
         [ForeignKey("ParentComment")]
         public int? ParentCommentId { get; set; }
