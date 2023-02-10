@@ -98,7 +98,7 @@
 
                     <div class="comment-infos">
                         <div class="comment-info">
-                            1 w
+                            @GetPrettyDate(Model.GenerateDate)
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,15 @@
                                                 </div>
 
                                                 <div class="comment-info">
-                                                    ****
+                                                    @if (comment.CommentLikes.Count > 0)
+                                                    {
+                                                        <span>@comment.CommentLikes.Count b</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>0 b</span>
+                                                    }
+
                                                 </div>
 
                                                 <div class="comment-info">
